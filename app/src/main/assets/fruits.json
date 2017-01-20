@@ -3,63 +3,63 @@
     {
       "nom" : "pomme",
       "coupe": "fruit_pomme_coupe",
-      "plante": "fruit_pomme_plante",
+      "plante": "fruit_pommier",
       "graine": "fruit_pomme_graine"
     },
     {
       "nom" : "orange",
       "coupe": "fruit_orange_coupe",
-      "plante": "fruit_orange_plante",
+      "plante": "fruit_oranger",
       "graine": "fruit_orange_graine"
     },{
       "nom" : "pastèque",
-      "coupe": "fruit_pastèque_coupe",
-      "plante": "",
-      "graine": "fruit_pastèque_graine"
+      "coupe": "fruit_pasteque_coupe",
+      "plante": "fruit_pasteque_plante",
+      "graine": "fruit_pasteque_graine"
     },{
       "nom" : "cerise",
       "coupe": "fruit_cerise_coupe",
-      "plante": "fruit_cerise_plante",
+      "plante": "fruit_cerisier",
       "graine": "fruit_cerise_graine"
     },{
       "nom" : "fraise",
       "coupe": "fruit_fraise_coupe",
-      "plante": "fruit_fraise_plante",
+      "plante": "fruit_fraisier",
       "graine": "fruit_fraise_graine"
     },{
       "nom" : "melon",
       "coupe": "fruit_melon_coupe",
-      "plante": "",
+      "plante": "fruit_melon_plante",
       "graine": "fruit_melon_graine"
     },{
       "nom" : "pêche",
-      "coupe": "fruit_pêche_coupe",
-      "plante": "fruit_pêche_plante",
-      "graine": "fruit_pêche_graine"
+      "coupe": "fruit_peche_coupe",
+      "plante": "fruit_pecher",
+      "graine": "fruit_peche_graine"
     },{
       "nom" : "abricot",
       "coupe": "fruit_abricot_coupe",
-      "plante": "fruit_abricot_plante",
+      "plante": "fruit_abricotier",
       "graine": "fruit_abricot_graine"
     },{
       "nom" : "citron",
       "coupe": "fruit_citron_coupe",
-      "plante": "fruit_citron_plante",
+      "plante": "fruit_citronnier",
       "graine": "fruit_citron_graine"
     },{
       "nom" : "mangue",
       "coupe": "fruit_mangue_coupe",
-      "plante": "fruit_mangue_plante",
+      "plante": "fruit_manguier",
       "graine": "fruit_mangue_graine"
     },{
       "nom" : "banane",
       "coupe": "fruit_banane_coupe",
-      "plante": "fruit_banane_plante",
+      "plante": "fruit_bananier",
       "graine": ""
     },{
       "nom" : "ananas",
       "coupe": "fruit_ananas_coupe",
-      "plante": "fruit_ananas_plante",
+      "plante": "fruit_ananasier",
       "graine": ""
     },{
       "nom" : "poire",
@@ -69,22 +69,22 @@
     },{
       "nom" : "kiwi",
       "coupe": "fruit_kiwi_coupe",
-      "plante": "fruit_kiwi_plante",
+      "plante": "fruit_kiwi_arbre",
       "graine": "fruit_kiwi_graine"
     },{
       "nom" : "raisin",
       "coupe": "fruit_raisin_coupe",
-      "plante": "fruit_raisin_plante",
+      "plante": "fruit_vigne",
       "graine": "fruit_raisin_graine"
     },{
       "nom" : "framboise",
       "coupe": "fruit_framboise_coupe",
-      "plante": "fruit_framboise_plante",
+      "plante": "fruit_framboisier",
       "graine": "fruit_framboise_graine"
     },{
       "nom" : "noix de coco",
       "coupe": "fruit_noix_de_coco_coupe",
-      "plante": "fruit_noix_de_coco_plante",
+      "plante": "fruit_cocotier",
       "graine": ""
     }
   ]
