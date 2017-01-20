@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kagura.project.com.a8">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:screenOrientation="landscape"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:windowActionBar="false">
+        <activity android:name="kagura.project.com.a8.CharacterSelection">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="kagura.project.com.a8.MainMenu" />
+        <activity android:name="kagura.project.com.a8.memory.MemoryMenu" />
+        <activity android:name="kagura.project.com.a8.memory.MemoryGame" />
+        <activity android:name="kagura.project.com.a8.association.AssociationMenu" />
+        <activity android:name="kagura.project.com.a8.GameFinished" />
+        <activity android:name="kagura.project.com.a8.admin.AdminMenu" />
+        <activity android:name="kagura.project.com.a8.admin.AdminSession" />
+        <activity android:name="kagura.project.com.a8.admin.AdminResults"></activity>
+    </application>
+
+</manifest>

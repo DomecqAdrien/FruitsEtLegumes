@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_legumes"
+    android:id="@+id/frameLayout">
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridviewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="80dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+    </GridView>
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridviewFront"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="80dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+    </GridView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container">
+    </LinearLayout>
+
+</RelativeLayout>

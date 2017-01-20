@@ -1,0 +1,91 @@
+{
+  "fruits":[
+    {
+      "nom" : "pomme",
+      "coupe": "fruit_pomme_coupe",
+      "plante": "fruit_pomme_plante",
+      "graine": "fruit_pomme_graine"
+    },
+    {
+      "nom" : "orange",
+      "coupe": "fruit_orange_coupe",
+      "plante": "fruit_orange_plante",
+      "graine": "fruit_orange_graine"
+    },{
+      "nom" : "pastèque",
+      "coupe": "fruit_pastèque_coupe",
+      "plante": "",
+      "graine": "fruit_pastèque_graine"
+    },{
+      "nom" : "cerise",
+      "coupe": "fruit_cerise_coupe",
+      "plante": "fruit_cerise_plante",
+      "graine": "fruit_cerise_graine"
+    },{
+      "nom" : "fraise",
+      "coupe": "fruit_fraise_coupe",
+      "plante": "fruit_fraise_plante",
+      "graine": "fruit_fraise_graine"
+    },{
+      "nom" : "melon",
+      "coupe": "fruit_melon_coupe",
+      "plante": "",
+      "graine": "fruit_melon_graine"
+    },{
+      "nom" : "pêche",
+      "coupe": "fruit_pêche_coupe",
+      "plante": "fruit_pêche_plante",
+      "graine": "fruit_pêche_graine"
+    },{
+      "nom" : "abricot",
+      "coupe": "fruit_abricot_coupe",
+      "plante": "fruit_abricot_plante",
+      "graine": "fruit_abricot_graine"
+    },{
+      "nom" : "citron",
+      "coupe": "fruit_citron_coupe",
+      "plante": "fruit_citron_plante",
+      "graine": "fruit_citron_graine"
+    },{
+      "nom" : "mangue",
+      "coupe": "fruit_mangue_coupe",
+      "plante": "fruit_mangue_plante",
+      "graine": "fruit_mangue_graine"
+    },{
+      "nom" : "banane",
+      "coupe": "fruit_banane_coupe",
+      "plante": "fruit_banane_plante",
+      "graine": ""
+    },{
+      "nom" : "ananas",
+      "coupe": "fruit_ananas_coupe",
+      "plante": "fruit_ananas_plante",
+      "graine": ""
+    },{
+      "nom" : "poire",
+      "coupe": "fruit_poire_coupe",
+      "plante": "fruit_poire_plante",
+      "graine": "fruit_poire_graine"
+    },{
+      "nom" : "kiwi",
+      "coupe": "fruit_kiwi_coupe",
+      "plante": "fruit_kiwi_plante",
+      "graine": "fruit_kiwi_graine"
+    },{
+      "nom" : "raisin",
+      "coupe": "fruit_raisin_coupe",
+      "plante": "fruit_raisin_plante",
+      "graine": "fruit_raisin_graine"
+    },{
+      "nom" : "framboise",
+      "coupe": "fruit_framboise_coupe",
+      "plante": "fruit_framboise_plante",
+      "graine": "fruit_framboise_graine"
+    },{
+      "nom" : "noix de coco",
+      "coupe": "fruit_noix_de_coco_coupe",
+      "plante": "fruit_noix_de_coco_plante",
+      "graine": ""
+    }
+  ]
+}
