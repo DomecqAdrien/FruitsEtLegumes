@@ -22,7 +22,6 @@ public class MainMenu extends AppCompatActivity {
     Intent intentGame;
     String anim;
     String name;
-    StringBuilder strb;
     TextView textHello;
 
     @Override
@@ -51,14 +50,6 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-        Intent intentBack = new Intent(this, CharacterSelection.class);
-        this.startActivity(intentBack);
-    }
-
     public void startGame(View v) {
         switch(v.getId()){
             case R.id.spaceMemory:
@@ -71,7 +62,6 @@ public class MainMenu extends AppCompatActivity {
                 break;
         }
         int animId = getResources().getIdentifier(anim, "animator", getPackageName());
-        finish();
         this.startActivityForResult(intentGame, 0);
         overridePendingTransition(animId, R.animator.push_up_out);
     }

@@ -103,7 +103,7 @@ public class MemoryGame extends AppCompatActivity {
 
         backImage = getResources().getIdentifier("test", "drawable", getPackageName());
 
-        loadImages("fruit_plein");
+        loadImages("legume");
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         name = preferences.getString(getString(R.string.name), null);
@@ -199,8 +199,6 @@ public class MemoryGame extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
-                        Intent intentBack = new Intent(getApplicationContext(), MemoryMenu.class);
-                        startActivity(intentBack);
                     }
                 })
                 .setNegativeButton("Non", null).show();
@@ -450,9 +448,8 @@ public class MemoryGame extends AppCompatActivity {
 
     public void goHome(View view) {
 
-        intent = new Intent(this, MainMenu.class);
+        setResult(66);
         finish();
-        this.startActivity(intent);
     }
 
     public void goLevelMenu(View view) {
