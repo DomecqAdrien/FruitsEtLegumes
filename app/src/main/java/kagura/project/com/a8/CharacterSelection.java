@@ -62,8 +62,6 @@ public class CharacterSelection extends AppCompatActivity {
                     break;
             }
         }
-
-
     }
 
     @Override
@@ -79,6 +77,7 @@ public class CharacterSelection extends AppCompatActivity {
                 })
                 .setNegativeButton("Non", null).show();
     }
+
 
     public void CharacterOnClick(View view) {
 
@@ -114,7 +113,6 @@ public class CharacterSelection extends AppCompatActivity {
 
 
             intent = new Intent(this, MainMenu.class);
-            finish();
             this.startActivityForResult(intent, 0);
         }
 
@@ -122,7 +120,6 @@ public class CharacterSelection extends AppCompatActivity {
 
     public void adminSession(View view) {
         intent = new Intent(this, AdminMenu.class);
-        finish();
         this.startActivityForResult(intent, 0);
     }
 }

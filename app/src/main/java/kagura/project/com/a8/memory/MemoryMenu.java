@@ -57,11 +57,13 @@ public class MemoryMenu extends AppCompatActivity{
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-        Intent intentBack = new Intent(this, MainMenu.class);
-        this.startActivity(intentBack);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 66){
+
+            setResult(requestCode);
+            finish();
+        }
     }
 
     public void startGame(View v) {
@@ -83,7 +85,6 @@ public class MemoryMenu extends AppCompatActivity{
         Log.i("button", Integer.toString(button));
         intentMemory = new Intent(this, MemoryGame.class);
         intentMemory.putExtra("level", button);
-        finish();
         this.startActivityForResult(intentMemory, 0);
     }
 }
