@@ -17,8 +17,8 @@ public class CharacterSelectionFragment extends Fragment implements View.OnClick
     TextView name;
     int avatar;
     Button start;
-    ImageButton fraise;
-    ImageButton pomme;
+    ImageButton verMince;
+    ImageButton verGros;
 
     public CharacterSelectionFragment() {
         // Required empty public constructor
@@ -35,10 +35,10 @@ public class CharacterSelectionFragment extends Fragment implements View.OnClick
                              Bundle savedInstanceState) {
 
         //name = (TextView) getView().findViewById(R.id.name);
-        fraise = (ImageButton) getView().findViewById(R.id.buttonFraise);
-        fraise.setOnClickListener(this);
-        pomme = (ImageButton) getView().findViewById(R.id.buttonPomme);
-        pomme.setOnClickListener(this);
+        verMince = (ImageButton) getView().findViewById(R.id.buttonVerMince);
+        verMince.setOnClickListener(this);
+        verGros = (ImageButton) getView().findViewById(R.id.buttonVerGros);
+        verGros.setOnClickListener(this);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_character_selection, container, false);
     }

@@ -42,7 +42,17 @@ public class MemoryMenu extends AppCompatActivity{
 
 
         avatar = (ImageView) findViewById(R.id.imageAvatar);
-        //avatar.setImageResource(avatarId);
+        Log.i("Avatar", avatarName);
+        switch(avatarName) {
+            case "verMince":
+                avatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince_hd));
+                break;
+            case "verGros":
+                avatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_hd_reverse));
+                break;
+        }
+
+
 
     }
 
@@ -56,17 +66,17 @@ public class MemoryMenu extends AppCompatActivity{
 
     public void startGame(View v) {
         Log.i("view", Integer.toString(v.getId()));
-        Log.i("1", Integer.toString(R.id.level_1));
-        Log.i("2", Integer.toString(R.id.level_2));
-        Log.i("3", Integer.toString(R.id.level_3));
+        Log.i("1", Integer.toString(R.id.level_1tv));
+        Log.i("2", Integer.toString(R.id.level_2tv));
+        Log.i("3", Integer.toString(R.id.level_3tv));
         switch (v.getId()){
-            case R.id.level_1:
+            case R.id.level_1tv:
                 button = 1;
                 break;
-            case R.id.level_2:
+            case R.id.level_2tv:
                 button = 2;
                 break;
-            case R.id.level_3:
+            case R.id.level_3tv:
                 button = 3;
                 break;
         }

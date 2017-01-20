@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/farback"
+    android:background="@drawable/background_menu"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,29 +12,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kagura.project.com.a8.MainMenu">
 
-    <Button
-        android:text="@string/memory"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="960dp"
         android:onClick="startGame"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_game_memory"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="67dp"
-        android:layout_marginEnd="67dp" />
+        android:id="@+id/spaceAssociation"
+        android:layout_height="540dp"
+        android:layout_toStartOf="@+id/textHello"
+        android:layout_toLeftOf="@+id/textHello" />
 
-    <Button
-        android:text="@string/association"
-        android:layout_width="wrap_content"
-        android:onClick="startGame"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_game_memory"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginStart="63dp"
-        android:id="@+id/button_game_association" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,5 +32,40 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="36sp" />
+
+    <TextView
+        android:layout_width="960dp"
+        android:layout_height="540dp"
+        android:onClick="startGame"
+        android:id="@+id/spaceMemory"
+
+        android:layout_alignTop="@+id/textHello"
+        android:layout_toRightOf="@+id/spaceAssociation"
+        android:layout_toEndOf="@+id/spaceAssociation"
+        android:layout_marginLeft="98dp"
+        android:layout_marginStart="98dp" />
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/memory"
+        android:id="@+id/imageView2"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Memory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp"
+        android:layout_marginStart="65dp"
+        android:textSize="70dp"
+        android:id="@+id/textView2"
+        android:fontFamily="casual"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
 
 </RelativeLayout>

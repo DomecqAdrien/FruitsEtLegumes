@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">7</string>
+    <string name="app_name">9</string>
     <string name="memory">memory</string>
     <string name="niveau_3">Niveau 3</string>
     <string name="niveau_2">niveau 2</string>
@@ -25,4 +25,7 @@
     <string name="jeu">Jeu</string>
     <string name="pr_nom">Prénom</string>
     <string name="date">Date</string>
+    <string name="level1">Niveau 1</string>
+    <string name="level2">Niveau 2</string>
+    <string name="level3">Niveau 3</string>
 </resources>

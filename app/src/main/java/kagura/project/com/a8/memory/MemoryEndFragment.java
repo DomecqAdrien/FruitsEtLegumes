@@ -1,6 +1,7 @@
 package kagura.project.com.a8.memory;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class MemoryEndFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.fragment_memory_end, container, false);
+        ConstraintLayout rl = (ConstraintLayout) inflater.inflate(R.layout.fragment_memory_end, container, false);
         if(level == 3){
             buttonLevel = (Button) rl.findViewById(R.id.buttonNextLevel);
             buttonLevel.setEnabled(false);

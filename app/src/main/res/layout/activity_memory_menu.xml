@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_memory_menu"
     android:layout_width="match_parent"
@@ -8,53 +9,102 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/farback"
+    android:background="@drawable/background_legumes"
     tools:context="kagura.project.com.a8.memory.MemoryMenu">
 
-    <Button
+    <ImageView
         android:text="@string/niveau_2"
         android:onClick="startGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
         android:id="@+id/level_2"
+        app:srcCompat="@drawable/feuille_jaune"
         android:layout_below="@+id/level_1"
         android:layout_alignLeft="@+id/level_1"
         android:layout_alignStart="@+id/level_1"
         android:layout_marginTop="49dp" />
 
-    <Button
+    <ImageView
         android:text="@string/niveau_3"
-        android:onClick="startGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
         android:id="@+id/level_3"
+        app:srcCompat="@drawable/feuille_rouge"
         android:layout_below="@+id/level_2"
         android:layout_alignLeft="@+id/level_2"
         android:layout_alignStart="@+id/level_2"
         android:layout_marginTop="44dp" />
 
-    <Button
+
+    <ImageView
         android:text="@string/niveau_1"
-        android:onClick="startGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="33dp"
         android:id="@+id/level_1"
         android:layout_marginRight="29dp"
         android:layout_marginEnd="29dp"
+        app:srcCompat="@drawable/feuille_verte"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:text="@string/level3"
+        android:onClick="startGame"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
+        android:id="@+id/level_3tv"
+        android:fontFamily="casual"
+        android:minHeight="179dp"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/level_3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/level2"
+        android:onClick="startGame"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
+        android:id="@+id/level_2tv"
+        android:fontFamily="casual"
+        android:minHeight="179dp"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/level_2"
+        android:layout_alignLeft="@+id/level_3tv"
+        android:layout_alignStart="@+id/level_3tv"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="@string/level1"
+        android:onClick="startGame"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
+        android:id="@+id/level_1tv"
+        android:fontFamily="casual"
+        android:minHeight="179dp"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/level_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="9dp" />
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/level_3"
-        android:layout_toLeftOf="@+id/level_3"
-        android:layout_marginRight="241dp"
-        android:layout_marginEnd="241dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:id="@+id/imageAvatar"
         android:padding="1dp"
-        android:contentDescription="@string/hello_blank_fragment" />
+        android:contentDescription="@string/hello_blank_fragment"
+        android:layout_marginLeft="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

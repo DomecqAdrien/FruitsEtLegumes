@@ -61,11 +61,11 @@ public class MainMenu extends AppCompatActivity {
 
     public void startGame(View v) {
         switch(v.getId()){
-            case R.id.button_game_memory:
+            case R.id.spaceMemory:
                 intentGame = new Intent(this, MemoryMenu.class);
                 anim = "push_left_in";
                 break;
-            case R.id.button_game_association:
+            case R.id.spaceAssociation:
                 intentGame = new Intent (this, AssociationMenu.class);
                 anim = "push_left_out";
                 break;

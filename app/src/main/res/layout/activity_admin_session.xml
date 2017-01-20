@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background_fruit"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_admin_session"
     android:layout_width="match_parent"
@@ -11,6 +12,7 @@
     tools:context="kagura.project.com.a8.admin.AdminSession">
 
     <CheckBox
+        android:id="@+id/isTimerEnabled"
         android:text="Débloquer les niveaux?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,25 +22,17 @@
         android:layout_marginRight="243dp"
         android:layout_marginEnd="243dp"
         android:layout_marginTop="168dp"
-        android:id="@+id/isTimerEnabled" />
+         />
 
-    <TextView
-        android:text="Personnes âgées : mettre des gateaux à base de fruits?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/isTimerEnabled"
-        android:layout_alignEnd="@+id/isTimerEnabled"
-        android:id="@+id/textView2" />
+
 
     <Button
+        android:id="@+id/buttonResult"
         android:text="Résultats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/isTimerEnabled"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2"
         android:layout_marginBottom="56dp"
         android:onClick="results"
-        android:id="@+id/buttonResult" />
+     />
 </RelativeLayout>

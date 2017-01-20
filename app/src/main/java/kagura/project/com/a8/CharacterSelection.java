@@ -22,8 +22,8 @@ public class CharacterSelection extends AppCompatActivity {
     EditText name;
     String nameValid;
     String avatar;
-    ImageButton fraise;
-    ImageButton pomme;
+    ImageButton verMince;
+    ImageButton verGros;
     Intent intent;
 
     @Override
@@ -46,19 +46,19 @@ public class CharacterSelection extends AppCompatActivity {
         setContentView(R.layout.activity_character_selection);
 
         name = (EditText) this.findViewById(R.id.name);
-        fraise = (ImageButton) findViewById(R.id.buttonFraise);
-        pomme = (ImageButton) findViewById(R.id.buttonPomme);
+        verMince = (ImageButton) findViewById(R.id.buttonVerMince);
+        verGros = (ImageButton) findViewById(R.id.buttonVerGros);
 
         if(nameValid != null){
             name.append(nameValid);
         }
         if(avatar != null){
             switch (avatar){
-                case "fraise":
-                    fraise.setBackgroundColor(getResources().getColor(R.color.black));
+                case "verMince":
+                    verMince.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince_aura));
                     break;
-                case "pomme":
-                    pomme.setBackgroundColor(getResources().getColor(R.color.black));
+                case "verGros":
+                    verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_aura));
                     break;
             }
         }
@@ -81,15 +81,19 @@ public class CharacterSelection extends AppCompatActivity {
     }
 
     public void CharacterOnClick(View view) {
-        view.setBackgroundColor(getResources().getColor(R.color.black));
+
         switch (view.getId()){
-            case R.id.buttonFraise:
-                avatar = "fraise";
-                pomme.setBackgroundColor(getResources().getColor(R.color.white));
+            case R.id.buttonVerMince:
+                avatar = "verMince";
+
+                verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros));
+                verMince.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince_aura));
                 break;
-            case R.id.buttonPomme:
-                avatar  = "pomme";
-                fraise.setBackgroundColor(getResources().getColor(R.color.white));
+            case R.id.buttonVerGros:
+                avatar  = "verGros";
+
+                verMince.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince));
+                verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_aura));
                 break;
         }
     }
