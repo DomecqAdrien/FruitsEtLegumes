@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">7</string>
+    <string name="memory">memory</string>
+    <string name="niveau_3">Niveau 3</string>
+    <string name="niveau_2">niveau 2</string>
+    <string name="niveau_1">niveau 1</string>
+    <string name="association">association</string>
+    <string name="bonjour">Bonjour</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start">C\'est parti !</string>
+    <string name="whoru">Qui es-tu ?</string>
+    <string name="prenom">Prénom</string>
+    <string name="name">name</string>
+    <string name="avatar">Avatar</string>
+    <string name="character_selection">Avec qui veux-tu jouer?</string>
+    <string name="admin">Admin ?</string>
+    <string name="passAdminInfo">Entrez votre mot de passe admin</string>
+    <string name="valider">Valider</string>
+    <string name="passAdminVerif"></string>
+    <string name="nombre_de_coups">Nombre de coups</string>
+    <string name="temps">Temps</string>
+    <string name="niveau">Niveau</string>
+    <string name="jeu">Jeu</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="date">Date</string>
+</resources>

@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kagura.project.com.a8.memory.MemoryEndFragment">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fotolia_menu"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView" />
+
+    <Button
+        android:text="Replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginTop="82dp"
+        android:onClick="replayLevel"
+        android:id="@+id/buttonReplay" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonReplay"
+        android:layout_alignLeft="@+id/buttonReplay"
+        android:layout_alignStart="@+id/buttonReplay"
+        android:layout_marginTop="44dp"
+        android:onClick="nextLevel"
+        android:id="@+id/buttonNextLevel" />
+
+    <Button
+        android:text="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonReplay"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:onClick="goHome"
+        android:id="@+id/buttonHome" />
+
+    <Button
+        android:text="Levels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonNextLevel"
+        android:layout_alignRight="@+id/buttonHome"
+        android:layout_alignEnd="@+id/buttonHome"
+        android:onClick="goLevelMenu"
+        android:id="@+id/buttonLevelSelection" />
+</RelativeLayout>
