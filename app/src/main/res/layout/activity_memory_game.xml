@@ -9,11 +9,11 @@
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
         android:id="@+id/gridviewBack"
-        android:layout_width="wrap_content"
+        android:layout_width="700dp"
         android:layout_height="wrap_content"
         android:columnWidth="200dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="80dp"
+        android:verticalSpacing="110dp"
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:layout_centerInParent="true"
@@ -23,15 +23,15 @@
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
         android:id="@+id/gridviewFront"
-        android:layout_width="wrap_content"
+        android:layout_width="700dp"
         android:layout_height="wrap_content"
         android:columnWidth="200dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="80dp"
+        android:verticalSpacing="110dp"
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:layout_centerInParent="true"
-        android:gravity="center">
+        android:gravity="center">>
     </GridView>
 
     <LinearLayout
