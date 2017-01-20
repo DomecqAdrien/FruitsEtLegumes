@@ -42,12 +42,15 @@ public class MemoryMenu extends AppCompatActivity{
 
 
         avatar = (ImageView) findViewById(R.id.imageAvatar);
-       /* switch(avatarName) {
+        Log.i("Avatar", avatarName);
+        switch(avatarName) {
             case "verMince":
                 avatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince_hd));
+                break;
             case "verGros":
-                avatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros));
-        } */
+                avatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_hd_reverse));
+                break;
+        }
 
 
 
