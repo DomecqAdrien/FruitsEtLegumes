@@ -40,6 +40,8 @@ import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Result;
 
+import static android.R.attr.fragment;
+
 public class MemoryGame extends AppCompatActivity {
 
     private static int level, size, columns;
@@ -68,6 +70,8 @@ public class MemoryGame extends AppCompatActivity {
     Boolean isTimerStarted = false;
     Chronometer timer;
     Calendar calendar;
+
+    FragmentManager fragmentManager;
 
 
     public MemoryGame() {
@@ -388,24 +392,25 @@ public class MemoryGame extends AppCompatActivity {
 
             if(finish == 0){
                 timer.stop();
-                calendar = Calendar.getInstance();
-                String monthString;
-                int calendarMonth = calendar.get(Calendar.MONTH) + 1;
-                if(calendarMonth < 10){
-                    monthString = "0" + Integer.toString(calendarMonth);
-                }else{
-                    monthString = Integer.toString(calendarMonth);
-                }
-                date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
-                time = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000 ;
-                Log.i("nb coups", Integer.toString(tries));
-                Log.i("timer : ", Long.toString(time));
                 result();
             }
         }
     }
 
     private void result(){
+
+        calendar = Calendar.getInstance();
+        String monthString;
+        int calendarMonth = calendar.get(Calendar.MONTH) + 1;
+        if(calendarMonth < 10){
+            monthString = "0" + Integer.toString(calendarMonth);
+        }else{
+            monthString = Integer.toString(calendarMonth);
+        }
+        date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
+        time = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000 ;
+        Log.i("nb coups", Integer.toString(tries));
+        Log.i("timer : ", Long.toString(time));
 
         Result result = new Result();
         result.setName(name);
@@ -423,7 +428,7 @@ public class MemoryGame extends AppCompatActivity {
         bundle.putInt("level", level);
         fragmentResult = new MemoryEndFragment();
         fragmentResult.setArguments(bundle);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.push_up_in, R.anim.push_up_out)
                 .replace(R.id.fragment_container, fragmentResult).commit();
@@ -433,28 +438,27 @@ public class MemoryGame extends AppCompatActivity {
 
     public void replayLevel(View view) {
 
-        intent = new Intent(this, MemoryGame.class);
-        intent.putExtra("level", level);
-        this.startActivity(intent);
+        fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        newGame();
+
     }
 
     public void nextLevel(View view) {
 
-        intent = new Intent(this, MemoryGame.class);
-        intent.putExtra("level", (level + 1));
-        this.startActivity(intent);
+        fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        level++;
+        newGame();
 
     }
 
     public void goHome(View view) {
 
-        setResult(66);
+        Intent intentHomeMenu = new Intent();
+        setResult(66, intentHomeMenu);
         finish();
     }
 
     public void goLevelMenu(View view) {
-
-        intent = new Intent(this, MemoryMenu.class);
-        this.startActivity(intent);
+        finish();
     }
 }
