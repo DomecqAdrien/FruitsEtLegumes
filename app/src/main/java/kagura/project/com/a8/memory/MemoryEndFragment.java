@@ -34,7 +34,7 @@ public class MemoryEndFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        ConstraintLayout rl = (ConstraintLayout) inflater.inflate(R.layout.fragment_memory_end, container, false);
+        RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.fragment_memory_end, container, false);
         if(level == 3){
             buttonLevel = (Button) rl.findViewById(R.id.buttonNextLevel);
             buttonLevel.setEnabled(false);
