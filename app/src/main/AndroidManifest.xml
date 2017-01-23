@@ -10,21 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowActionBar="false">
-        <activity android:name="kagura.project.com.a8.CharacterSelection">
+        <activity android:name=".CharacterSelection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="kagura.project.com.a8.MainMenu" />
-        <activity android:name="kagura.project.com.a8.memory.MemoryMenu" />
-        <activity android:name="kagura.project.com.a8.memory.MemoryGame" />
-        <activity android:name="kagura.project.com.a8.association.AssociationMenu" />
-        <activity android:name="kagura.project.com.a8.GameFinished" />
-        <activity android:name="kagura.project.com.a8.admin.AdminMenu" />
-        <activity android:name="kagura.project.com.a8.admin.AdminSession" />
-        <activity android:name="kagura.project.com.a8.admin.AdminResults"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".memory.MemoryMenu" />
+        <activity android:name=".memory.MemoryGame" />
+        <activity android:name=".association.AssociationMenu" />
+        <activity android:name=".GameFinished" />
+        <activity android:name=".admin.AdminMenu" />
+        <activity android:name=".admin.AdminSession" />
+        <activity android:name=".admin.AdminResults" />
+        <activity android:name=".association.Solution"></activity>
     </application>
 
 </manifest>

@@ -38,6 +38,7 @@ public class CharacterSelectionFragment extends Fragment implements View.OnClick
         verMince = (ImageButton) getView().findViewById(R.id.buttonVerMince);
         verMince.setOnClickListener(this);
         verGros = (ImageButton) getView().findViewById(R.id.buttonVerGros);
+
         verGros.setOnClickListener(this);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_character_selection, container, false);

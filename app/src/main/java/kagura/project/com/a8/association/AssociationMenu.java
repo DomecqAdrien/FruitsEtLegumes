@@ -14,9 +14,13 @@ import android.widget.ImageView;
 
 import kagura.project.com.a8.MainMenu;
 import kagura.project.com.a8.R;
+import kagura.project.com.a8.memory.MemoryGame;
+
+import static android.R.attr.button;
 
 public class AssociationMenu extends AppCompatActivity {
 
+    Intent intentMemory;
     ImageView avatar;
     String avatarName;
 
@@ -59,5 +63,10 @@ public class AssociationMenu extends AppCompatActivity {
     }
 
     public void startGame(View view) {
+    }
+    public void startSolution(View view) {
+        intentMemory = new Intent(this, Solution.class);
+        intentMemory.putExtra("level", button);
+        this.startActivityForResult(intentMemory, 0);
     }
 }

@@ -32,20 +32,22 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_editor_absoluteY="14dp"
-        android:textSize="36sp" />
+        android:textSize="43sp" />
 
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/name"
+        android:textSize="50dp"
+        android:fontFamily="casual"
         app:layout_constraintBottom_toTopOf="@+id/character_selection"
-        android:layout_marginBottom="64dp"
-        android:layout_marginStart="152dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintLeft_toRightOf="@+id/nameIndicator"
-        android:layout_marginLeft="152dp" />
+        android:layout_marginLeft="32dp" />
 
     <TextView
         android:text="@string/character_selection"
@@ -56,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/whoru"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="36sp" />
+        android:textSize="45sp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -90,7 +92,7 @@
         app:layout_constraintRight_toLeftOf="@+id/whoru"
         app:layout_constraintBottom_toTopOf="@+id/character_selection"
         android:layout_marginBottom="64dp"
-        android:textSize="30sp" />
+        android:textSize="40sp" />
 
     <Button
         android:text="@string/admin"
@@ -113,10 +115,8 @@
         android:id="@+id/imageView3"
         android:rotation="-40"
         app:layout_constraintBottom_toTopOf="@+id/buttonVerMince"
-        android:layout_marginBottom="88dp"
-        android:layout_marginStart="56dp"
-        app:layout_constraintLeft_toRightOf="@+id/character_selection"
-        android:layout_marginLeft="56dp" />
+        android:layout_marginBottom="104dp"
+        app:layout_constraintLeft_toRightOf="@+id/character_selection" />
 
 
 </android.support.constraint.ConstraintLayout>
