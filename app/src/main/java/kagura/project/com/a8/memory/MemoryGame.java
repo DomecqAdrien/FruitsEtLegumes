@@ -25,16 +25,14 @@ import android.widget.AdapterView;
 import android.widget.Chronometer;
 import android.widget.GridView;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import kagura.project.com.a8.Association;
+import kagura.project.com.a8.AssociationPicturale;
 import kagura.project.com.a8.ImageAdapter;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.database.ResultDAO;
@@ -43,18 +41,15 @@ import kagura.project.com.a8.objects.Result;
 
 public class MemoryGame extends AppCompatActivity {
 
-    private static int level, size, columns;
+    private static int level;
 
     private boolean isClickable = true;
 
-    private int backImage;
     private int finish;
     private int tries = 0;
 
     private String name;
     private UpdateCardsHandler handler;
-    private List<Integer> imagesId;
-    private List<Integer> imagePositions;
     private Card firstCard, secondCard;
     private AnimatorSet setRightOutFirst, setRightInFirst, setRightOutSecond, setRightInSecond;
     private static final Object lock = new Object();
@@ -67,6 +62,7 @@ public class MemoryGame extends AppCompatActivity {
     Calendar calendar;
 
     FragmentManager fragmentManager;
+    Association association;
 
 
     public MemoryGame() {
@@ -100,10 +96,6 @@ public class MemoryGame extends AppCompatActivity {
 
         handler = new UpdateCardsHandler();
 
-        backImage = getResources().getIdentifier("backcard", "drawable", getPackageName());
-
-        loadImages("legume");
-
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         name = preferences.getString(getString(R.string.name), null);
 
@@ -115,8 +107,6 @@ public class MemoryGame extends AppCompatActivity {
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
-
-        Association association = new AssociationPicturale();
 
         newGame();
 
@@ -181,106 +171,20 @@ public class MemoryGame extends AppCompatActivity {
 
     private void newGame() {
 
-        loadCards();
-
-    }
-
-    private void loadCards() {
-
-        switch(level){
-            case 1:
-                columns = 3;
-                size = 6;
-                break;
-            case 2:
-                columns = 4;
-                size = 8;
-                break;
-            case 3:
-                columns = 4;
-                size = 12;
-                break;
-        }
+        association = new AssociationPicturale(this);
+        int columns = association.setLevelParams(level);
 
         gridviewBack.setNumColumns(columns);
         gridviewFront.setNumColumns(columns);
 
-        finish = size / 2;
+        finish = 6 / 2;
 
 
-        Integer[] mThumbIdsFront = new Integer[size];
-        Integer[] mThumbIdsBack = new Integer[size];
+        List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
-        Log.i("loadCards()","size=" + size);
+        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
 
-        imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
-        Log.i("imagePositionInit", imagePositions.toString());
-        List<Integer> listIntegers = new ArrayList<>();
-
-        for(int i = 0; i < size; i++) {
-            listIntegers.add(i);
-        }
-
-        Random r = new Random();
-
-        for(int i = 0; i < (size / 2); i++){
-            int randomPositionCard1;
-            int randomPositionCard2;
-            int randomImage = r.nextInt(imagesId.size());
-
-            Log.i("k","k");
-            if(!imagePositions.contains(imagesId.get(randomImage))){
-                randomPositionCard1 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard1), imagesId.get(randomImage));
-
-                Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
-                listIntegers.remove(randomPositionCard1);
-
-
-
-                randomPositionCard2 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard2), imagesId.get(randomImage));
-
-                Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
-                listIntegers.remove(randomPositionCard2);
-
-            }
-        }
-        Log.i("imagePositionsAfter", imagePositions.toString());
-        for(int i = 0; i < imagePositions.size(); i++){
-            mThumbIdsFront[i] = backImage;
-            mThumbIdsBack[i] = imagePositions.get(i);
-        }
-
-
-
-
-        gridviewFront.setAdapter(new ImageAdapter(this, mThumbIdsFront));
-        gridviewBack.setAdapter(new ImageAdapter(this, mThumbIdsBack));
-
-    }
-
-    private void loadImages(String type) {
-
-        List<String> nameImages = new ArrayList<>();
-        imagesId = new ArrayList<>();
-
-        Field[] fields = R.drawable.class.getDeclaredFields();
-        int i = 0;
-        for (Field field : fields) {
-            if (field.getName().startsWith(type)) {
-                nameImages.add(field.getName());
-                Log.i("name", nameImages.get(i));
-                i++;
-            }
-        }
-
-        for (int j = 0; j < nameImages.size(); j++){
-            int cardId = getResources().getIdentifier(nameImages.get(j), "drawable", getPackageName());
-            imagesId.add(cardId);
-        }
-        Log.i("nameImages", nameImages.toString());
-        Log.i("images ID", imagesId.toString());
 
     }
 
@@ -321,10 +225,6 @@ public class MemoryGame extends AppCompatActivity {
 
     }
 
-    class AssociationPicturale extends Association{
-
-    }
-
     @SuppressLint("HandlerLeak")
     class UpdateCardsHandler extends Handler {
 
@@ -337,7 +237,7 @@ public class MemoryGame extends AppCompatActivity {
         void checkCards(){
             tries++;
 
-            if(imagePositions.get(firstCard.position).equals(imagePositions.get(secondCard.position))){
+            if(association.getImagePositions().get(firstCard.position).equals(association.getImagePositions().get(secondCard.position))){
 
                 firstCard.viewFront.setVisibility(View.INVISIBLE);
                 firstCard.viewBack.setVisibility(View.INVISIBLE);
