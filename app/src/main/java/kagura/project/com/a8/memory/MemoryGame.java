@@ -116,6 +116,8 @@ public class MemoryGame extends AppCompatActivity {
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
 
+        //TEST
+
         switch(level){
             case 1:
                 columns = 3;
@@ -155,9 +157,7 @@ public class MemoryGame extends AppCompatActivity {
                 if(isClickable){
                     synchronized (lock) {
 
-                        if(firstCard != null && secondCard != null){
-                            return;
-                        }
+
 
                         if(firstCard == null){
                             setRightOutFirst.setTarget(v);
