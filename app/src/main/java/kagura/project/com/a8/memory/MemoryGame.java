@@ -239,7 +239,7 @@ public class MemoryGame extends AppCompatActivity {
 
             if(association.getImagePositions().get(firstCard.position).equals(association.getImagePositions().get(secondCard.position))){
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.viewBack, 100);
                 firstCard.viewBack.startAnimation(animFadeOut);

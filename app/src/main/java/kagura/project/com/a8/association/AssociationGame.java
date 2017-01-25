@@ -18,6 +18,8 @@ import kagura.project.com.a8.R;
 import kagura.project.com.a8.memory.MemoryGame;
 import kagura.project.com.a8.objects.Card;
 
+import static kagura.project.com.a8.R.id.gridviewFront;
+
 public class AssociationGame extends AppCompatActivity {
 
     private static int level;
@@ -27,7 +29,7 @@ public class AssociationGame extends AppCompatActivity {
     private int finish;
     private int tries = 0;
 
-    private MemoryGame.UpdateCardsHandler handler;
+    //private MemoryGame.UpdateCardsHandler handler;
     private Card firstCard, secondCard;
     private static final Object lock = new Object();
 
@@ -54,5 +56,7 @@ public class AssociationGame extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setContentView(R.layout.activity_association_game);
+
+        gridview = (GridView) findViewById(R.id.gridview);
     }
 }
