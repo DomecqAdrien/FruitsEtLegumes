@@ -21,9 +21,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Chronometer;
 import android.widget.GridView;
+
+import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Calendar;
 import java.util.List;
@@ -172,16 +176,17 @@ public class MemoryGame extends AppCompatActivity {
     private void newGame() {
 
         association = new AssociationPicturale(this);
-        int columns = association.setLevelParams(level);
 
-        gridviewBack.setNumColumns(columns);
-        gridviewFront.setNumColumns(columns);
-
-        finish = 6 / 2;
+        // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
+        int levelParams[] = association.setLevelParams(level);
+        gridviewBack.setNumColumns(levelParams[0]);
+        gridviewFront.setNumColumns(levelParams[0]);
+        finish = levelParams[1] / 2;
 
 
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
+        // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
         gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
         gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
 
@@ -238,9 +243,17 @@ public class MemoryGame extends AppCompatActivity {
             tries++;
 
             if(association.getImagePositions().get(firstCard.position).equals(association.getImagePositions().get(secondCard.position))){
-
+                Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star", "drawable", getPackageName()), 1000)
+                        .setSpeedRange(0.2f, 0.5f)
+                        .oneShot(firstCard.viewBack, 100);
+                firstCard.viewBack.startAnimation(animFadeOut);
                 firstCard.viewFront.setVisibility(View.INVISIBLE);
                 firstCard.viewBack.setVisibility(View.INVISIBLE);
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
+                        .setSpeedRange(0.2f, 0.5f)
+                        .oneShot(secondCard.viewBack, 100);
+                secondCard.viewBack.startAnimation(animFadeOut);
                 secondCard.viewFront.setVisibility(View.INVISIBLE);
                 secondCard.viewBack.setVisibility(View.INVISIBLE);
 

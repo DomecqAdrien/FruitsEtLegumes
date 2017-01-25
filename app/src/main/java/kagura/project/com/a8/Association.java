@@ -17,7 +17,7 @@ public abstract class Association {
     }
 
 
-    public int setLevelParams(int level){
+    public int[] setLevelParams(int level){
         int columns = 3;
         switch(level){
             case 1:
@@ -33,7 +33,7 @@ public abstract class Association {
                 size = 12;
                 break;
         }
-        return columns;
+        return new int[]{columns, size};
     }
 
     public List<Integer[]>  loadCards(){
