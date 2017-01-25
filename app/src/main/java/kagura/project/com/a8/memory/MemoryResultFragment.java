@@ -12,12 +12,12 @@ import android.widget.RelativeLayout;
 import kagura.project.com.a8.R;
 
 
-public class MemoryEndFragment extends Fragment {
+public class MemoryResultFragment extends Fragment {
 
     int level;
     Button buttonLevel;
 
-    public MemoryEndFragment() {
+    public MemoryResultFragment() {
 
     }
 

@@ -1,4 +1,4 @@
-package kagura.project.com.a8;
+package kagura.project.com.a8.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kagura.project.com.a8.R;
 import kagura.project.com.a8.objects.Result;
 
 

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
+        android:icon="@drawable/ico"
         android:label="@string/app_name"
         android:screenOrientation="landscape"
-        android:icon="@drawable/ico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowActionBar="false">
@@ -25,7 +25,8 @@
         <activity android:name=".admin.AdminMenu" />
         <activity android:name=".admin.AdminSession" />
         <activity android:name=".admin.AdminResults" />
-        <activity android:name=".association.Solution"></activity>
+        <activity android:name=".association.Encyclopedie" />
+        <activity android:name=".association.AssociationGame"></activity>
     </application>
 
 </manifest>

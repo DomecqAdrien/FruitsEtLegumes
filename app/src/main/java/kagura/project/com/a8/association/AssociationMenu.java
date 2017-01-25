@@ -6,21 +6,17 @@ import android.content.pm.ActivityInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import kagura.project.com.a8.MainMenu;
 import kagura.project.com.a8.R;
-import kagura.project.com.a8.memory.MemoryGame;
 
 import static android.R.attr.button;
 
 public class AssociationMenu extends AppCompatActivity {
 
-    Intent intentMemory;
     ImageView avatar;
     String avatarName;
 
@@ -61,10 +57,14 @@ public class AssociationMenu extends AppCompatActivity {
     }
 
     public void startGame(View view) {
+        Intent intentGame = new Intent(this, AssociationGame.class);
+        this.startActivityForResult(intentGame, 0);
+        overridePendingTransition(R.anim.left_start, R.anim.left_end);
     }
-    public void startSolution(View view) {
-        intentMemory = new Intent(this, Solution.class);
-        intentMemory.putExtra("level", button);
-        this.startActivityForResult(intentMemory, 0);
+
+    public void startEncyclopedie(View view) {
+        Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
+        intentEncyclopedie.putExtra("level", button);
+        this.startActivityForResult(intentEncyclopedie, 0);
     }
 }

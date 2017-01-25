@@ -1,4 +1,4 @@
-package kagura.project.com.a8;
+package kagura.project.com.a8.adapters;
 
 
 import android.content.Context;

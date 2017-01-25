@@ -12,7 +12,7 @@ import kagura.project.com.a8.R;
 
 import static android.R.color.transparent;
 
-public class Solution extends AppCompatActivity {
+public class Encyclopedie extends AppCompatActivity {
 
 
 
