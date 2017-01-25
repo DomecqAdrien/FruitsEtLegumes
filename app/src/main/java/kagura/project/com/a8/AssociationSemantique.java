@@ -4,8 +4,7 @@ import java.util.List;
 
 import kagura.project.com.a8.memory.Association;
 
-
-public class AssociationPicturale extends Association {
+public class AssociationSemantique extends Association {
 
     @Override
     public void loadCards(){
@@ -18,3 +17,4 @@ public class AssociationPicturale extends Association {
         return idImages;
     }
 }
+

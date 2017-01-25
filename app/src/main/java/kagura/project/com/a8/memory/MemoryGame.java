@@ -28,19 +28,17 @@ import android.widget.GridView;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import kagura.project.com.a8.ImageAdapter;
-import kagura.project.com.a8.MainMenu;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Result;
-
-import static android.R.attr.fragment;
 
 public class MemoryGame extends AppCompatActivity {
 
@@ -49,23 +47,19 @@ public class MemoryGame extends AppCompatActivity {
     private boolean isClickable = true;
 
     private int backImage;
-    private int[] cardPosition;
     private int finish;
     private int tries = 0;
-    private long time = 0;
 
-    private String date;
     private String name;
     private UpdateCardsHandler handler;
     private List<Integer> imagesId;
+    private List<Integer> imagePositions;
     private Card firstCard, secondCard;
     private AnimatorSet setRightOutFirst, setRightInFirst, setRightOutSecond, setRightInSecond;
     private static final Object lock = new Object();
 
     GridView gridviewFront, gridviewBack;
-    View viewFront1, viewFront2, viewBack1, viewBack2;
     Fragment fragmentResult;
-    Intent intent;
 
     Boolean isTimerStarted = false;
     Chronometer timer;
@@ -105,7 +99,7 @@ public class MemoryGame extends AppCompatActivity {
 
         handler = new UpdateCardsHandler();
 
-        backImage = getResources().getIdentifier("test", "drawable", getPackageName());
+        backImage = getResources().getIdentifier("backcard", "drawable", getPackageName());
 
         loadImages("legume");
 
@@ -113,34 +107,17 @@ public class MemoryGame extends AppCompatActivity {
         name = preferences.getString(getString(R.string.name), null);
 
 
-        level = getIntent().getIntExtra("level", 0);
-        Log.i("level", Integer.toString(level));
-
-        //TEST
-
-        switch(level){
-            case 1:
-                columns = 3;
-                size = 6;
-                break;
-            case 2:
-                columns = 4;
-                size = 8;
-                break;
-            case 3:
-                columns = 4;
-                size = 12;
-                break;
-        }
-
-
         setContentView(R.layout.activity_memory_game);
 
         gridviewFront = (GridView) findViewById(R.id.gridviewFront);
         gridviewBack = (GridView) findViewById(R.id.gridviewBack);
-        gridviewBack.setNumColumns(columns);
-        gridviewFront.setNumColumns(columns);
 
+        level = getIntent().getIntExtra("level", 0);
+        Log.i("level", Integer.toString(level));
+
+        Association association = new AssociationPicturale();
+
+        newGame();
 
 
 
@@ -157,13 +134,9 @@ public class MemoryGame extends AppCompatActivity {
                 if(isClickable){
                     synchronized (lock) {
 
-
-
                         if(firstCard == null){
                             setRightOutFirst.setTarget(v);
-                            viewBack1 = gridviewBack.getChildAt(position);
-                            setRightInFirst.setTarget(viewBack1);
-                            viewFront1 = v;
+                            setRightInFirst.setTarget(gridviewBack.getChildAt(position));
                             setRightOutFirst.start();
                             setRightInFirst.start();
                         }else{
@@ -173,9 +146,7 @@ public class MemoryGame extends AppCompatActivity {
                             }
 
                             setRightOutSecond.setTarget(v);
-                            viewBack2 = gridviewBack.getChildAt(position);
-                            setRightInSecond.setTarget(viewBack2);
-                            viewFront2 = v;
+                            setRightInSecond.setTarget(gridviewBack.getChildAt(position));
                             setRightOutSecond.start();
                             setRightInSecond.start();
                         }
@@ -190,8 +161,6 @@ public class MemoryGame extends AppCompatActivity {
 
             }
         });
-
-        newGame();
     }
 
     @Override
@@ -211,70 +180,89 @@ public class MemoryGame extends AppCompatActivity {
 
     private void newGame() {
 
-        firstCard=null;
         loadCards();
 
     }
 
     private void loadCards() {
 
+        switch(level){
+            case 1:
+                columns = 3;
+                size = 6;
+                break;
+            case 2:
+                columns = 4;
+                size = 8;
+                break;
+            case 3:
+                columns = 4;
+                size = 12;
+                break;
+        }
+
+        gridviewBack.setNumColumns(columns);
+        gridviewFront.setNumColumns(columns);
+
         finish = size / 2;
 
-        cardPosition = new int[size];
 
         Integer[] mThumbIdsFront = new Integer[size];
         Integer[] mThumbIdsBack = new Integer[size];
 
-        try {
+        Log.i("loadCards()","size=" + size);
+
+        imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
+        Log.i("imagePositionInit", imagePositions.toString());
+        List<Integer> listIntegers = new ArrayList<>();
+
+        for(int i = 0; i < size; i++) {
+            listIntegers.add(i);
+        }
+
+        Random r = new Random();
+
+        for(int i = 0; i < (size / 2); i++){
+            int randomPositionCard1;
+            int randomPositionCard2;
+            int randomImage = r.nextInt(imagesId.size());
+
+            Log.i("k","k");
+            if(!imagePositions.contains(imagesId.get(randomImage))){
+                randomPositionCard1 = r.nextInt(listIntegers.size());
+                imagePositions.set(listIntegers.get(randomPositionCard1), imagesId.get(randomImage));
+
+                Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
+                listIntegers.remove(randomPositionCard1);
 
 
 
-            Log.i("loadCards()","size=" + size);
+                randomPositionCard2 = r.nextInt(listIntegers.size());
+                imagePositions.set(listIntegers.get(randomPositionCard2), imagesId.get(randomImage));
 
-            //gridview.addView();
-            ArrayList<Integer> list = new ArrayList<>();
-
-            for(int i=0;i<size;i++) {
-                list.add(i);
-            }
-
-            Random r = new Random();
-
-            for(int i=size-1;i>=0;i--) {
-                int t = 0;
-
-                if (i > 0) {
-                    t = r.nextInt(i);
-                }
-
-                t = list.remove(t);
-                cardPosition[i] = t % (size / 2);
-
-                Log.i("loadCards()", "card[" + (i) +
-                        "]=" + cardPosition[i]);
-
-                Log.i("cardsId[][] :", Integer.toString(cardPosition[i]));
-                Log.i("refngiroengioeng", Integer.toString(imagesId.get(cardPosition[i])));
-
-                mThumbIdsFront[i] = backImage;
-
-                mThumbIdsBack[i] = imagesId.get(cardPosition[i]);
-
-                gridviewFront.setAdapter(new ImageAdapter(this, mThumbIdsFront));
-                gridviewBack.setAdapter(new ImageAdapter(this, mThumbIdsBack));
+                Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
+                listIntegers.remove(randomPositionCard2);
 
             }
         }
-        catch (Exception e){
-            Log.e("LoadCards ()", e+"");
+        Log.i("imagePositionsAfter", imagePositions.toString());
+        for(int i = 0; i < imagePositions.size(); i++){
+            mThumbIdsFront[i] = backImage;
+            mThumbIdsBack[i] = imagePositions.get(i);
         }
+
+
+
+
+        gridviewFront.setAdapter(new ImageAdapter(this, mThumbIdsFront));
+        gridviewBack.setAdapter(new ImageAdapter(this, mThumbIdsBack));
+
     }
 
     private void loadImages(String type) {
 
         List<String> nameImages = new ArrayList<>();
         imagesId = new ArrayList<>();
-        Random r = new Random();
 
         Field[] fields = R.drawable.class.getDeclaredFields();
         int i = 0;
@@ -286,19 +274,13 @@ public class MemoryGame extends AppCompatActivity {
             }
         }
 
-
-
-        int k = nameImages.size();
-        Log.i("k avant", Integer.toString(k));
-        while (k > 0){
-            Log.i("k", Integer.toString(k));
-            int t = r.nextInt(k);
-            int cardId = getResources().getIdentifier(nameImages.get(t), "drawable", getPackageName());
-            Log.i("id drawable", Integer.toString(cardId));
+        for (int j = 0; j < nameImages.size(); j++){
+            int cardId = getResources().getIdentifier(nameImages.get(j), "drawable", getPackageName());
             imagesId.add(cardId);
-            nameImages.remove(t);
-            k--;
         }
+        Log.i("nameImages", nameImages.toString());
+        Log.i("images ID", imagesId.toString());
+
     }
 
     private void turnCard(View v, int position) {
@@ -306,13 +288,13 @@ public class MemoryGame extends AppCompatActivity {
 
 
         if(firstCard==null){
-            firstCard = new Card(v,position);
+            firstCard = new Card(v, gridviewBack.getChildAt(position), position);
         }
         else{
 
             isClickable = false;
 
-            secondCard = new Card(v,position);
+            secondCard = new Card(v, gridviewBack.getChildAt(position), position);
 
 
             TimerTask tt = new TimerTask() {
@@ -338,6 +320,10 @@ public class MemoryGame extends AppCompatActivity {
 
     }
 
+    class AssociationPicturale extends Association{
+
+    }
+
     @SuppressLint("HandlerLeak")
     class UpdateCardsHandler extends Handler {
 
@@ -350,22 +336,21 @@ public class MemoryGame extends AppCompatActivity {
         void checkCards(){
             tries++;
 
-            if(cardPosition[secondCard.position] == cardPosition[firstCard.position]){
-                viewBack1.setVisibility(View.INVISIBLE);
-                viewBack2.setVisibility(View.INVISIBLE);
-                viewFront1.setVisibility(View.INVISIBLE);
-                viewFront2.setVisibility(View.INVISIBLE);
+            if(imagePositions.get(firstCard.position).equals(imagePositions.get(secondCard.position))){
+
+                firstCard.viewFront.setVisibility(View.INVISIBLE);
+                firstCard.viewBack.setVisibility(View.INVISIBLE);
+                secondCard.viewFront.setVisibility(View.INVISIBLE);
+                secondCard.viewBack.setVisibility(View.INVISIBLE);
 
                 finish--;
                 isClickable = true;
-            }
-            else {
+            }else{
+                setRightOutFirst.setTarget(firstCard.viewBack);
+                setRightInFirst.setTarget(firstCard.viewFront);
 
-                setRightOutFirst.setTarget(viewBack1);
-                setRightInFirst.setTarget(viewFront1);
-
-                setRightOutSecond.setTarget(viewBack2);
-                setRightInSecond.setTarget(viewFront2);
+                setRightOutSecond.setTarget(secondCard.viewBack);
+                setRightInSecond.setTarget(secondCard.viewFront);
 
 
                 setRightOutFirst.start();
@@ -380,15 +365,10 @@ public class MemoryGame extends AppCompatActivity {
                         isClickable = true;
                     }
                 }, 1000);
-
             }
 
             firstCard = null;
             secondCard = null;
-            viewFront1 = null;
-            viewFront2 = null;
-            viewBack1 = null;
-            viewBack2 = null;
 
             if(finish == 0){
                 timer.stop();
@@ -407,8 +387,8 @@ public class MemoryGame extends AppCompatActivity {
         }else{
             monthString = Integer.toString(calendarMonth);
         }
-        date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
-        time = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000 ;
+        String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
+        long time = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000;
         Log.i("nb coups", Integer.toString(tries));
         Log.i("timer : ", Long.toString(time));
 
@@ -446,6 +426,8 @@ public class MemoryGame extends AppCompatActivity {
     public void nextLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        isTimerStarted = false;
+        tries = 0;
         level++;
         newGame();
 
