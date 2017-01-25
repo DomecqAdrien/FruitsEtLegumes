@@ -2,8 +2,6 @@ package kagura.project.com.a8;
 
 import java.util.List;
 
-import kagura.project.com.a8.memory.Association;
-
 
 public class AssociationPicturale extends Association {
 

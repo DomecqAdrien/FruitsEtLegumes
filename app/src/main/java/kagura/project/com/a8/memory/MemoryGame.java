@@ -34,6 +34,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import kagura.project.com.a8.Association;
 import kagura.project.com.a8.ImageAdapter;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.database.ResultDAO;

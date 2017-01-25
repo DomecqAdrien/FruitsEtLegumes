@@ -1,4 +1,4 @@
-package kagura.project.com.a8.memory;
+package kagura.project.com.a8;
 
 import java.util.ArrayList;
 import java.util.List;
