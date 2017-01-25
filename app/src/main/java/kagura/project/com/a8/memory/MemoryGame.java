@@ -37,7 +37,7 @@ import java.util.TimerTask;
 
 import kagura.project.com.a8.Association;
 import kagura.project.com.a8.AssociationPicturale;
-import kagura.project.com.a8.ImageAdapter;
+import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.objects.Card;
@@ -52,7 +52,6 @@ public class MemoryGame extends AppCompatActivity {
     private int finish;
     private int tries = 0;
 
-    private String name;
     private UpdateCardsHandler handler;
     private Card firstCard, secondCard;
     private AnimatorSet setRightOutFirst, setRightInFirst, setRightOutSecond, setRightInSecond;
@@ -99,10 +98,6 @@ public class MemoryGame extends AppCompatActivity {
                 R.animator.card_flip_right_in);
 
         handler = new UpdateCardsHandler();
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        name = preferences.getString(getString(R.string.name), null);
-
 
         setContentView(R.layout.activity_memory_game);
 
@@ -293,6 +288,8 @@ public class MemoryGame extends AppCompatActivity {
 
     private void result(){
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         calendar = Calendar.getInstance();
         String monthString;
         int calendarMonth = calendar.get(Calendar.MONTH) + 1;
@@ -307,7 +304,7 @@ public class MemoryGame extends AppCompatActivity {
         Log.i("timer : ", Long.toString(time));
 
         Result result = new Result();
-        result.setName(name);
+        result.setName(preferences.getString(getString(R.string.name), null));
         result.setGame("Memory");
         result.setLevel(level);
         result.setTries(tries);
@@ -320,7 +317,7 @@ public class MemoryGame extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putInt("level", level);
-        fragmentResult = new MemoryEndFragment();
+        fragmentResult = new MemoryResultFragment();
         fragmentResult.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import kagura.project.com.a8.R;
-import kagura.project.com.a8.ResultAdapter;
+import kagura.project.com.a8.adapters.ResultAdapter;
 import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.objects.Result;
 
