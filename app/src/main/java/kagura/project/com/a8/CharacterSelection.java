@@ -114,6 +114,7 @@ public class CharacterSelection extends AppCompatActivity {
 
             intent = new Intent(this, MainMenu.class);
             this.startActivityForResult(intent, 0);
+            overridePendingTransition(R.anim.down_start, R.anim.down_end);
         }
 
     }
@@ -121,5 +122,6 @@ public class CharacterSelection extends AppCompatActivity {
     public void adminSession(View view) {
         intent = new Intent(this, AdminMenu.class);
         this.startActivityForResult(intent, 0);
+        overridePendingTransition(R.anim.up_start, R.anim.up_end);
     }
 }

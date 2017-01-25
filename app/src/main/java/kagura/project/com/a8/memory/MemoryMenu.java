@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import kagura.project.com.a8.MainMenu;
 import kagura.project.com.a8.R;
 
 public class MemoryMenu extends AppCompatActivity{
@@ -54,6 +53,12 @@ public class MemoryMenu extends AppCompatActivity{
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_start, R.anim.left_end);
     }
 
     @Override

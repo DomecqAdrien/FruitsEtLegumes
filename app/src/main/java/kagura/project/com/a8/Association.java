@@ -1,7 +1,10 @@
 package kagura.project.com.a8;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +54,25 @@ public abstract class Association {
 
     public List<Integer> getImagePositions(){
         return imagePositions;
+    }
+
+    public String loadJSONFromAsset(String jsonPath) {
+        String json;
+        try {
+            InputStream is = context.getAssets().open(jsonPath);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        Log.i("json", json);
+        return json;
     }
 }
 

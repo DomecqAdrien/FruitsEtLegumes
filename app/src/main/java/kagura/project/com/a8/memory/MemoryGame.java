@@ -324,7 +324,7 @@ public class MemoryGame extends AppCompatActivity {
         fragmentResult.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.push_up_in, R.anim.push_up_out)
+                .setCustomAnimations(R.anim.right_end, R.anim.right_start)
                 .replace(R.id.fragment_container, fragmentResult).commit();
 
 

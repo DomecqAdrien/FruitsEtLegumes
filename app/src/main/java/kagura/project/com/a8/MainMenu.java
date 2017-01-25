@@ -20,7 +20,6 @@ public class MainMenu extends AppCompatActivity {
 
     Button btn_game_memory;
     Intent intentGame;
-    String anim;
     String name;
     TextView textHello;
 
@@ -46,23 +45,26 @@ public class MainMenu extends AppCompatActivity {
         textHello = (TextView) findViewById(R.id.textHello);
 
         textHello.append(", " + name + " !");
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.up_start, R.anim.up_end);
     }
 
     public void startGame(View v) {
         switch(v.getId()){
             case R.id.spaceMemory:
                 intentGame = new Intent(this, MemoryMenu.class);
-                anim = "push_left_in";
+                this.startActivityForResult(intentGame, 0);
+                overridePendingTransition(R.anim.right_start, R.anim.right_end);
                 break;
             case R.id.spaceAssociation:
                 intentGame = new Intent (this, AssociationMenu.class);
-                anim = "push_left_out";
+                this.startActivityForResult(intentGame, 0);
+                overridePendingTransition(R.anim.left_start, R.anim.left_end);
                 break;
         }
-        int animId = getResources().getIdentifier(anim, "animator", getPackageName());
-        this.startActivityForResult(intentGame, 0);
-        overridePendingTransition(animId, R.animator.push_up_out);
     }
 }

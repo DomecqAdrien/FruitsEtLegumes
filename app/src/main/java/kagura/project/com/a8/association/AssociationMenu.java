@@ -57,9 +57,7 @@ public class AssociationMenu extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intentBack = new Intent(this, MainMenu.class);
-        finish();
-        startActivity(intentBack);
+        overridePendingTransition(R.anim.right_start, R.anim.right_end);
     }
 
     public void startGame(View view) {

@@ -34,9 +34,7 @@ public class AdminSession extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intentBack = new Intent(this, CharacterSelection.class);
-        finish();
-        this.startActivity(intentBack);
+        overridePendingTransition(R.anim.down_start, R.anim.down_end);
     }
 
     public void results(View view) {
