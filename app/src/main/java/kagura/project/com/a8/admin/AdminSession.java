@@ -34,12 +34,11 @@ public class AdminSession extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.down_start, R.anim.down_end);
+        overridePendingTransition(R.anim.left_start, R.anim.left_end);
     }
 
     public void results(View view) {
         Intent intentResults = new Intent(this, AdminResults.class);
-        finish();
         this.startActivity(intentResults);
     }
 }

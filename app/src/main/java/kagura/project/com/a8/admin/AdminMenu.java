@@ -40,9 +40,7 @@ public class AdminMenu extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intentBack = new Intent(this, CharacterSelection.class);
-        finish();
-        this.startActivity(intentBack);
+        overridePendingTransition(R.anim.down_start, R.anim.down_end);
     }
 
     public void checkPassword(View view) {
@@ -50,8 +48,8 @@ public class AdminMenu extends AppCompatActivity {
         passAdminCheck = passAdmin.getText().toString();
         if(passAdminCheck.equals(getString(R.string.passAdminVerif))){
             intentAdmin = new Intent(this, AdminSession.class);
-            finish();
             this.startActivityForResult(intentAdmin, 0);
+            overridePendingTransition(R.anim.right_start, R.anim.right_end);
 
 
         }else if(passAdminCheck.equals("")){
