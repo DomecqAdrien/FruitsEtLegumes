@@ -103,8 +103,10 @@ public class AssociationGame extends AppCompatActivity {
                 if(isClickable){
                     synchronized (lock) {
 
-                        if(firstCard.position == position){
-                            return; //the user pressed the same card
+                        if(firstCard != null){
+                            if(firstCard.position == position){
+                                return; //the user pressed the same card
+                            }
                         }
 
                         Log.i("position", Integer.toString(position));
