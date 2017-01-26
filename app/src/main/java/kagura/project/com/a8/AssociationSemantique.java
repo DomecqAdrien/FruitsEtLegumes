@@ -98,10 +98,11 @@ public class AssociationSemantique extends Association {
     @Override
     public void loadImages(){
         if(level > 1){
-            randomMax = r.nextInt(level - 1);
+            randomMax = r.nextInt(level);
         }else{
             randomMax = 0;
         }
+        Log.i("random", Integer.toString(randomMax));
 
         fruits = new ArrayList<>();
 
@@ -126,7 +127,7 @@ public class AssociationSemantique extends Association {
                         fruit.setFruit_arbre_id(context.getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", context.getPackageName()));
                         break;
                     case 2:
-                        fruit.setFruit_graine_id(context.getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", context.getPackageName()));
+                        fruit.setFruit_graine_id(context.getResources().getIdentifier(jsonObject.getString("graine"), "drawable", context.getPackageName()));
                         break;
                 }
                 fruits.add(fruit);
