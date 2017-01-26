@@ -49,6 +49,7 @@ public class AssociationSemantique extends Association {
             int randomPositionCard1;
             int randomPositionCard2;
             int randomImage = r.nextInt(fruits.size());
+            Log.i("fruits.size()", Integer.toString(fruits.size()));
             Log.i("fruit_plein_id", Integer.toString(fruits.get(randomImage).getFruit_plein_id()));
             if(!imagePositions.contains(fruits.get(randomImage).getFruit_plein_id())){
                 randomPositionCard1 = r.nextInt(listIntegers.size());
@@ -61,13 +62,13 @@ public class AssociationSemantique extends Association {
 
                 switch (randomMax){
                     case 0:
-                        imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_coupe_id());
+                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_coupe_id());
                         break;
                     case 1:
-                        imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_arbre_id());
+                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_arbre_id());
                         break;
                     case 2:
-                        imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_graine_id());
+                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_graine_id());
                         break;
                 }
 
