@@ -184,7 +184,7 @@ public class AssociationGame extends AppCompatActivity {
             };
 
             Timer t = new Timer(false);
-            t.schedule(tt, 1300);
+            t.schedule(tt, 500);
 
         }
 
@@ -228,14 +228,9 @@ public class AssociationGame extends AppCompatActivity {
 
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.red));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.red));
+                
+                isClickable = true;
 
-                final Handler handlerFalse = new Handler();
-                handlerFalse.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isClickable = true;
-                    }
-                }, 1000);
 
                 firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 secondCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));

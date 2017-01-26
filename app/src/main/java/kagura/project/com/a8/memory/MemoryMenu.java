@@ -66,7 +66,7 @@ public class MemoryMenu extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 66){
-            finish();
+            onBackPressed();
         }
     }
 
