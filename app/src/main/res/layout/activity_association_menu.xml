@@ -44,18 +44,6 @@
         android:layout_below="@+id/level_2"
          />
 
-    <ImageView
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:id="@+id/imageAvatar"
-        android:padding="1dp"
-        android:contentDescription="@string/hello_blank_fragment"
-        android:layout_marginRight="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="@string/level1"
         android:onClick="startGame"
@@ -73,19 +61,6 @@
         android:layout_alignEnd="@+id/level_3tv"
         android:layout_marginRight="11dp"
         android:layout_marginEnd="11dp" />
-
-    <ImageView
-        android:text="@string/niveau_3"
-        android:layout_width="400dp"
-        android:layout_height="172dp"
-        android:id="@+id/solution"
-        android:onClick="startEncyclopedie"
-        app:srcCompat="@drawable/feuille_bleue"
-        android:layout_marginRight="36dp"
-        android:layout_marginEnd="36dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/imageAvatar"
-        android:layout_alignEnd="@+id/imageAvatar" />
 
     <TextView
         android:text="@string/level3"
@@ -122,5 +97,30 @@
         android:layout_alignEnd="@+id/level_1tv"
         android:layout_marginRight="22dp"
         android:layout_marginEnd="22dp" />
+
+    <ImageView
+        android:text="@string/niveau_3"
+        android:layout_width="400dp"
+        android:layout_height="172dp"
+        android:id="@+id/solution"
+        android:onClick="startEncyclopedie"
+        app:srcCompat="@drawable/feuille_bleue"
+        android:layout_marginRight="82dp"
+        android:layout_marginEnd="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:id="@+id/imageAvatar"
+        android:padding="1dp"
+        android:contentDescription="@string/hello_blank_fragment"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/level_2"
+        android:layout_toEndOf="@+id/level_2"
+        android:layout_marginLeft="141dp"
+        android:layout_marginStart="141dp" />
 
 </RelativeLayout>

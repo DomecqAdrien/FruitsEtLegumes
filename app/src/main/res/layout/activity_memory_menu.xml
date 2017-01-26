@@ -95,14 +95,14 @@
         android:layout_marginTop="9dp" />
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="350px"
+        android:layout_height="350px"
         android:id="@+id/imageAvatar"
         android:padding="1dp"
         android:contentDescription="@string/hello_blank_fragment"
-        android:layout_marginLeft="54dp"
-        android:layout_marginStart="54dp"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="173dp"
+        android:layout_marginStart="173dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

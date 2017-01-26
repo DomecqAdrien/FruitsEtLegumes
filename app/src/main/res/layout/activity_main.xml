@@ -27,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bonjour"
+        android:fontFamily="casual"
         android:id="@+id/textHello"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -43,29 +44,34 @@
         android:layout_toRightOf="@+id/spaceAssociation"
         android:layout_toEndOf="@+id/spaceAssociation"
         android:layout_marginLeft="98dp"
-        android:layout_marginStart="98dp" />
-
-    <ImageView
-        android:layout_width="500dp"
-        android:layout_height="500dp"
-        app:srcCompat="@drawable/memory"
-        android:id="@+id/imageView2"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginStart="98dp"
+        android:layout_alignParentBottom="true" />
 
     <TextView
         android:text="Memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp"
         android:textSize="70dp"
         android:id="@+id/textView2"
         android:fontFamily="casual"
-        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/textHello"
         android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2" />
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp" />
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/memory"
+        android:id="@+id/imageView2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_alignBottom="@+id/spaceAssociation"
+        android:layout_toRightOf="@+id/textHello"
+        android:layout_toEndOf="@+id/textHello"
+        android:layout_marginBottom="14dp" />
 
 
 </RelativeLayout>
