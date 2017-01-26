@@ -17,9 +17,9 @@ import kagura.project.com.a8.objects.Fruit;
 
 public class AssociationSemantique extends Association {
 
-    List<Fruit> fruits;
-    Random r = new Random();
-    int randomMax;
+    private List<Fruit> fruits;
+    private Random r = new Random();
+    private int randomMax;
 
     public AssociationSemantique(Context context) {
         super(context);
@@ -139,12 +139,9 @@ public class AssociationSemantique extends Association {
 
     @Override
     public boolean checkCards(Card firstCard, Card secondCard){
+        this.position = firstCard.position;
 
-        if(imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position))){
-            return true;
-        }else{
-            return false;
-        }
+        return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
 
     }
 }

@@ -109,10 +109,10 @@ public class AssociationGame extends AppCompatActivity {
                             if(firstCard.position == position){
                                 return; //the user pressed the same card
                             }else{
-                                v.setBackgroundColor(getResources().getColor(R.color.white));
+
                             }
                         }
-
+                        v.setBackgroundColor(getResources().getColor(R.color.white));
                         Log.i("position", Integer.toString(position));
                         selectCard(v,position);
                     }
@@ -211,12 +211,12 @@ public class AssociationGame extends AppCompatActivity {
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
+                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.view, 100);
                 firstCard.view.startAnimation(animFadeOut);
                 firstCard.view.setVisibility(View.INVISIBLE);
-                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
+                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.view, 100);
                 secondCard.view.startAnimation(animFadeOut);
