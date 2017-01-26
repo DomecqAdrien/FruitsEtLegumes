@@ -238,15 +238,17 @@ public class MemoryGame extends AppCompatActivity {
         void checkCards(){
             tries++;
 
-            if(association.getImagePositions().get(firstCard.position).equals(association.getImagePositions().get(secondCard.position))){
+            boolean isSameFruit = association.checkCards(firstCard, secondCard);
+
+            if(isSameFruit){
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.viewBack, 100);
                 firstCard.viewBack.startAnimation(animFadeOut);
                 firstCard.viewFront.setVisibility(View.INVISIBLE);
                 firstCard.viewBack.setVisibility(View.INVISIBLE);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.viewBack, 100);
                 secondCard.viewBack.startAnimation(animFadeOut);

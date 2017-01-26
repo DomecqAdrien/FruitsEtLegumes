@@ -14,14 +14,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Fruit;
 import kagura.project.com.a8.objects.Legume;
 
 
 public class AssociationPicturale extends Association {
 
-    List<Integer> imagesId;
-    List<Legume> legumes;
+    private List<Legume> legumes;
+    private Random r = new Random();
 
     public AssociationPicturale(Context context) {
         super(context);
@@ -48,12 +49,11 @@ public class AssociationPicturale extends Association {
             listIntegers.add(i);
         }
 
-        Random r = new Random();
-
         for(int i = 0; i < (size / 2); i++){
             int randomPositionCard1;
             int randomPositionCard2;
-            int randomImage = r.nextInt(imagesId.size());
+            Log.i("legume size", Integer.toString(legumes.size()));
+            int randomImage = r.nextInt(legumes.size());
 
             if(!imagePositions.contains(legumes.get(randomImage).getLegume_id())){
                 randomPositionCard1 = r.nextInt(listIntegers.size());
@@ -95,33 +95,11 @@ public class AssociationPicturale extends Association {
     @Override
     public void loadImages(){
 
-        /*List<String> nameImages = new ArrayList<>();
-        imagesId = new ArrayList<>();
-
-        Field[] fields = R.drawable.class.getDeclaredFields();
-        int i = 0;
-        for (Field field : fields) {
-            if (field.getName().startsWith("legume")) {
-                nameImages.add(field.getName());
-                Log.i("name", nameImages.get(i));
-                i++;
-            }
-        }
-
-        for (int j = 0; j < nameImages.size(); j++){
-            int cardId = context.getResources().getIdentifier(nameImages.get(j), "drawable", context.getPackageName());
-            imagesId.add(cardId);
-        }
-        Log.i("nameImages", nameImages.toString());
-        Log.i("images ID", imagesId.toString());*/
-
-
-
         legumes = new ArrayList<>();
 
         try{
-            JSONObject obj = new JSONObject(loadJSONFromAsset("fruits.json"));
-            JSONArray arr = obj.getJSONArray("fruits");
+            JSONObject obj = new JSONObject(loadJSONFromAsset("legumes.json"));
+            JSONArray arr = obj.getJSONArray("legumes");
             Legume legume;
 
             for(int i = 0; i < arr.length(); i++){
@@ -130,7 +108,9 @@ public class AssociationPicturale extends Association {
                 JSONObject jsonObject = arr.getJSONObject(i);
 
                 legume.setNom(jsonObject.getString("nom"));
+                Log.i("legumenom", jsonObject.getString("nom"));
                 legume.setLegume_id(context.getResources().getIdentifier(jsonObject.getString("path"), "drawable", context.getPackageName()));
+                Log.i("legumeid", jsonObject.getString("path"));
 
                 legumes.add(legume);
 
@@ -138,6 +118,14 @@ public class AssociationPicturale extends Association {
         }catch (JSONException e){
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public boolean checkCards(Card firstCard, Card secondCard){
+        this.position = firstCard.position;
+
+        return imagePositions.get(firstCard.position).equals(imagePositions.get(secondCard.position));
 
     }
 

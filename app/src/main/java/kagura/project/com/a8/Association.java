@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +88,11 @@ public abstract class Association {
     }
 
     public String getNom(){
-        return imageNames.get(position);
+
+        String normalized = Normalizer.normalize(imageNames.get(position), Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        Log.i("nom", normalized);
+        return normalized;
     }
 }
 
