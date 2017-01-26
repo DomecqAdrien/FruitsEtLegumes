@@ -38,7 +38,10 @@ public class AssociationPicturale extends Association {
         Log.i("loadCards()","size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
+        imageNames = new ArrayList<>(Collections.nCopies(size, ""));
+
         Log.i("imagePositionInit", imagePositions.toString());
+
         List<Integer> listIntegers = new ArrayList<>();
 
         for(int i = 0; i < size; i++) {
@@ -52,18 +55,18 @@ public class AssociationPicturale extends Association {
             int randomPositionCard2;
             int randomImage = r.nextInt(imagesId.size());
 
-            Log.i("k","k");
-            if(!imagePositions.contains(imagesId.get(randomImage))){
+            if(!imagePositions.contains(legumes.get(randomImage).getLegume_id())){
                 randomPositionCard1 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard1), imagesId.get(randomImage));
+                imagePositions.set(listIntegers.get(randomPositionCard1), legumes.get(randomImage).getLegume_id());
+                imageNames.set(listIntegers.get(randomPositionCard1), legumes.get(randomImage).getNom());
 
                 Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
                 listIntegers.remove(randomPositionCard1);
 
-
-
                 randomPositionCard2 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard2), imagesId.get(randomImage));
+
+                imageNames.set(listIntegers.get(randomPositionCard2), legumes.get(randomImage).getNom());
+                imagePositions.set(listIntegers.get(randomPositionCard2), legumes.get(randomImage).getLegume_id());
 
                 Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
                 listIntegers.remove(randomPositionCard2);
