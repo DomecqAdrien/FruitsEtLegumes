@@ -41,13 +41,15 @@ public class AssociationSemantique extends Association {
         for(int i = 0; i < size; i++) {
             listIntegers.add(i);
         }
+        Log.i("listIntegers", listIntegers.toString());
 
-
-        for(int i =0; i < size /2; i++){
+        Log.i("size", Integer.toString(size));
+        for(int i =0; i < size / 2; i++){
+            Log.i("i", Integer.toString(i));
             int randomPositionCard1;
             int randomPositionCard2;
             int randomImage = r.nextInt(fruits.size());
-
+            Log.i("fruit_plein_id", Integer.toString(fruits.get(randomImage).getFruit_plein_id()));
             if(!imagePositions.contains(fruits.get(randomImage).getFruit_plein_id())){
                 randomPositionCard1 = r.nextInt(listIntegers.size());
                 imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_plein_id());
@@ -110,6 +112,7 @@ public class AssociationSemantique extends Association {
 
                 fruit.setNom(jsonObject.getString("nom"));
                 fruit.setFruit_plein(jsonObject.getString("fruit"));
+                fruit.setFruit_plein_id(context.getResources().getIdentifier(jsonObject.getString("fruit"), "drawable", context.getPackageName()));
 
                 switch (randomMax){
                     case 0:
@@ -129,7 +132,7 @@ public class AssociationSemantique extends Association {
 
                 fruits.add(fruit);
 
-                Log.i("fruit", fruit.toString());
+                Log.i("fruit", jsonObject.toString());
 
             }
 

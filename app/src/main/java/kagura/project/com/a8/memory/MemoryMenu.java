@@ -14,13 +14,14 @@ import android.widget.ImageView;
 
 import kagura.project.com.a8.R;
 
+import static android.R.attr.button;
+
 public class MemoryMenu extends AppCompatActivity{
 
     Intent intentMemory;
     Intent intentBack;
     ImageView avatar;
     String avatarName;
-    int button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class MemoryMenu extends AppCompatActivity{
     }
 
     public void startGame(View v) {
+        int button = 1;
         Log.i("view", Integer.toString(v.getId()));
         Log.i("1", Integer.toString(R.id.level_1tv));
         Log.i("2", Integer.toString(R.id.level_2tv));

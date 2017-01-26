@@ -38,6 +38,8 @@ public abstract class Association {
                 size = 12;
                 break;
         }
+        Log.i("size", Integer.toString(size));
+        Log.i("column", Integer.toString(columns));
         return new int[]{columns, size};
     }
 

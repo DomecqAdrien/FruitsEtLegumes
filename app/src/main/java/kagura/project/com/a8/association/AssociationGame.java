@@ -135,13 +135,13 @@ public class AssociationGame extends AppCompatActivity {
     private void selectCard(View v, int position) {
 
         if(firstCard==null){
-            firstCard = new Card(v, gridview.getChildAt(position), position);
+            firstCard = new Card(v, position);
         }
         else{
 
             isClickable = false;
 
-            secondCard = new Card(v, gridview.getChildAt(position), position);
+            secondCard = new Card(v, position);
 
 
             TimerTask tt = new TimerTask() {
@@ -197,16 +197,14 @@ public class AssociationGame extends AppCompatActivity {
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
-                        .oneShot(firstCard.viewBack, 100);
-                firstCard.viewBack.startAnimation(animFadeOut);
-                firstCard.viewFront.setVisibility(View.INVISIBLE);
-                firstCard.viewBack.setVisibility(View.INVISIBLE);
+                        .oneShot(firstCard.view, 100);
+                firstCard.view.startAnimation(animFadeOut);
+                firstCard.view.setVisibility(View.INVISIBLE);
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
-                        .oneShot(secondCard.viewBack, 100);
-                secondCard.viewBack.startAnimation(animFadeOut);
-                secondCard.viewFront.setVisibility(View.INVISIBLE);
-                secondCard.viewBack.setVisibility(View.INVISIBLE);
+                        .oneShot(secondCard.view, 100);
+                secondCard.view.startAnimation(animFadeOut);
+                secondCard.view.setVisibility(View.INVISIBLE);
 
                 finish--;
                 isClickable = true;

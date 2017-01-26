@@ -56,11 +56,25 @@ public class AssociationMenu extends AppCompatActivity {
         overridePendingTransition(R.anim.right_start, R.anim.right_end);
     }
 
-    public void startGame(View view) {
+    public void startGame(View v) {
+        int button = 1;
+        switch (v.getId()){
+            case R.id.level_1tv:
+                button = 1;
+                break;
+            case R.id.level_2tv:
+                button = 2;
+                break;
+            case R.id.level_3tv:
+                button = 3;
+                break;
+        }
         Intent intentGame = new Intent(this, AssociationGame.class);
+        intentGame.putExtra("level", button);
         this.startActivityForResult(intentGame, 0);
         overridePendingTransition(R.anim.left_start, R.anim.left_end);
     }
+
 
     public void startEncyclopedie(View view) {
         Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
