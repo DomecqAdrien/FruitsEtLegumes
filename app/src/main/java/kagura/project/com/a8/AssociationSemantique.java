@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Fruit;
 
 public class AssociationSemantique extends Association {
@@ -35,6 +36,8 @@ public class AssociationSemantique extends Association {
         Log.i("loadCards()","size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
+        imageNames = new ArrayList<>(Collections.nCopies(size, ""));
+
         Log.i("imagePositionInit", imagePositions.toString());
         List<Integer> listIntegers = new ArrayList<>();
 
@@ -54,34 +57,42 @@ public class AssociationSemantique extends Association {
             if(!imagePositions.contains(fruits.get(randomImage).getFruit_plein_id())){
                 randomPositionCard1 = r.nextInt(listIntegers.size());
                 imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_plein_id());
+                imageNames.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getNom());
+                Log.i("FRUITSP", fruits.get(randomImage).getFruit_plein());
 
                 Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
                 listIntegers.remove(randomPositionCard1);
 
                 randomPositionCard2 = r.nextInt(listIntegers.size());
 
+                imageNames.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getNom());
+
                 switch (randomMax){
                     case 0:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_coupe_id());
+                        Log.i("FRUITSC", fruits.get(randomImage).getFruit_coupe());
                         break;
                     case 1:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_arbre_id());
+                        Log.i("FRUITSA", fruits.get(randomImage).getFruit_arbre());
                         break;
                     case 2:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_graine_id());
+                        Log.i("FRUITSG", fruits.get(randomImage).getFruit_graine());
                         break;
                 }
 
-                Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard2));
+                Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
                 listIntegers.remove(randomPositionCard2);
 
+            }else{
+                i--;
             }
         }
 
         for(int i = 0; i < imagePositions.size(); i++){
             mThumbIds[i] = imagePositions.get(i);
         }
-
         idDrawables.add(0, mThumbIds);
 
         return idDrawables;
@@ -96,19 +107,16 @@ public class AssociationSemantique extends Association {
             randomMax = 0;
         }
 
-
         fruits = new ArrayList<>();
 
         try{
             JSONObject obj = new JSONObject(loadJSONFromAsset("fruits.json"));
             JSONArray arr = obj.getJSONArray("fruits");
-
             Fruit fruit;
 
             for(int i = 0; i < arr.length(); i++){
 
                 fruit = new Fruit();
-
                 JSONObject jsonObject = arr.getJSONObject(i);
 
                 fruit.setNom(jsonObject.getString("nom"));
@@ -129,20 +137,21 @@ public class AssociationSemantique extends Association {
                         fruit.setFruit_graine_id(context.getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", context.getPackageName()));
                         break;
                 }
-
-
                 fruits.add(fruit);
 
-                Log.i("fruit", jsonObject.toString());
-
             }
-
-            Log.i("fruits", fruits.toString());
-
-
-
         }catch (JSONException e){
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean checkCards(Card firstCard, Card secondCard){
+
+        if(imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position))){
+            return true;
+        }else{
+            return false;
         }
 
     }

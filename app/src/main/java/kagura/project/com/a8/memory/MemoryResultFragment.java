@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import kagura.project.com.a8.R;
@@ -15,7 +16,7 @@ import kagura.project.com.a8.R;
 public class MemoryResultFragment extends Fragment {
 
     int level;
-    Button buttonLevel;
+    ImageButton buttonLevel;
 
     public MemoryResultFragment() {
 
@@ -36,7 +37,7 @@ public class MemoryResultFragment extends Fragment {
 
         RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.fragment_memory_end, container, false);
         if(level == 3){
-            buttonLevel = (Button) rl.findViewById(R.id.buttonNextLevel);
+            buttonLevel = (ImageButton) rl.findViewById(R.id.buttonNextLevel);
             buttonLevel.setEnabled(false);
         }
 

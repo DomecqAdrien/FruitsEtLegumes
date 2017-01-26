@@ -8,12 +8,15 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import kagura.project.com.a8.objects.Card;
+
 public abstract class Association {
 
     int level;
     int size;
     Context context;
     List<Integer> imagePositions;
+    List<String> imageNames;
 
     public Association(Context context){
         this.context = context;
@@ -56,6 +59,10 @@ public abstract class Association {
         return imagePositions;
     }
 
+    public List<String> getImageNames(){
+        return imageNames;
+    }
+
     public String loadJSONFromAsset(String jsonPath) {
         String json;
         try {
@@ -71,8 +78,11 @@ public abstract class Association {
             ex.printStackTrace();
             return null;
         }
-        Log.i("json", json);
         return json;
+    }
+
+    public boolean checkCards(Card firstCard, Card secondCard){
+        return true;
     }
 }
 

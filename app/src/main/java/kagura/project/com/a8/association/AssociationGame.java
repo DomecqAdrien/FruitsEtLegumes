@@ -81,6 +81,8 @@ public class AssociationGame extends AppCompatActivity {
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        handler = new UpdateCardsHandler();
+
         setContentView(R.layout.activity_association_game);
 
         gridview = (GridView) findViewById(R.id.gridview);
@@ -99,6 +101,8 @@ public class AssociationGame extends AppCompatActivity {
                     timer.start();
                     isTimerStarted = true;
                 }
+
+                v.setBackgroundColor(getResources().getColor(R.color.white));
 
                 if(isClickable){
                     synchronized (lock) {
@@ -134,16 +138,33 @@ public class AssociationGame extends AppCompatActivity {
 
     }*/
 
+    private void newGame() {
+
+        association = new AssociationSemantique(this);
+
+        // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
+        int levelParams[] = association.setLevelParams(level);
+        gridview.setNumColumns(levelParams[0]);
+        finish = levelParams[1] / 2;
+
+        List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
+
+        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+    }
+
     private void selectCard(View v, int position) {
 
-        if(firstCard==null){
+
+        if(firstCard==null) {
             firstCard = new Card(v, position);
-        }
-        else{
+            Log.i("first card", "ok");
+
+        }else{
 
             isClickable = false;
 
             secondCard = new Card(v, position);
+                Log.i("second card", "ok");
 
 
             TimerTask tt = new TimerTask() {
@@ -152,6 +173,7 @@ public class AssociationGame extends AppCompatActivity {
                 public void run() {
                     try{
                         synchronized (lock) {
+                            Log.i("handler ?", "ok");
                             handler.sendEmptyMessage(0);
                         }
                     }
@@ -169,33 +191,25 @@ public class AssociationGame extends AppCompatActivity {
 
     }
 
-    private void newGame() {
-
-        association = new AssociationSemantique(this);
-
-        // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
-        int levelParams[] = association.setLevelParams(level);
-        gridview.setNumColumns(levelParams[0]);
-        finish = levelParams[1] / 2;
-
-        List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
-
-        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
-    }
-
     @SuppressLint("HandlerLeak")
     class UpdateCardsHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
             synchronized (lock) {
+                Log.i("Checkards ?", "ok");
                 checkCards();
             }
         }
         void checkCards(){
             tries++;
 
-            if(association.getImagePositions().get(firstCard.position).equals(association.getImagePositions().get(secondCard.position))){
+            boolean isSameFruit = association.checkCards(firstCard, secondCard);
+
+
+            if(isSameFruit){
+                firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
+                secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier("star_pink", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
@@ -212,10 +226,15 @@ public class AssociationGame extends AppCompatActivity {
                 isClickable = true;
             }else{
 
-                final Handler handlerFlip = new Handler();
-                handlerFlip.postDelayed(new Runnable() {
+                firstCard.view.setBackgroundColor(getResources().getColor(R.color.red));
+                secondCard.view.setBackgroundColor(getResources().getColor(R.color.red));
+
+                final Handler handlerFalse = new Handler();
+                handlerFalse.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                        secondCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                         isClickable = true;
                     }
                 }, 1000);
@@ -250,7 +269,7 @@ public class AssociationGame extends AppCompatActivity {
 
         Result result = new Result();
         result.setName(preferences.getString(getString(R.string.name), null));
-        result.setGame("Memory");
+        result.setGame("Association");
         result.setLevel(level);
         result.setTries(tries);
         result.setTime(time);
@@ -265,10 +284,15 @@ public class AssociationGame extends AppCompatActivity {
         fragmentResult = new MemoryResultFragment();
         fragmentResult.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.right_end, R.anim.right_start)
-                .replace(R.id.fragment_container, fragmentResult).commit();
-
+        final Handler handlerResult = new Handler();
+        handlerResult.postDelayed(new Runnable() {
+             @Override
+             public void run() {
+                 fragmentManager.beginTransaction()
+                         .setCustomAnimations(R.anim.up_start, R.anim.up_end)
+                         .replace(R.id.fragment_container, fragmentResult).commit();
+             }
+        }, 1000);
 
     }
 

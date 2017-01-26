@@ -61,6 +61,8 @@ public class AssociationPicturale extends Association {
                 Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
                 listIntegers.remove(randomPositionCard2);
 
+            }else{
+                i--;
             }
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
