@@ -41,7 +41,7 @@ public class CharacterSelection extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         nameValid = preferences.getString(getString(R.string.name), null);
-        avatar = preferences.getString(getString(R.string.avatar), null);
+        avatar = preferences.getString(getString(R.string.avatar), "");
 
         setContentView(R.layout.activity_character_selection);
 
