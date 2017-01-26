@@ -162,6 +162,7 @@ public class MemoryGame extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
+                        overridePendingTransition(R.anim.left_start, R.anim.left_end);
                     }
                 })
                 .setNegativeButton("Non", null).show();

@@ -14,13 +14,15 @@ import java.util.Random;
 
 public class AssociationPicturale extends Association {
 
+    List<Integer> imagesId;
+
     public AssociationPicturale(Context context) {
         super(context);
     }
 
     @Override
     public  List<Integer[]> loadCards(){
-        List<Integer> imagesId = loadImages();
+        loadImages();
         List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
 
         Integer[] mThumbIdsFront = new Integer[size];
@@ -79,10 +81,10 @@ public class AssociationPicturale extends Association {
     }
 
     @Override
-    public List<Integer> loadImages(){
+    public void loadImages(){
 
         List<String> nameImages = new ArrayList<>();
-        List<Integer> idImages = new ArrayList<>();
+        imagesId = new ArrayList<>();
 
         Field[] fields = R.drawable.class.getDeclaredFields();
         int i = 0;
@@ -96,12 +98,11 @@ public class AssociationPicturale extends Association {
 
         for (int j = 0; j < nameImages.size(); j++){
             int cardId = context.getResources().getIdentifier(nameImages.get(j), "drawable", context.getPackageName());
-            idImages.add(cardId);
+            imagesId.add(cardId);
         }
         Log.i("nameImages", nameImages.toString());
-        Log.i("images ID", idImages.toString());
+        Log.i("images ID", imagesId.toString());
 
-        return idImages;
     }
 
 

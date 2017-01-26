@@ -10,6 +10,7 @@ import java.util.List;
 
 public abstract class Association {
 
+    int level;
     int size;
     Context context;
     List<Integer> imagePositions;
@@ -21,6 +22,7 @@ public abstract class Association {
 
 
     public int[] setLevelParams(int level){
+        this.level = level;
         int columns = 3;
         switch(level){
             case 1:
@@ -46,11 +48,7 @@ public abstract class Association {
 
     }
 
-    public List<Integer> loadImages(){
-        List <Integer> idImages = new ArrayList<>();
-
-        return idImages;
-    }
+    public void loadImages(){}
 
     public List<Integer> getImagePositions(){
         return imagePositions;
