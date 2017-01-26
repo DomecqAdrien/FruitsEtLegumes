@@ -14,6 +14,7 @@ public abstract class Association {
 
     int level;
     int size;
+    int position;
     Context context;
     List<Integer> imagePositions;
     List<String> imageNames;
@@ -83,6 +84,10 @@ public abstract class Association {
 
     public boolean checkCards(Card firstCard, Card secondCard){
         return true;
+    }
+
+    public String getNom(){
+        return imageNames.get(position);
     }
 }
 

@@ -4,17 +4,24 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.objects.Fruit;
+import kagura.project.com.a8.objects.Legume;
 
 
 public class AssociationPicturale extends Association {
 
     List<Integer> imagesId;
+    List<Legume> legumes;
 
     public AssociationPicturale(Context context) {
         super(context);
@@ -85,7 +92,7 @@ public class AssociationPicturale extends Association {
     @Override
     public void loadImages(){
 
-        List<String> nameImages = new ArrayList<>();
+        /*List<String> nameImages = new ArrayList<>();
         imagesId = new ArrayList<>();
 
         Field[] fields = R.drawable.class.getDeclaredFields();
@@ -103,7 +110,31 @@ public class AssociationPicturale extends Association {
             imagesId.add(cardId);
         }
         Log.i("nameImages", nameImages.toString());
-        Log.i("images ID", imagesId.toString());
+        Log.i("images ID", imagesId.toString());*/
+
+
+
+        legumes = new ArrayList<>();
+
+        try{
+            JSONObject obj = new JSONObject(loadJSONFromAsset("fruits.json"));
+            JSONArray arr = obj.getJSONArray("fruits");
+            Legume legume;
+
+            for(int i = 0; i < arr.length(); i++){
+
+                legume = new Legume();
+                JSONObject jsonObject = arr.getJSONObject(i);
+
+                legume.setNom(jsonObject.getString("nom"));
+                legume.setLegume_id(context.getResources().getIdentifier(jsonObject.getString("path"), "drawable", context.getPackageName()));
+
+                legumes.add(legume);
+
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
 
     }
 

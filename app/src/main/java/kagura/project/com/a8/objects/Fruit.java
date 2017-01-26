@@ -1,8 +1,7 @@
 package kagura.project.com.a8.objects;
 
-public class Fruit {
+public class Fruit extends Aliment{
 
-    private String nom;
     private int fruit_plein_id;
     private int fruit_coupe_id;
     private int fruit_arbre_id;
@@ -42,13 +41,6 @@ public class Fruit {
         this.fruit_plein_id = fruit_plein_id;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
 
 }
