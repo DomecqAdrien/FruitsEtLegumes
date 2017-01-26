@@ -26,7 +26,7 @@
         <activity android:name=".admin.AdminSession" />
         <activity android:name=".admin.AdminResults" />
         <activity android:name=".association.Encyclopedie" />
-        <activity android:name=".association.AssociationGame"></activity>
+        <activity android:name=".association.AssociationGame" />
     </application>
 
 </manifest>

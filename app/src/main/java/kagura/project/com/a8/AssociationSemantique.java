@@ -58,7 +58,6 @@ public class AssociationSemantique extends Association {
                 randomPositionCard1 = r.nextInt(listIntegers.size());
                 imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_plein_id());
                 imageNames.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getNom());
-                Log.i("FRUITSP", fruits.get(randomImage).getFruit_plein());
 
                 Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
                 listIntegers.remove(randomPositionCard1);
@@ -70,15 +69,12 @@ public class AssociationSemantique extends Association {
                 switch (randomMax){
                     case 0:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_coupe_id());
-                        Log.i("FRUITSC", fruits.get(randomImage).getFruit_coupe());
                         break;
                     case 1:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_arbre_id());
-                        Log.i("FRUITSA", fruits.get(randomImage).getFruit_arbre());
                         break;
                     case 2:
                         imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_graine_id());
-                        Log.i("FRUITSG", fruits.get(randomImage).getFruit_graine());
                         break;
                 }
 
@@ -120,20 +116,16 @@ public class AssociationSemantique extends Association {
                 JSONObject jsonObject = arr.getJSONObject(i);
 
                 fruit.setNom(jsonObject.getString("nom"));
-                fruit.setFruit_plein(jsonObject.getString("fruit"));
                 fruit.setFruit_plein_id(context.getResources().getIdentifier(jsonObject.getString("fruit"), "drawable", context.getPackageName()));
 
                 switch (randomMax){
                     case 0:
-                        fruit.setFruit_coupe(jsonObject.getString("coupe"));
                         fruit.setFruit_coupe_id(context.getResources().getIdentifier(jsonObject.getString("coupe"), "drawable", context.getPackageName()));
                         break;
                     case 1:
-                        fruit.setFruit_arbre(jsonObject.getString("arbre"));
                         fruit.setFruit_arbre_id(context.getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", context.getPackageName()));
                         break;
                     case 2:
-                        fruit.setFruit_graine(jsonObject.getString("graine"));
                         fruit.setFruit_graine_id(context.getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", context.getPackageName()));
                         break;
                 }

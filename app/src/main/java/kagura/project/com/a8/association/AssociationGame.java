@@ -102,14 +102,14 @@ public class AssociationGame extends AppCompatActivity {
                     isTimerStarted = true;
                 }
 
-                v.setBackgroundColor(getResources().getColor(R.color.white));
-
                 if(isClickable){
                     synchronized (lock) {
 
                         if(firstCard != null){
                             if(firstCard.position == position){
                                 return; //the user pressed the same card
+                            }else{
+                                v.setBackgroundColor(getResources().getColor(R.color.white));
                             }
                         }
 
@@ -233,11 +233,12 @@ public class AssociationGame extends AppCompatActivity {
                 handlerFalse.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                        secondCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                         isClickable = true;
                     }
                 }, 1000);
+
+                firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                secondCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
             }
 
             firstCard = null;
