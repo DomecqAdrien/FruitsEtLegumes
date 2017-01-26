@@ -92,4 +92,11 @@ public class MemoryMenu extends AppCompatActivity{
         intentMemory.putExtra("level", button);
         this.startActivityForResult(intentMemory, 0);
     }
+
+    public void back(View v) {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_start, R.anim.left_end);
+    }
+
+
 }

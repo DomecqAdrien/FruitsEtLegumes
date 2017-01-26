@@ -18,7 +18,9 @@
         android:id="@+id/spaceAssociation"
         android:layout_height="540dp"
         android:layout_toStartOf="@+id/textHello"
-        android:layout_toLeftOf="@+id/textHello" />
+        android:layout_toLeftOf="@+id/textHello"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 
 
 
@@ -66,12 +68,34 @@
         android:layout_height="400dp"
         app:srcCompat="@drawable/memory"
         android:id="@+id/imageView2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_alignBottom="@+id/spaceAssociation"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textHello"
-        android:layout_toEndOf="@+id/textHello"
-        android:layout_marginBottom="14dp" />
+        android:layout_toEndOf="@+id/textHello" />
+
+    <TextView
+        android:text="Association"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="70dp"
+        android:id="@+id/textView3"
+        android:fontFamily="casual"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/association"
+        android:id="@+id/imageView3"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_toLeftOf="@+id/spaceMemory"
+        android:layout_toStartOf="@+id/spaceMemory"
+        android:layout_alignTop="@+id/imageView2" />
 
 
 </RelativeLayout>

@@ -81,4 +81,8 @@ public class AssociationMenu extends AppCompatActivity {
         intentEncyclopedie.putExtra("level", button);
         this.startActivityForResult(intentEncyclopedie, 0);
     }
+    public void back(View v) {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_start, R.anim.right_end);
+    }
 }
