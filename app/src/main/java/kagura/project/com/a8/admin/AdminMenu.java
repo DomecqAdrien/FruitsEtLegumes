@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import kagura.project.com.a8.CharacterSelection;
 import kagura.project.com.a8.R;
 
 public class AdminMenu extends AppCompatActivity {

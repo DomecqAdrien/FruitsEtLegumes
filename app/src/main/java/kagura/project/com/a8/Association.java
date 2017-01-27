@@ -20,7 +20,7 @@ public abstract class Association {
     List<Integer> imagePositions;
     List<String> imageNames;
 
-    public Association(Context context){
+    Association(Context context){
         this.context = context;
 
     }
@@ -49,23 +49,13 @@ public abstract class Association {
     }
 
     public List<Integer[]>  loadCards(){
-        List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
-
-        return idDrawablesFrontAndBack;
+        return new ArrayList<>();
 
     }
 
     public void loadImages(){}
 
-    public List<Integer> getImagePositions(){
-        return imagePositions;
-    }
-
-    public List<String> getImageNames(){
-        return imageNames;
-    }
-
-    public String loadJSONFromAsset(String jsonPath) {
+    String loadJSONFromAsset(String jsonPath) {
         String json;
         try {
             InputStream is = context.getAssets().open(jsonPath);

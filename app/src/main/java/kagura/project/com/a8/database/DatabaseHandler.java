@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DatabaseHandler extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "results.db";
-
     private static final String TABLE_NAME = "results";
     private static final String COLUMN_NAME_KEY = "id";
     private static final String COLUMN_NAME_NAME = "name";
@@ -33,7 +30,7 @@ class DatabaseHandler extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME + ";" + SQL_CREATE_ENTRIES ;
     
-    public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

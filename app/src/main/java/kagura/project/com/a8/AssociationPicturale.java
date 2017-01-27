@@ -125,7 +125,7 @@ public class AssociationPicturale extends Association {
     public boolean checkCards(Card firstCard, Card secondCard){
         this.position = firstCard.position;
 
-        return imagePositions.get(firstCard.position).equals(imagePositions.get(secondCard.position));
+        return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
 
     }
 

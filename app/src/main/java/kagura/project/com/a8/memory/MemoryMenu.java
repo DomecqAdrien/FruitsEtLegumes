@@ -14,12 +14,8 @@ import android.widget.ImageView;
 
 import kagura.project.com.a8.R;
 
-import static android.R.attr.button;
-
 public class MemoryMenu extends AppCompatActivity{
 
-    Intent intentMemory;
-    Intent intentBack;
     ImageView avatar;
     String avatarName;
 
@@ -88,9 +84,10 @@ public class MemoryMenu extends AppCompatActivity{
                 break;
         }
         Log.i("button", Integer.toString(button));
-        intentMemory = new Intent(this, MemoryGame.class);
+        Intent intentMemory = new Intent(this, MemoryGame.class);
         intentMemory.putExtra("level", button);
         this.startActivityForResult(intentMemory, 0);
+        overridePendingTransition(R.anim.right_start, R.anim.right_end);
     }
 
     public void back(View v) {
