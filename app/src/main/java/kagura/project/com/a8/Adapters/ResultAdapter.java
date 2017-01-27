@@ -29,6 +29,7 @@ public class ResultAdapter extends ArrayAdapter<Result> {
         this.items = arrayList;
     }
 
+    @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent){
         View view = convertView;
