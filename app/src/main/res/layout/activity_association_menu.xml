@@ -124,13 +124,15 @@
         android:layout_marginStart="141dp" />
 
     <ImageView
-        android:layout_width="250px"
-        android:layout_height="250px"
+        android:layout_width="210px"
+        android:layout_height="210px"
         app:srcCompat="@drawable/back2"
         android:onClick="back"
         android:id="@+id/imageView9"
+
+
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/imageAvatar"
-        android:layout_toEndOf="@+id/imageAvatar" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

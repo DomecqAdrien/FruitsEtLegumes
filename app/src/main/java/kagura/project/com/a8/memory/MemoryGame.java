@@ -155,17 +155,7 @@ public class MemoryGame extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this).setTitle("Quitter")
-                .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
-                .setIcon(android.R.drawable.ic_menu_help)
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        overridePendingTransition(R.anim.left_start, R.anim.left_end);
-                    }
-                })
-                .setNegativeButton("Non", null).show();
+
 
     }
 
@@ -353,8 +343,24 @@ public class MemoryGame extends AppCompatActivity {
         setResult(66, intentHomeMenu);
         finish();
     }
+    public void back(View v) {
+
+        new AlertDialog.Builder(this).setTitle("Quitter")
+                .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        overridePendingTransition(R.anim.left_start, R.anim.left_end);
+                    }
+                })
+                .setNegativeButton("Non", null).show();
+
+    }
 
     public void goLevelMenu(View view) {
         finish();
     }
 }
+
