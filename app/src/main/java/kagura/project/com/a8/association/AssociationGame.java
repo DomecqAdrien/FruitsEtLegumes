@@ -1,6 +1,5 @@
 package kagura.project.com.a8.association;
 
-import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,18 +32,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import kagura.project.com.a8.Association;
-import kagura.project.com.a8.AssociationPicturale;
 import kagura.project.com.a8.AssociationSemantique;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.database.ResultDAO;
-import kagura.project.com.a8.memory.MemoryGame;
 import kagura.project.com.a8.memory.MemoryResultFragment;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Result;
-
-import static kagura.project.com.a8.R.id.gridviewBack;
-import static kagura.project.com.a8.R.id.gridviewFront;
 
 public class AssociationGame extends AppCompatActivity {
 
@@ -110,8 +104,6 @@ public class AssociationGame extends AppCompatActivity {
                                 firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                 firstCard = null;
                                 return; //the user pressed the same card
-                            }else{
-
                             }
                         }
                         v.setBackgroundColor(getResources().getColor(R.color.white));

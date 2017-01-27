@@ -55,7 +55,6 @@ public class AssociationMenu extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 66){
             onBackPressed();
-
         }
     }
 

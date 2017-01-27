@@ -3,14 +3,11 @@ package kagura.project.com.a8.association;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 import kagura.project.com.a8.R;
 
-import static android.R.color.transparent;
 
 public class Encyclopedie extends AppCompatActivity {
 
