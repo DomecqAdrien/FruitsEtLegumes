@@ -124,21 +124,11 @@ public class AssociationGame extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this).setTitle("Quitter")
-                .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
-                .setIcon(android.R.drawable.ic_menu_help)
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        overridePendingTransition(R.anim.right_start, R.anim.right_end);
-                    }
-                })
-                .setNegativeButton("Non", null).show();
 
-    }*/
+
+    }
 
     private void newGame() {
 
@@ -318,6 +308,19 @@ public class AssociationGame extends AppCompatActivity {
         finish();
     }
 
+    public void back(View v){
+        new AlertDialog.Builder(this).setTitle("Quitter")
+                .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        overridePendingTransition(R.anim.right_start, R.anim.right_end);
+                    }
+                })
+                .setNegativeButton("Non", null).show();
+    }
     public void goLevelMenu(View view) {
         finish();
     }

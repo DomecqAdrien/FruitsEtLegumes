@@ -9,11 +9,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
+    <ImageView
         android:text="@string/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:id="@+id/buttonStart"
+        app:srcCompat="@drawable/ico"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +22,7 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
         android:onClick="start"
-        android:layout_marginBottom="88dp" />
+        android:layout_marginBottom="48dp" />
 
     <TextView
         android:text="@string/whoru"
@@ -52,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/character_selection"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="176dp"
         app:layout_constraintTop_toBottomOf="@+id/whoru"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -65,9 +66,11 @@
         android:id="@+id/buttonVerGros"
         android:onClick="CharacterOnClick"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/character_selection"
-        android:layout_marginTop="136dp"
-        app:layout_constraintRight_toLeftOf="@+id/buttonStart" />
+        app:layout_constraintTop_toBottomOf="@+id/character_selection"
+        android:layout_marginStart="336dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="336dp"
+        android:layout_marginTop="40dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -75,12 +78,12 @@
         app:srcCompat="@drawable/ver_mince"
         android:id="@+id/buttonVerMince"
         android:onClick="CharacterOnClick"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="88dp"
         app:layout_constraintLeft_toRightOf="@+id/buttonVerGros"
         android:background="@android:color/transparent"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="88dp"
         app:layout_constraintTop_toTopOf="@+id/character_selection"
-        android:layout_marginTop="112dp" />
+        android:layout_marginTop="88dp" />
 
     <TextView
         android:text="@string/prenom"
@@ -113,10 +116,8 @@
         android:id="@+id/imageView3"
         android:rotation="-40"
         app:layout_constraintBottom_toTopOf="@+id/buttonVerMince"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintRight_toRightOf="@+id/name"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginBottom="56dp"
+        app:layout_constraintRight_toRightOf="@+id/name" />
 
 
 </android.support.constraint.ConstraintLayout>
