@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background_legumes"
     tools:context="kagura.project.com.a8.memory.MemoryMenu">
@@ -107,15 +105,16 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        app:srcCompat="@drawable/back1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/back3"
         android:id="@+id/imageView5"
         android:onClick="back"
-        android:layout_marginTop="240dp"
-        android:layout_marginRight="50dp"/>
 
-
+        android:layout_below="@+id/level_1tv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
 
 
 </RelativeLayout>

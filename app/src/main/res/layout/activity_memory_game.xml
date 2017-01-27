@@ -46,8 +46,8 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="200px"
-        android:layout_height="200px"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         app:srcCompat="@drawable/back1"
         android:id="@+id/imageView5"
         android:onClick="back"
