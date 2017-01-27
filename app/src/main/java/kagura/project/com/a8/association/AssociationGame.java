@@ -85,24 +85,24 @@ public class AssociationGame extends AppCompatActivity {
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
-        
+
         newGame();
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
-                if(!isTimerStarted){
+                if (!isTimerStarted) {
                     timer = new Chronometer(getApplicationContext());
                     timer.start();
                     isTimerStarted = true;
                 }
 
-                if(isClickable){
+                if (isClickable) {
                     synchronized (lock) {
 
-                        if(firstCard != null){
-                            if(firstCard.position == position){
+                        if (firstCard != null) {
+                            if (firstCard.position == position) {
                                 gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                 //firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                 firstCard = null;
@@ -112,7 +112,7 @@ public class AssociationGame extends AppCompatActivity {
                         gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.white));
                         //v.setBackgroundColor(getResources().getColor(R.color.white));
                         Log.i("position", Integer.toString(position));
-                        selectCard(v,position);
+                        selectCard(v, position);
                     }
                 }
 
@@ -121,7 +121,8 @@ public class AssociationGame extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     private void newGame() {
 
@@ -141,29 +142,28 @@ public class AssociationGame extends AppCompatActivity {
     private void selectCard(View v, int position) {
 
 
-        if(firstCard==null) {
+        if (firstCard == null) {
             firstCard = new Card(v, position);
             Log.i("first card", "ok");
 
-        }else{
+        } else {
 
             isClickable = false;
 
             secondCard = new Card(v, position);
-                Log.i("second card", "ok");
+            Log.i("second card", "ok");
 
 
             TimerTask tt = new TimerTask() {
 
                 @Override
                 public void run() {
-                    try{
+                    try {
                         synchronized (lock) {
                             Log.i("handler ?", "ok");
                             handler.sendEmptyMessage(0);
                         }
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Log.e("E1", e.getMessage());
                     }
                 }
@@ -187,13 +187,14 @@ public class AssociationGame extends AppCompatActivity {
                 checkCards();
             }
         }
-        void checkCards(){
+
+        void checkCards() {
             tries++;
 
             boolean isSameFruit = association.checkCards(firstCard, secondCard);
             Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
 
-            if(isSameFruit){
+            if (isSameFruit) {
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
@@ -211,7 +212,7 @@ public class AssociationGame extends AppCompatActivity {
 
                 finish--;
                 isClickable = true;
-            }else{
+            } else {
 
                 gridviewBackground.getChildAt(firstCard.position).setBackgroundColor(getResources().getColor(R.color.red));
                 gridviewBackground.getChildAt(secondCard.position).setBackgroundColor(getResources().getColor(R.color.red));
@@ -224,23 +225,23 @@ public class AssociationGame extends AppCompatActivity {
             firstCard = null;
             secondCard = null;
 
-            if(finish == 0){
+            if (finish == 0) {
                 timer.stop();
                 result();
             }
         }
     }
 
-    private void result(){
+    private void result() {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         calendar = Calendar.getInstance();
         String monthString;
         int calendarMonth = calendar.get(Calendar.MONTH) + 1;
-        if(calendarMonth < 10){
+        if (calendarMonth < 10) {
             monthString = "0" + Integer.toString(calendarMonth);
-        }else{
+        } else {
             monthString = Integer.toString(calendarMonth);
         }
         String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
@@ -267,12 +268,12 @@ public class AssociationGame extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         final Handler handlerResult = new Handler();
         handlerResult.postDelayed(new Runnable() {
-             @Override
-             public void run() {
-                 fragmentManager.beginTransaction()
-                         .setCustomAnimations(R.anim.up_start, R.anim.up_end)
-                         .replace(R.id.fragment_container, fragmentResult).commit();
-             }
+            @Override
+            public void run() {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.up_start, R.anim.up_end)
+                        .replace(R.id.fragment_container, fragmentResult).commit();
+            }
         }, 1000);
 
     }
@@ -280,6 +281,7 @@ public class AssociationGame extends AppCompatActivity {
     public void replayLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        overridePendingTransition(R.anim.down_start, R.anim.down_end);
         newGame();
 
     }
@@ -287,6 +289,7 @@ public class AssociationGame extends AppCompatActivity {
     public void nextLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        overridePendingTransition(R.anim.down_start, R.anim.down_end);
         isTimerStarted = false;
         tries = 0;
         level++;
@@ -301,7 +304,7 @@ public class AssociationGame extends AppCompatActivity {
         finish();
     }
 
-    public void back(View v){
+    public void back(View v) {
         new AlertDialog.Builder(this).setTitle("Quitter")
                 .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
                 .setIcon(android.R.drawable.ic_menu_help)
@@ -314,9 +317,10 @@ public class AssociationGame extends AppCompatActivity {
                 })
                 .setNegativeButton("Non", null).show();
     }
+
     public void goLevelMenu(View view) {
         finish();
     }
-    
-    
+
+
 }
