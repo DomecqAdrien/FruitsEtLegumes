@@ -10,6 +10,20 @@
 
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridviewBackground"
+        android:layout_width="700dp"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="110dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+    </GridView>
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
         android:id="@+id/gridview"
         android:layout_width="700dp"
         android:layout_height="wrap_content"

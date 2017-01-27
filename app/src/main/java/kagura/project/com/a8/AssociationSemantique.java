@@ -32,6 +32,7 @@ public class AssociationSemantique extends Association {
 
         loadImages();
         Integer[] mThumbIds = new Integer[size];
+        Integer[] mThumbIdsBackground = new Integer[size];
 
         Log.i("loadCards()","size=" + size);
 
@@ -88,8 +89,10 @@ public class AssociationSemantique extends Association {
 
         for(int i = 0; i < imagePositions.size(); i++){
             mThumbIds[i] = imagePositions.get(i);
+            mThumbIdsBackground[i] = context.getResources().getColor(android.R.color.transparent);
         }
         idDrawables.add(0, mThumbIds);
+        idDrawables.add(1, mThumbIdsBackground);
 
         return idDrawables;
 

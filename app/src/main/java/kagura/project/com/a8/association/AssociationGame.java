@@ -1,6 +1,5 @@
 package kagura.project.com.a8.association;
 
-import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,19 +31,15 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 import kagura.project.com.a8.Association;
-import kagura.project.com.a8.AssociationPicturale;
 import kagura.project.com.a8.AssociationSemantique;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.database.ResultDAO;
-import kagura.project.com.a8.memory.MemoryGame;
 import kagura.project.com.a8.memory.MemoryResultFragment;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Result;
-
-import static kagura.project.com.a8.R.id.gridviewBack;
-import static kagura.project.com.a8.R.id.gridviewFront;
 
 public class AssociationGame extends AppCompatActivity {
 
@@ -59,7 +54,7 @@ public class AssociationGame extends AppCompatActivity {
     private Card firstCard, secondCard;
     private static final Object lock = new Object();
 
-    GridView gridview;
+    GridView gridview, gridviewBackground;
     Fragment fragmentResult;
 
     Boolean isTimerStarted = false;
@@ -86,6 +81,7 @@ public class AssociationGame extends AppCompatActivity {
         setContentView(R.layout.activity_association_game);
 
         gridview = (GridView) findViewById(R.id.gridview);
+        gridviewBackground = (GridView) findViewById(R.id.gridviewBackground);
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
@@ -107,14 +103,14 @@ public class AssociationGame extends AppCompatActivity {
 
                         if(firstCard != null){
                             if(firstCard.position == position){
-                                firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                                gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                                //firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                 firstCard = null;
                                 return; //the user pressed the same card
-                            }else{
-
                             }
                         }
-                        v.setBackgroundColor(getResources().getColor(R.color.white));
+                        gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.white));
+                        //v.setBackgroundColor(getResources().getColor(R.color.white));
                         Log.i("position", Integer.toString(position));
                         selectCard(v,position);
                     }
@@ -125,10 +121,7 @@ public class AssociationGame extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-
-
-    }
+    public void onBackPressed() {}
 
     private void newGame() {
 
@@ -142,6 +135,7 @@ public class AssociationGame extends AppCompatActivity {
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
         gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
     }
 
     private void selectCard(View v, int position) {
@@ -197,35 +191,34 @@ public class AssociationGame extends AppCompatActivity {
             tries++;
 
             boolean isSameFruit = association.checkCards(firstCard, secondCard);
-
+            Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
 
             if(isSameFruit){
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
-                Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.view, 100);
                 firstCard.view.startAnimation(animFadeOut);
+                gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
                 firstCard.view.setVisibility(View.INVISIBLE);
                 new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.view, 100);
                 secondCard.view.startAnimation(animFadeOut);
+                gridviewBackground.getChildAt(secondCard.position).startAnimation(animFadeOut);
                 secondCard.view.setVisibility(View.INVISIBLE);
 
                 finish--;
                 isClickable = true;
             }else{
 
-                firstCard.view.setBackgroundColor(getResources().getColor(R.color.red));
-                secondCard.view.setBackgroundColor(getResources().getColor(R.color.red));
-                
+                gridviewBackground.getChildAt(firstCard.position).setBackgroundColor(getResources().getColor(R.color.red));
+                gridviewBackground.getChildAt(secondCard.position).setBackgroundColor(getResources().getColor(R.color.red));
+                gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
+                gridviewBackground.getChildAt(secondCard.position).startAnimation(animFadeOut);
+
                 isClickable = true;
-
-
-                firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                secondCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
             }
 
             firstCard = null;
