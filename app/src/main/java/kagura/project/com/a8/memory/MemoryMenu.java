@@ -91,6 +91,7 @@ public class MemoryMenu extends AppCompatActivity{
         intentMemory = new Intent(this, MemoryGame.class);
         intentMemory.putExtra("level", button);
         this.startActivityForResult(intentMemory, 0);
+        overridePendingTransition(R.anim.right_start, R.anim.right_end);
     }
 
     public void back(View v) {

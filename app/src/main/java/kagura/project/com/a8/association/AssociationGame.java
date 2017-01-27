@@ -124,7 +124,7 @@ public class AssociationGame extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this).setTitle("Quitter")
                 .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
@@ -138,7 +138,7 @@ public class AssociationGame extends AppCompatActivity {
                 })
                 .setNegativeButton("Non", null).show();
 
-    }*/
+    }
 
     private void newGame() {
 
