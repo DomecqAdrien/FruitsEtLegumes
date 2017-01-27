@@ -107,6 +107,8 @@ public class AssociationGame extends AppCompatActivity {
 
                         if(firstCard != null){
                             if(firstCard.position == position){
+                                firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                                firstCard = null;
                                 return; //the user pressed the same card
                             }else{
 
