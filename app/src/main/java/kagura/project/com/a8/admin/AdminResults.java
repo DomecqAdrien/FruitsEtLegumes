@@ -24,6 +24,7 @@ import kagura.project.com.a8.objects.Result;
 
 public class AdminResults extends AppCompatActivity {
 
+    private String type;
     ResultDAO resultDAO;
     ListView listResults;
     List<Result> results;
@@ -41,6 +42,8 @@ public class AdminResults extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_admin_results);
 
+        type = getIntent().getStringExtra("type");
+
         listResults = (ListView) findViewById(R.id.listResults);
 
         Typeface fontFamily = Typeface.createFromAsset(getAssets(), "fonts/fontawesome.ttf");
@@ -50,7 +53,7 @@ public class AdminResults extends AppCompatActivity {
 
 
         resultDAO = new ResultDAO(this);
-        results = resultDAO.selectAll();
+        results = resultDAO.selectAll(type);
 
 
         ArrayAdapter<Result> resAdapter = new ResultAdapter(this, R.layout.row, results);
@@ -60,9 +63,15 @@ public class AdminResults extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intentBack = new Intent(this, AdminSession.class);
-        finish();
-        this.startActivity(intentBack);
+        switch (type){
+            case "Association":
+                overridePendingTransition(R.anim.right_start, R.anim.right_end);
+                break;
+            case "Memory":
+                overridePendingTransition(R.anim.left_start, R.anim.left_end);
+                break;
+        }
+
     }
 
     public void deleteAll(View view) {

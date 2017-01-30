@@ -41,14 +41,15 @@ public class AdminSession extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.buttonResultAssociation:
+                intentResults.putExtra("type", "Association");
+                this.startActivity(intentResults);
                 overridePendingTransition(R.anim.left_start, R.anim.left_end);
-                intentResults.putExtra("type", "association");
                 break;
             case R.id.buttonResultMemory:
+                intentResults.putExtra("type", "Memory");
+                this.startActivity(intentResults);
                 overridePendingTransition(R.anim.right_start, R.anim.right_end);
-                intentResults.putExtra("type", "association");
                 break;
         }
-        this.startActivity(intentResults);
     }
 }

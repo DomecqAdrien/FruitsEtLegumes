@@ -41,10 +41,10 @@ public class ResultDAO extends DAOBase {
         mDb.delete("results", null, null);
     }
 
-    public List<Result> selectAll(){
+    public List<Result> selectAll(String type){
         open();
         List<Result> results = new ArrayList<>();
-        Cursor cursor = mDb.rawQuery("SELECT * FROM "+ TABLE_NAME, new String[] {});
+        Cursor cursor = mDb.rawQuery("SELECT * FROM "+ TABLE_NAME + " WHERE game = ?", new String[]{type});
         int i = 0;
         while (cursor.moveToNext()){
             Result result = new Result();
