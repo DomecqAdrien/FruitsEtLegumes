@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +27,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Chronometer;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.plattysoft.leonids.ParticleSystem;
 
@@ -59,6 +61,8 @@ public class MemoryGame extends AppCompatActivity {
 
     GridView gridviewFront, gridviewBack;
     Fragment fragmentResult;
+
+    ImageView buttonBack;
 
     Boolean isTimerStarted = false;
     Chronometer timer;
@@ -103,6 +107,8 @@ public class MemoryGame extends AppCompatActivity {
 
         gridviewFront = (GridView) findViewById(R.id.gridviewFront);
         gridviewBack = (GridView) findViewById(R.id.gridviewBack);
+
+        buttonBack = (ImageView) findViewById(R.id.imageView5);
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
@@ -173,8 +179,8 @@ public class MemoryGame extends AppCompatActivity {
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
-        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
-        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
 
 
     }
@@ -313,6 +319,7 @@ public class MemoryGame extends AppCompatActivity {
         fragmentResult = new MemoryResultFragment();
         fragmentResult.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
+        buttonBack.setVisibility(View.INVISIBLE);
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.up_start, R.anim.up_end)
                 .replace(R.id.fragment_container, fragmentResult).commit();
@@ -323,6 +330,7 @@ public class MemoryGame extends AppCompatActivity {
     public void replayLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        buttonBack.setVisibility(View.VISIBLE);
         newGame();
 
     }
@@ -330,6 +338,7 @@ public class MemoryGame extends AppCompatActivity {
     public void nextLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
+        buttonBack.setVisibility(View.VISIBLE);
         isTimerStarted = false;
         tries = 0;
         level++;

@@ -31,11 +31,6 @@ public class AssociationPicturale extends Association {
             loadImages();
         }
 
-        List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
-
-        Integer[] mThumbIdsFront = new Integer[size];
-        Integer[] mThumbIdsBack = new Integer[size];
-
         Log.i("loadCards()", "size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
@@ -65,17 +60,8 @@ public class AssociationPicturale extends Association {
         Log.i("imagePositionsAfter", imagePositions.toString());
 
         int backImage = context.getResources().getIdentifier("test", "drawable", context.getPackageName());
-        for (int i = 0; i < imagePositions.size(); i++) {
-            mThumbIdsFront[i] = backImage;
-            mThumbIdsBack[i] = imagePositions.get(i);
-        }
 
-        idDrawablesFrontAndBack.add(0, mThumbIdsFront);
-        idDrawablesFrontAndBack.add(1, mThumbIdsBack);
-
-        return idDrawablesFrontAndBack;
-
-
+        return returnCards(backImage);
     }
 
     @Override
