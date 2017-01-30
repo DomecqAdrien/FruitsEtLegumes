@@ -104,13 +104,11 @@ public class AssociationGame extends AppCompatActivity {
                         if (firstCard != null) {
                             if (firstCard.position == position) {
                                 gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                                //firstCard.view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                 firstCard = null;
                                 return; //the user pressed the same card
                             }
                         }
                         gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.white));
-                        //v.setBackgroundColor(getResources().getColor(R.color.white));
                         Log.i("position", Integer.toString(position));
                         selectCard(v, position);
                     }
@@ -130,6 +128,7 @@ public class AssociationGame extends AppCompatActivity {
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
         int levelParams[] = association.setLevelParams(level);
+        gridviewBackground.setNumColumns(levelParams[0]);
         gridview.setNumColumns(levelParams[0]);
         finish = levelParams[1] / 2;
 

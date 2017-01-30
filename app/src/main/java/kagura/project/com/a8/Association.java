@@ -84,5 +84,7 @@ public abstract class Association {
         Log.i("nom", normalized);
         return normalized;
     }
+
+    public abstract void addCardInPosition(int randomPosition);
 }
 

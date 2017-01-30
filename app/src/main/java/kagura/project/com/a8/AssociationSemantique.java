@@ -148,5 +148,10 @@ public class AssociationSemantique extends Association {
         return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
 
     }
+
+    @Override
+    public void addCardInPosition(int randomPosition) {
+
+    }
 }
 
