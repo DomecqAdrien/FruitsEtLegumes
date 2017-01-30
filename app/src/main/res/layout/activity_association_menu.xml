@@ -135,4 +135,18 @@
         android:layout_alignLeft="@+id/imageAvatar"
         android:layout_alignStart="@+id/imageAvatar" />
 
+    <TextView
+        android:text="Encyclopédie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:fontFamily="casual"
+        android:textSize="34sp"
+        android:layout_alignBottom="@+id/solution"
+        android:layout_toLeftOf="@+id/imageView9"
+        android:layout_toStartOf="@+id/imageView9"
+        android:layout_marginRight="63dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="58dp" />
+
 </RelativeLayout>

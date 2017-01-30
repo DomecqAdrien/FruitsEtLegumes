@@ -29,7 +29,6 @@
         <activity android:name=".admin.AdminResults" />
         <activity android:name=".association.Encyclopedie" />
         <activity android:name=".association.AssociationGame" />
-        <activity android:name=".SolutionMenu"></activity>
     </application>
 
 </manifest>

@@ -83,14 +83,14 @@
         android:fontFamily="casual"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
+        android:layout_alignRight="@+id/imageHand"
+        android:layout_alignEnd="@+id/imageHand" />
 
     <ImageView
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:srcCompat="@drawable/association"
-        android:id="@+id/imageView3"
+        android:id="@+id/imageHand"
         android:layout_marginRight="26dp"
         android:layout_marginEnd="26dp"
         android:layout_toLeftOf="@+id/spaceMemory"
