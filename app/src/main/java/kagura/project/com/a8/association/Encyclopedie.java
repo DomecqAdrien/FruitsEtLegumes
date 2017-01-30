@@ -142,6 +142,7 @@ public class Encyclopedie extends AppCompatActivity {
     public void backToMenu(View view) {
         if(isMenuView){
             super.onBackPressed();
+            overridePendingTransition(R.anim.down_start, R.anim.down_end);
         }else{
             setContentView(R.layout.activity_solution_menu);
             loadMenu();

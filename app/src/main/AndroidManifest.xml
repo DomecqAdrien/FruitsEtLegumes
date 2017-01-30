@@ -17,17 +17,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <data
-                    android:scheme="https"
-                    android:host="github.com"
-                    android:pathPrefix="/KaguraProject/FruitsEtLegumes/" />
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu" />
         <activity android:name=".memory.MemoryMenu" />
         <activity android:name=".memory.MemoryGame" />
         <activity android:name=".association.AssociationMenu" />
-        <activity android:name=".admin.AdminMenu" />
+        <activity android:name=".admin.AdminLogin" />
         <activity android:name=".admin.AdminSession" />
         <activity android:name=".admin.AdminResults" />
         <activity android:name=".association.Encyclopedie" />

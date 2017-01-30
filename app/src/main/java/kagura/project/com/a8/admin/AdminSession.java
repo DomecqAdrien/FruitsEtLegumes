@@ -33,11 +33,22 @@ public class AdminSession extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_start, R.anim.left_end);
+        overridePendingTransition(R.anim.down_start, R.anim.down_end);
     }
 
     public void results(View view) {
         Intent intentResults = new Intent(this, AdminResults.class);
+
+        switch (view.getId()){
+            case R.id.buttonResultAssociation:
+                overridePendingTransition(R.anim.left_start, R.anim.left_end);
+                intentResults.putExtra("type", "association");
+                break;
+            case R.id.buttonResultMemory:
+                overridePendingTransition(R.anim.right_start, R.anim.right_end);
+                intentResults.putExtra("type", "association");
+                break;
+        }
         this.startActivity(intentResults);
     }
 }

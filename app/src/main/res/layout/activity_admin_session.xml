@@ -12,28 +12,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kagura.project.com.a8.admin.AdminSession">
 
-    <CheckBox
-        android:id="@+id/isTimerEnabled"
-        android:text="@string/unlockLevels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="243dp"
-        android:layout_marginEnd="243dp"
-        android:layout_marginTop="168dp"
-         />
-
-
 
     <Button
-        android:id="@+id/buttonResult"
+        android:id="@+id/buttonResultAssociation"
         android:text="@string/results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/isTimerEnabled"
-        android:layout_marginBottom="56dp"
         android:onClick="results"
-     />
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="153dp"
+        android:layout_marginStart="153dp" />
+
+    <Button
+        android:id="@+id/buttonResultMemory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonResultAssociation"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="results"
+        android:layout_marginRight="246dp"
+        android:layout_marginEnd="246dp" />
 </RelativeLayout>
