@@ -1,84 +1,71 @@
 package kagura.project.com.a8;
 
+
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Fruit;
 import kagura.project.com.a8.objects.Legume;
-
 
 public class AssociationPicturale extends Association {
 
     private List<Legume> legumes;
     private Random r = new Random();
+    private boolean isImagesLoaded;
+    private List<Integer> listIntegers;
 
     public AssociationPicturale(Context context) {
         super(context);
     }
 
     @Override
-    public  List<Integer[]> loadCards(){
-        loadImages();
+    public List<Integer[]> loadCards() {
+        if (!isImagesLoaded) {
+            loadImages();
+        }
+
         List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
 
         Integer[] mThumbIdsFront = new Integer[size];
         Integer[] mThumbIdsBack = new Integer[size];
 
-        Log.i("loadCards()","size=" + size);
+        Log.i("loadCards()", "size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
         imageNames = new ArrayList<>(Collections.nCopies(size, ""));
 
         Log.i("imagePositionInit", imagePositions.toString());
 
-        List<Integer> listIntegers = new ArrayList<>();
+        listIntegers = new ArrayList<>();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             listIntegers.add(i);
         }
 
-        for(int i = 0; i < (size / 2); i++){
-            int randomPositionCard1;
-            int randomPositionCard2;
-            Log.i("legume size", Integer.toString(legumes.size()));
+        for (int i = 0; i < (size / 2); i++) {
             int randomImage = r.nextInt(legumes.size());
+            Log.i("legume size", Integer.toString(legumes.size()));
 
-            if(!imagePositions.contains(legumes.get(randomImage).getLegume_id())){
-                randomPositionCard1 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard1), legumes.get(randomImage).getLegume_id());
-                imageNames.set(listIntegers.get(randomPositionCard1), legumes.get(randomImage).getNom());
-
-                Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
-                listIntegers.remove(randomPositionCard1);
-
-                randomPositionCard2 = r.nextInt(listIntegers.size());
-
-                imageNames.set(listIntegers.get(randomPositionCard2), legumes.get(randomImage).getNom());
-                imagePositions.set(listIntegers.get(randomPositionCard2), legumes.get(randomImage).getLegume_id());
-
-                Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
-                listIntegers.remove(randomPositionCard2);
-
-            }else{
+            if (!imagePositions.contains(legumes.get(randomImage).getLegume_id())) {
+                addCardInPosition(randomImage);
+                addCardInPosition(randomImage);
+            } else {
                 i--;
             }
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
 
         int backImage = context.getResources().getIdentifier("test", "drawable", context.getPackageName());
-        for(int i = 0; i < imagePositions.size(); i++){
+        for (int i = 0; i < imagePositions.size(); i++) {
             mThumbIdsFront[i] = backImage;
             mThumbIdsBack[i] = imagePositions.get(i);
         }
@@ -89,20 +76,20 @@ public class AssociationPicturale extends Association {
         return idDrawablesFrontAndBack;
 
 
-
     }
 
     @Override
-    public void loadImages(){
+    public void loadImages() {
+        isImagesLoaded = true;
 
         legumes = new ArrayList<>();
 
-        try{
+        try {
             JSONObject obj = new JSONObject(loadJSONFromAsset("legumes.json"));
             JSONArray arr = obj.getJSONArray("legumes");
             Legume legume;
 
-            for(int i = 0; i < arr.length(); i++){
+            for (int i = 0; i < arr.length(); i++) {
 
                 legume = new Legume();
                 JSONObject jsonObject = arr.getJSONObject(i);
@@ -115,18 +102,28 @@ public class AssociationPicturale extends Association {
                 legumes.add(legume);
 
             }
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
     @Override
-    public boolean checkCards(Card firstCard, Card secondCard){
+    public boolean checkCards(Card firstCard, Card secondCard) {
         this.position = firstCard.position;
-
         return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
+    }
 
+
+    @Override
+    public void addCardInPosition(int randomImage) {
+        int randomPositionCard;
+        randomPositionCard = r.nextInt(listIntegers.size());
+        imagePositions.set(listIntegers.get(randomPositionCard), legumes.get(randomImage).getLegume_id());
+        imageNames.set(listIntegers.get(randomPositionCard), legumes.get(randomImage).getNom());
+
+        Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard));
+        listIntegers.remove(randomPositionCard);
     }
 
 
