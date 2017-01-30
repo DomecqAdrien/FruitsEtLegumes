@@ -7,23 +7,26 @@
         android:icon="@drawable/ico"
         android:label="@string/app_name"
         android:screenOrientation="landscape"
+        android:fullBackupContent="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:versionCode="2"
-        android:versionName="0.12"
+        android:versionName="0.15"
         android:windowActionBar="false">
         <activity android:name=".CharacterSelection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data
+                    android:scheme="https"
+                    android:host="github.com"
+                    android:pathPrefix="/KaguraProject/FruitsEtLegumes/" />
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu" />
         <activity android:name=".memory.MemoryMenu" />
         <activity android:name=".memory.MemoryGame" />
         <activity android:name=".association.AssociationMenu" />
-        <activity android:name=".GameFinished" />
         <activity android:name=".admin.AdminMenu" />
         <activity android:name=".admin.AdminSession" />
         <activity android:name=".admin.AdminResults" />

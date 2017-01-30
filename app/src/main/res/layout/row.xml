@@ -4,7 +4,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/time"
@@ -16,7 +15,6 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/level"
@@ -25,7 +23,6 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tries"
@@ -37,7 +34,6 @@
         android:layout_alignEnd="@+id/time" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game"
@@ -50,7 +46,6 @@
         android:textAlignment="center" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date"
@@ -62,7 +57,6 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="112dp"
