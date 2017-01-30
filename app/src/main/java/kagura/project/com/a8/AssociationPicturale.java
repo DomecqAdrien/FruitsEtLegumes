@@ -20,8 +20,6 @@ public class AssociationPicturale extends Association {
 
     private List<Legume> legumes;
     private Random r = new Random();
-    private boolean isImagesLoaded;
-    private List<Integer> listIntegers;
 
     public AssociationPicturale(Context context) {
         super(context);
@@ -56,7 +54,9 @@ public class AssociationPicturale extends Association {
             Log.i("legume size", Integer.toString(legumes.size()));
 
             if (!imagePositions.contains(legumes.get(randomImage).getLegume_id())) {
+                // Ajout de la carte 1
                 addCardInPosition(randomImage);
+                // Ajout de la carte 2
                 addCardInPosition(randomImage);
             } else {
                 i--;

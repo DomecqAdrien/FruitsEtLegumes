@@ -28,11 +28,9 @@ public class AssociationSemantique extends Association {
     @Override
     public List<Integer[]> loadCards(){
 
-        List<Integer[]> idDrawables = new ArrayList<>();
-
-        loadImages();
-        Integer[] mThumbIds = new Integer[size];
-        Integer[] mThumbIdsBackground = new Integer[size];
+        if (!isImagesLoaded) {
+            loadImages();
+        }
 
         Log.i("loadCards()","size=" + size);
 
@@ -40,7 +38,7 @@ public class AssociationSemantique extends Association {
         imageNames = new ArrayList<>(Collections.nCopies(size, ""));
 
         Log.i("imagePositionInit", imagePositions.toString());
-        List<Integer> listIntegers = new ArrayList<>();
+        listIntegers = new ArrayList<>();
 
         for(int i = 0; i < size; i++) {
             listIntegers.add(i);
@@ -50,51 +48,16 @@ public class AssociationSemantique extends Association {
         Log.i("size", Integer.toString(size));
         for(int i =0; i < size / 2; i++){
             Log.i("i", Integer.toString(i));
-            int randomPositionCard1;
-            int randomPositionCard2;
             int randomImage = r.nextInt(fruits.size());
-            Log.i("fruits.size()", Integer.toString(fruits.size()));
-            Log.i("fruit_plein_id", Integer.toString(fruits.get(randomImage).getFruit_plein_id()));
             if(!imagePositions.contains(fruits.get(randomImage).getFruit_plein_id())){
-                randomPositionCard1 = r.nextInt(listIntegers.size());
-                imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_plein_id());
-                imageNames.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getNom());
-
-                Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
-                listIntegers.remove(randomPositionCard1);
-
-                randomPositionCard2 = r.nextInt(listIntegers.size());
-
-                imageNames.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getNom());
-
-                switch (randomMax){
-                    case 0:
-                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_coupe_id());
-                        break;
-                    case 1:
-                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_arbre_id());
-                        break;
-                    case 2:
-                        imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_graine_id());
-                        break;
-                }
-
-                Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
-                listIntegers.remove(randomPositionCard2);
-
+                addCardInPosition(randomImage);
             }else{
                 i--;
             }
         }
+        int backImage = context.getResources().getColor(android.R.color.transparent);
 
-        for(int i = 0; i < imagePositions.size(); i++){
-            mThumbIds[i] = imagePositions.get(i);
-            mThumbIdsBackground[i] = context.getResources().getColor(android.R.color.transparent);
-        }
-        idDrawables.add(0, mThumbIds);
-        idDrawables.add(1, mThumbIdsBackground);
-
-        return idDrawables;
+        return returnCards(backImage);
 
     }
 
@@ -150,8 +113,36 @@ public class AssociationSemantique extends Association {
     }
 
     @Override
-    public void addCardInPosition(int randomPosition) {
+    public void addCardInPosition(int randomImage) {
+        int randomPositionCard1;
+        int randomPositionCard2;
+        Log.i("fruits.size()", Integer.toString(fruits.size()));
+        Log.i("fruit_plein_id", Integer.toString(fruits.get(randomImage).getFruit_plein_id()));
+            randomPositionCard1 = r.nextInt(listIntegers.size());
+            imagePositions.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getFruit_plein_id());
+            imageNames.set(listIntegers.get(randomPositionCard1), fruits.get(randomImage).getNom());
 
+            Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
+            listIntegers.remove(randomPositionCard1);
+
+            randomPositionCard2 = r.nextInt(listIntegers.size());
+
+            imageNames.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getNom());
+
+            switch (randomMax){
+                case 0:
+                    imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_coupe_id());
+                    break;
+                case 1:
+                    imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_arbre_id());
+                    break;
+                case 2:
+                    imagePositions.set(listIntegers.get(randomPositionCard2), fruits.get(randomImage).getFruit_graine_id());
+                    break;
+            }
+
+            Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
+            listIntegers.remove(randomPositionCard2);
     }
 }
 

@@ -19,6 +19,8 @@ public abstract class Association {
     Context context;
     List<Integer> imagePositions;
     List<String> imageNames;
+    List<Integer> listIntegers;
+    boolean isImagesLoaded;
 
     Association(Context context){
         this.context = context;
@@ -48,12 +50,9 @@ public abstract class Association {
         return new int[]{columns, size};
     }
 
-    public List<Integer[]>  loadCards(){
-        return new ArrayList<>();
+    public abstract List<Integer[]> loadCards();
 
-    }
-
-    public void loadImages(){}
+    public abstract void loadImages();
 
     String loadJSONFromAsset(String jsonPath) {
         String json;
@@ -73,9 +72,7 @@ public abstract class Association {
         return json;
     }
 
-    public boolean checkCards(Card firstCard, Card secondCard){
-        return true;
-    }
+    public abstract boolean checkCards(Card firstCard, Card secondCard);
 
     public String getNom(){
 
@@ -85,6 +82,23 @@ public abstract class Association {
         return normalized;
     }
 
-    public abstract void addCardInPosition(int randomPosition);
+    public abstract void addCardInPosition(int randomImage);
+
+    List<Integer[]> returnCards(int backImage){
+        List<Integer[]> idDrawables = new ArrayList<>();
+
+        Integer[] mThumbIds = new Integer[size];
+        Integer[] mThumbIdsBackground = new Integer[size];
+
+        for(int i = 0; i < imagePositions.size(); i++){
+            mThumbIds[i] = imagePositions.get(i);
+            mThumbIdsBackground[i] = backImage;
+        }
+        idDrawables.add(0, mThumbIds);
+        idDrawables.add(1, mThumbIdsBackground);
+
+        return idDrawables;
+
+    }
 }
 
