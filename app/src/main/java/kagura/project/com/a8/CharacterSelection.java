@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import kagura.project.com.a8.admin.AdminMenu;
+import kagura.project.com.a8.admin.AdminLogin;
 
 public class CharacterSelection extends AppCompatActivity {
 
@@ -120,7 +120,7 @@ public class CharacterSelection extends AppCompatActivity {
     }
 
     public void adminSession(View view) {
-        intent = new Intent(this, AdminMenu.class);
+        intent = new Intent(this, AdminLogin.class);
         this.startActivityForResult(intent, 0);
         overridePendingTransition(R.anim.up_start, R.anim.up_end);
     }

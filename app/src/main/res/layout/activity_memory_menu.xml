@@ -11,7 +11,6 @@
     tools:context="kagura.project.com.a8.memory.MemoryMenu">
 
     <ImageView
-        android:text="@string/niveau_2"
         android:onClick="startGame"
         android:layout_width="400dp"
         android:layout_height="172dp"
@@ -20,10 +19,10 @@
         android:layout_below="@+id/level_1"
         android:layout_alignLeft="@+id/level_1"
         android:layout_alignStart="@+id/level_1"
-        android:layout_marginTop="49dp" />
+        android:layout_marginTop="49dp"
+        android:contentDescription="@string/level2" />
 
     <ImageView
-        android:text="@string/niveau_3"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:id="@+id/level_3"
@@ -31,11 +30,11 @@
         android:layout_below="@+id/level_2"
         android:layout_alignLeft="@+id/level_2"
         android:layout_alignStart="@+id/level_2"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="44dp"
+        android:contentDescription="@string/level2" />
 
 
     <ImageView
-        android:text="@string/niveau_1"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:layout_marginTop="33dp"
@@ -45,7 +44,8 @@
         app:srcCompat="@drawable/feuille_verte"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/level3" />
 
     <TextView
         android:text="@string/level3"
@@ -93,8 +93,8 @@
         android:layout_marginTop="9dp" />
 
     <ImageView
-        android:layout_width="350px"
-        android:layout_height="350px"
+        android:layout_width="350sp"
+        android:layout_height="350sp"
         android:id="@+id/imageAvatar"
         android:padding="1dp"
         android:contentDescription="@string/hello_blank_fragment"
@@ -110,11 +110,11 @@
         app:srcCompat="@drawable/back3"
         android:id="@+id/imageView5"
         android:onClick="back"
-
         android:layout_below="@+id/level_1tv"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/avatar" />
 
 
 </RelativeLayout>

@@ -50,10 +50,10 @@
         android:layout_alignParentBottom="true" />
 
     <TextView
-        android:text="Memory"
+        android:text="@string/memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70dp"
+        android:textSize="70sp"
         android:id="@+id/textView2"
         android:fontFamily="casual"
         android:layout_marginTop="38dp"
@@ -72,30 +72,32 @@
         android:layout_marginStart="12dp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textHello"
-        android:layout_toEndOf="@+id/textHello" />
+        android:layout_toEndOf="@+id/textHello"
+        android:contentDescription="@string/memory" />
 
     <TextView
-        android:text="Association"
+        android:text="@string/association"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70dp"
+        android:textSize="70sp"
         android:id="@+id/textView3"
         android:fontFamily="casual"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
+        android:layout_alignRight="@+id/imageHand"
+        android:layout_alignEnd="@+id/imageHand" />
 
     <ImageView
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:srcCompat="@drawable/association"
-        android:id="@+id/imageView3"
+        android:id="@+id/imageHand"
         android:layout_marginRight="26dp"
         android:layout_marginEnd="26dp"
         android:layout_toLeftOf="@+id/spaceMemory"
         android:layout_toStartOf="@+id/spaceMemory"
-        android:layout_alignTop="@+id/imageView2" />
+        android:layout_alignTop="@+id/imageView2"
+        android:contentDescription="@string/association" />
 
 
 </RelativeLayout>

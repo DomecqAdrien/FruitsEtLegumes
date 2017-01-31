@@ -12,41 +12,53 @@
     <ImageView
         android:layout_width="330dp"
         android:layout_height="330dp"
-        app:srcCompat="@drawable/fruit_graine_ananas"
-        android:id="@+id/imageView11"
-        android:layout_marginRight="269dp"
-        android:layout_marginEnd="269dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/fruitArbre"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/fruitGraine"
+        android:layout_alignStart="@+id/fruitGraine"
+        android:contentDescription="@string/fruit_arbre" />
 
     <ImageView
         android:layout_width="330dp"
         android:layout_height="330dp"
-        app:srcCompat="@drawable/fruit_arbre_ananas"
-        android:id="@+id/imageView7"
+        android:id="@+id/fruitPlein"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/imageView11"
-        android:layout_alignStart="@+id/imageView11" />
-
-    <ImageView
-        android:layout_width="330dp"
-        android:layout_height="330dp"
-        app:srcCompat="@drawable/fruit_plein_ananas"
-        android:id="@+id/imageView6"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/imageView7"
-        android:layout_toStartOf="@+id/imageView7"
+        android:layout_toLeftOf="@+id/fruitArbre"
+        android:layout_toStartOf="@+id/fruitArbre"
         android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp" />
+        android:layout_marginEnd="18dp"
+        android:contentDescription="@string/fruit_plein" />
 
     <ImageView
         android:layout_width="330dp"
         android:layout_height="350dp"
-        app:srcCompat="@drawable/fruit_coupe_ananas"
-        android:id="@+id/imageView8"
-        android:layout_alignTop="@+id/imageView11"
-        android:layout_alignLeft="@+id/imageView6"
-        android:layout_alignStart="@+id/imageView6" />
+        android:id="@+id/fruitCoupe"
+        android:layout_alignTop="@+id/fruitGraine"
+        android:layout_alignLeft="@+id/fruitPlein"
+        android:layout_alignStart="@+id/fruitPlein"
+        android:contentDescription="@string/fruit_coupe" />
+
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:id="@+id/fruitGraine"
+        android:layout_marginRight="272dp"
+        android:layout_marginEnd="272dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/fruit_graine" />
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/back3"
+        android:id="@+id/imageView6"
+        android:onClick="backToMenu"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="278dp"
+        android:contentDescription="@string/avatar" />
 
 </RelativeLayout>

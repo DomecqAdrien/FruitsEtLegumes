@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import kagura.project.com.a8.R;
 
-public class AdminMenu extends AppCompatActivity {
+public class AdminLogin extends AppCompatActivity {
 
     EditText passAdmin;
     String passAdminCheck;
@@ -31,7 +31,7 @@ public class AdminMenu extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        setContentView(R.layout.activity_admin_menu);
+        setContentView(R.layout.activity_admin_login);
 
         passAdmin = (EditText) findViewById(R.id.passAdmin);
     }
@@ -48,7 +48,7 @@ public class AdminMenu extends AppCompatActivity {
         if(passAdminCheck.equals(getString(R.string.passAdminVerif))){
             intentAdmin = new Intent(this, AdminSession.class);
             this.startActivityForResult(intentAdmin, 0);
-            overridePendingTransition(R.anim.right_start, R.anim.right_end);
+            overridePendingTransition(R.anim.up_start, R.anim.up_end);
 
 
         }else if(passAdminCheck.equals("")){

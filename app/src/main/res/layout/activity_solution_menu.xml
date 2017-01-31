@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_solution_menu"
     android:background="@drawable/background_fruit"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kagura.project.com.a8.SolutionMenu">
+    android:layout_height="match_parent">
 
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-        android:id="@+id/gridview"
+        android:id="@+id/gridviewFruits"
         android:layout_width="700dp"
         android:layout_height="wrap_content"
         android:columnWidth="200dp"
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:verticalSpacing="110dp"
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+    </GridView>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/back3"
+        android:id="@+id/imageView7"
+        android:onClick="backToMenu"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </GridView>
+        android:layout_marginTop="278dp"
+        android:contentDescription="@string/avatar" />
+
+
 </RelativeLayout>

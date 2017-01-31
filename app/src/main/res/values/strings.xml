@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Fruits et Légumes</string>
-    <string name="memory">memory</string>
-    <string name="niveau_3">Niveau 3</string>
-    <string name="niveau_2">niveau 2</string>
-    <string name="niveau_1">niveau 1</string>
-    <string name="association">association</string>
+    <string name="memory">Memory</string>
+    <string name="association">Association</string>
     <string name="bonjour">Bonjour</string>
     <string name="commencer"> Go ! </string>
 
@@ -19,7 +16,7 @@
     <string name="admin">Admin ?</string>
     <string name="passAdminInfo">Entrez votre mot de passe admin</string>
     <string name="valider">Valider</string>
-    <string name="passAdminVerif"></string>
+    <string name="passAdminVerif"/>
     <string name="nombre_de_coups">Nombre de coups</string>
     <string name="temps">Temps</string>
     <string name="niveau">Niveau</string>
@@ -29,4 +26,16 @@
     <string name="level1">Niveau 1</string>
     <string name="level2">Niveau 2</string>
     <string name="level3">Niveau 3</string>
+    <string name="unlockLevels">Débloquer les niveaux?</string>
+    <string name="results">Résultats</string>
+    <string name="encyclopedie">Encyclopédie</string>
+    <string name="fruit_arbre">string/arbre</string>
+    <string name="fruit_plein">plein</string>
+    <string name="bravo">Bravo !</string>
+    <string name="levels">Levels</string>
+    <string name="home">Home</string>
+    <string name="next">Next</string>
+    <string name="replay">Replay</string>
+    <string name="fruit_coupe">fruit_coupe</string>
+    <string name="fruit_graine">fruit_graine</string>
 </resources>
