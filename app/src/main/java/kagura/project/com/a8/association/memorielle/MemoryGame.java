@@ -1,10 +1,13 @@
-package kagura.project.com.a8.association;
+package kagura.project.com.a8.association.memorielle;
 
+
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -13,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,25 +25,25 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Chronometer;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Calendar;
 import java.util.List;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-import kagura.project.com.a8.Association;
-import kagura.project.com.a8.AssociationSemantique;
-import kagura.project.com.a8.R;
+import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.adapters.ImageAdapter;
+import kagura.project.com.a8.R;
+import kagura.project.com.a8.association.ResultFragment;
 import kagura.project.com.a8.database.ResultDAO;
-import kagura.project.com.a8.memory.MemoryResultFragment;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Result;
 
-public class AssociationGame extends AppCompatActivity {
+public class MemoryGame extends AppCompatActivity {
 
     private static int level;
 
@@ -52,10 +54,13 @@ public class AssociationGame extends AppCompatActivity {
 
     private UpdateCardsHandler handler;
     private Card firstCard, secondCard;
+    private AnimatorSet setRightOutFirst, setRightInFirst, setRightOutSecond, setRightInSecond;
     private static final Object lock = new Object();
 
-    GridView gridview, gridviewBackground;
+    GridView gridviewFront, gridviewBack;
     Fragment fragmentResult;
+
+    ImageView buttonBack;
 
     Boolean isTimerStarted = false;
     Chronometer timer;
@@ -64,9 +69,15 @@ public class AssociationGame extends AppCompatActivity {
     FragmentManager fragmentManager;
     Association association;
 
+
+    public MemoryGame() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -76,41 +87,69 @@ public class AssociationGame extends AppCompatActivity {
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        setRightOutFirst = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(),
+                R.animator.card_flip_right_out);
+
+        setRightInFirst = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(),
+                R.animator.card_flip_right_in);
+
+        setRightOutSecond = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(),
+                R.animator.card_flip_right_out);
+
+        setRightInSecond = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(),
+                R.animator.card_flip_right_in);
+
         handler = new UpdateCardsHandler();
 
-        setContentView(R.layout.activity_association_game);
+        setContentView(R.layout.activity_memory_game);
 
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridviewBackground = (GridView) findViewById(R.id.gridviewBackground);
+        gridviewFront = (GridView) findViewById(R.id.gridviewFront);
+        gridviewBack = (GridView) findViewById(R.id.gridviewBack);
+
+        buttonBack = (ImageView) findViewById(R.id.buttonBack);
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
 
         newGame();
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        gridviewFront.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
-                if (!isTimerStarted) {
+                if(!isTimerStarted){
                     timer = new Chronometer(getApplicationContext());
                     timer.start();
                     isTimerStarted = true;
                 }
 
-                if (isClickable) {
+                if(isClickable){
                     synchronized (lock) {
 
-                        if (firstCard != null) {
-                            if (firstCard.position == position) {
-                                gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                                firstCard = null;
+                        if(firstCard == null){
+                            setRightOutFirst.setTarget(v);
+                            setRightInFirst.setTarget(gridviewBack.getChildAt(position));
+                            setRightOutFirst.start();
+                            setRightInFirst.start();
+                        }else{
+
+                            if(firstCard.position == position){
                                 return; //the user pressed the same card
                             }
+
+                            setRightOutSecond.setTarget(v);
+                            setRightInSecond.setTarget(gridviewBack.getChildAt(position));
+                            setRightOutSecond.start();
+                            setRightInSecond.start();
                         }
-                        gridviewBackground.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.white));
+
+
+
+
                         Log.i("position", Integer.toString(position));
-                        selectCard(v, position);
+                        turnCard(v,position);
                     }
                 }
 
@@ -119,57 +158,59 @@ public class AssociationGame extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-    }
+    public void onBackPressed(){}
 
     private void newGame() {
 
-        association = new AssociationSemantique(this);
+        association = new Memory(this);
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
         int levelParams[] = association.setLevelParams(level);
-        gridviewBackground.setNumColumns(levelParams[0]);
-        gridview.setNumColumns(levelParams[0]);
+        gridviewBack.setNumColumns(levelParams[0]);
+        gridviewFront.setNumColumns(levelParams[0]);
         finish = levelParams[1] / 2;
+
 
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
-        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
-        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
+        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+
+
     }
 
-    private void selectCard(View v, int position) {
+    private void turnCard(View v, int position) {
 
 
-        if (firstCard == null) {
-            firstCard = new Card(v, position);
-            Log.i("first card", "ok");
 
-        } else {
+        if(firstCard==null){
+            firstCard = new Card(v, gridviewBack.getChildAt(position), position);
+        }
+        else{
 
             isClickable = false;
 
-            secondCard = new Card(v, position);
-            Log.i("second card", "ok");
+            secondCard = new Card(v, gridviewBack.getChildAt(position), position);
 
 
             TimerTask tt = new TimerTask() {
 
                 @Override
                 public void run() {
-                    try {
+                    try{
                         synchronized (lock) {
-                            Log.i("handler ?", "ok");
                             handler.sendEmptyMessage(0);
                         }
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         Log.e("E1", e.getMessage());
                     }
                 }
             };
 
             Timer t = new Timer(false);
-            t.schedule(tt, 500);
+            t.schedule(tt, 1300);
 
         }
 
@@ -182,65 +223,73 @@ public class AssociationGame extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             synchronized (lock) {
-                Log.i("Checkards ?", "ok");
                 checkCards();
             }
         }
-
-        void checkCards() {
+        void checkCards(){
             tries++;
 
             boolean isSameFruit = association.checkCards(firstCard, secondCard);
-            Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
 
-            if (isSameFruit) {
-                firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
-                secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
-                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+            if(isSameFruit){
+                Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
-                        .oneShot(firstCard.view, 100);
-                firstCard.view.startAnimation(animFadeOut);
-                gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
-                firstCard.view.setVisibility(View.INVISIBLE);
-                new ParticleSystem(AssociationGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+                        .oneShot(firstCard.viewBack, 100);
+                firstCard.viewBack.startAnimation(animFadeOut);
+                firstCard.viewFront.setVisibility(View.INVISIBLE);
+                firstCard.viewBack.setVisibility(View.INVISIBLE);
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
-                        .oneShot(secondCard.view, 100);
-                secondCard.view.startAnimation(animFadeOut);
-                gridviewBackground.getChildAt(secondCard.position).startAnimation(animFadeOut);
-                secondCard.view.setVisibility(View.INVISIBLE);
+                        .oneShot(secondCard.viewBack, 100);
+                secondCard.viewBack.startAnimation(animFadeOut);
+                secondCard.viewFront.setVisibility(View.INVISIBLE);
+                secondCard.viewBack.setVisibility(View.INVISIBLE);
 
                 finish--;
                 isClickable = true;
-            } else {
+            }else{
+                setRightOutFirst.setTarget(firstCard.viewBack);
+                setRightInFirst.setTarget(firstCard.viewFront);
 
-                gridviewBackground.getChildAt(firstCard.position).setBackgroundColor(getResources().getColor(R.color.red));
-                gridviewBackground.getChildAt(secondCard.position).setBackgroundColor(getResources().getColor(R.color.red));
-                gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
-                gridviewBackground.getChildAt(secondCard.position).startAnimation(animFadeOut);
+                setRightOutSecond.setTarget(secondCard.viewBack);
+                setRightInSecond.setTarget(secondCard.viewFront);
 
-                isClickable = true;
+
+                setRightOutFirst.start();
+                setRightInFirst.start();
+                setRightOutSecond.start();
+                setRightInSecond.start();
+
+                final Handler handlerFlip = new Handler();
+                handlerFlip.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isClickable = true;
+                    }
+                }, 1000);
             }
 
             firstCard = null;
             secondCard = null;
 
-            if (finish == 0) {
+            if(finish == 0){
                 timer.stop();
                 result();
             }
         }
     }
 
-    private void result() {
+    private void result(){
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         calendar = Calendar.getInstance();
         String monthString;
         int calendarMonth = calendar.get(Calendar.MONTH) + 1;
-        if (calendarMonth < 10) {
+        if(calendarMonth < 10){
             monthString = "0" + Integer.toString(calendarMonth);
-        } else {
+        }else{
             monthString = Integer.toString(calendarMonth);
         }
         String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + monthString + "/" + calendar.get(Calendar.YEAR);
@@ -250,7 +299,7 @@ public class AssociationGame extends AppCompatActivity {
 
         Result result = new Result();
         result.setName(preferences.getString(getString(R.string.name), null));
-        result.setGame("Association");
+        result.setGame("Memory");
         result.setLevel(level);
         result.setTries(tries);
         result.setTime(time);
@@ -262,9 +311,10 @@ public class AssociationGame extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putInt("level", level);
-        fragmentResult = new MemoryResultFragment();
+        fragmentResult = new ResultFragment();
         fragmentResult.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
+        buttonBack.setVisibility(View.INVISIBLE);
         final Handler handlerResult = new Handler();
         handlerResult.postDelayed(new Runnable() {
             @Override
@@ -274,13 +324,12 @@ public class AssociationGame extends AppCompatActivity {
                         .replace(R.id.fragment_container, fragmentResult).commit();
             }
         }, 1000);
-
     }
 
     public void replayLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
-        overridePendingTransition(R.anim.down_start, R.anim.down_end);
+        buttonBack.setVisibility(View.VISIBLE);
         newGame();
 
     }
@@ -288,7 +337,7 @@ public class AssociationGame extends AppCompatActivity {
     public void nextLevel(View view) {
 
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
-        overridePendingTransition(R.anim.down_start, R.anim.down_end);
+        buttonBack.setVisibility(View.VISIBLE);
         isTimerStarted = false;
         tries = 0;
         level++;
@@ -296,14 +345,8 @@ public class AssociationGame extends AppCompatActivity {
 
     }
 
-    public void goHome(View view) {
-
-        Intent intentHomeMenu = new Intent();
-        setResult(66, intentHomeMenu);
-        finish();
-    }
-
     public void back(View v) {
+
         new AlertDialog.Builder(this).setTitle("Quitter")
                 .setMessage("Êtes vous sûrs de vouloir quitter ce jeu ?")
                 .setIcon(android.R.drawable.ic_menu_help)
@@ -311,15 +354,11 @@ public class AssociationGame extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
-                        overridePendingTransition(R.anim.right_start, R.anim.right_end);
+                        overridePendingTransition(R.anim.left_start, R.anim.left_end);
                     }
                 })
                 .setNegativeButton("Non", null).show();
+
     }
-
-    public void goLevelMenu(View view) {
-        finish();
-    }
-
-
 }
+

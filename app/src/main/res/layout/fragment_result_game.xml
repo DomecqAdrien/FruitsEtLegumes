@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
-    tools:context="kagura.project.com.a8.memory.MemoryResultFragment">
+    tools:context=".association.ResultFragment">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -50,7 +50,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/level"
-        android:onClick="goLevelMenu"
         android:id="@+id/buttonLevelSelection"
         android:background="@android:color/transparent"
         android:layout_marginBottom="57dp"
@@ -65,7 +64,6 @@
         android:text="@string/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="goHome"
         android:id="@+id/buttonHome"
         app:srcCompat="@drawable/home1"
         android:background="@android:color/transparent"

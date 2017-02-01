@@ -1,4 +1,4 @@
-package kagura.project.com.a8.association;
+package kagura.project.com.a8;
 
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;

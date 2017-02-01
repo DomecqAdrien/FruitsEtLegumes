@@ -48,8 +48,8 @@
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
-        app:srcCompat="@drawable/back1"
-        android:id="@+id/imageView5"
+        app:srcCompat="@drawable/back3"
+        android:id="@+id/buttonBack"
         android:onClick="back"
         android:layout_marginTop="270sp"
         android:layout_alignParentTop="true"

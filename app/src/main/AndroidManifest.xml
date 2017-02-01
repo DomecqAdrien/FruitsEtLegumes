@@ -20,14 +20,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu" />
-        <activity android:name=".memory.MemoryMenu" />
-        <activity android:name=".memory.MemoryGame" />
-        <activity android:name=".association.AssociationMenu" />
+        <activity android:name=".association.memorielle.MemoryMenu" />
+        <activity android:name=".association.memorielle.MemoryGame" />
+        <activity android:name=".association.semantique.SemantiqueMenu" />
         <activity android:name=".admin.AdminLogin" />
         <activity android:name=".admin.AdminSession" />
         <activity android:name=".admin.AdminResults" />
-        <activity android:name=".association.Encyclopedie" />
-        <activity android:name=".association.AssociationGame" />
+        <activity android:name=".Encyclopedie" />
+        <activity android:name=".association.semantique.SemantiqueGame" />
     </application>
 
 </manifest>

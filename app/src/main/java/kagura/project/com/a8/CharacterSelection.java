@@ -39,17 +39,17 @@ public class CharacterSelection extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        nameValid = preferences.getString(getString(R.string.name), null);
-        avatar = preferences.getString(getString(R.string.avatar), "");
+        //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //nameValid = preferences.getString(getString(R.string.name), null);
+        //avatar = preferences.getString(getString(R.string.avatar), null);
 
         setContentView(R.layout.activity_character_selection);
 
-        name = (EditText) this.findViewById(R.id.name);
+        name = (EditText) findViewById(R.id.name);
         verMince = (ImageButton) findViewById(R.id.buttonVerMince);
         verGros = (ImageButton) findViewById(R.id.buttonVerGros);
 
-        if(nameValid != null){
+        /*if(nameValid != null){
             name.append(nameValid);
         }
         if(avatar != null){
@@ -61,7 +61,7 @@ public class CharacterSelection extends AppCompatActivity {
                     verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_aura));
                     break;
             }
-        }
+        }*/
     }
 
     @Override
@@ -101,7 +101,7 @@ public class CharacterSelection extends AppCompatActivity {
         nameValid = name.getText().toString();
         if(nameValid.equals("")) {
             Toast.makeText(this, "Tu n'as pas rentré de prénom", Toast.LENGTH_LONG).show();
-        }else if (avatar.equals("")){
+        }else if (avatar == null){
             Toast.makeText(this, "Tu n'as pas choisi d\'avatar", Toast.LENGTH_LONG).show();
         }else{
             nameValid = nameValid.substring(0,1).toUpperCase() + nameValid.substring(1);

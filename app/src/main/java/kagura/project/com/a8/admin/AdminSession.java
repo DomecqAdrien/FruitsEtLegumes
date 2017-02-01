@@ -40,12 +40,12 @@ public class AdminSession extends AppCompatActivity {
         Intent intentResults = new Intent(this, AdminResults.class);
 
         switch (view.getId()){
-            case R.id.buttonResultAssociation:
+            case R.id.tv_result_association:
                 intentResults.putExtra("type", "Association");
                 this.startActivity(intentResults);
                 overridePendingTransition(R.anim.left_start, R.anim.left_end);
                 break;
-            case R.id.buttonResultMemory:
+            case R.id.tv_result_memory:
                 intentResults.putExtra("type", "Memory");
                 this.startActivity(intentResults);
                 overridePendingTransition(R.anim.right_start, R.anim.right_end);

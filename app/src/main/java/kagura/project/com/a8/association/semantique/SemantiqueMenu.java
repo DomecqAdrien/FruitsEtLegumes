@@ -1,4 +1,4 @@
-package kagura.project.com.a8.association;
+package kagura.project.com.a8.association.semantique;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,14 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import kagura.project.com.a8.Encyclopedie;
 import kagura.project.com.a8.R;
 
-import static android.R.attr.button;
-
-public class AssociationMenu extends AppCompatActivity {
+public class SemantiqueMenu extends AppCompatActivity {
 
     ImageView avatar;
     String avatarName;
+    boolean isClickable = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class AssociationMenu extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        isClickable = true;
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 66){
             onBackPressed();
@@ -65,33 +66,38 @@ public class AssociationMenu extends AppCompatActivity {
     }
 
     public void startGame(View v) {
-        int button = 1;
-        switch (v.getId()){
-            case R.id.level_1tv:
-                button = 1;
-                break;
-            case R.id.level_2tv:
-                button = 2;
-                break;
-            case R.id.level_3tv:
-                button = 3;
-                break;
+        if(isClickable){
+            isClickable = false;
+            int button = 1;
+            switch (v.getId()){
+                case R.id.level_1tv:
+                    button = 1;
+                    break;
+                case R.id.level_2tv:
+                    button = 2;
+                    break;
+                case R.id.level_3tv:
+                    button = 3;
+                    break;
+            }
+            Intent intentGame = new Intent(this, SemantiqueGame.class);
+            intentGame.putExtra("level", button);
+            this.startActivityForResult(intentGame, 0);
+            overridePendingTransition(R.anim.left_start, R.anim.left_end);
         }
-        Intent intentGame = new Intent(this, AssociationGame.class);
-        intentGame.putExtra("level", button);
-        this.startActivityForResult(intentGame, 0);
-        overridePendingTransition(R.anim.left_start, R.anim.left_end);
     }
 
 
     public void startEncyclopedie(View view) {
-        Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
-        this.startActivityForResult(intentEncyclopedie, 0);
-        overridePendingTransition(R.anim.up_start, R.anim.up_end);
+        if(isClickable){
+            isClickable = false;
+            Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
+            this.startActivityForResult(intentEncyclopedie, 0);
+            overridePendingTransition(R.anim.up_start, R.anim.up_end);
+        }
     }
 
     public void back(View v) {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.right_start, R.anim.right_end);
+        onBackPressed();
     }
 }
