@@ -60,7 +60,7 @@ class Memory extends Association {
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
 
-        int backImage = context.getResources().getIdentifier("test", "drawable", context.getPackageName());
+        int backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
 
         return returnCards(backImage);
     }

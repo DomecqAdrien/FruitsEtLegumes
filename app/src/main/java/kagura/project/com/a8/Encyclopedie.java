@@ -56,7 +56,7 @@ public class Encyclopedie extends AppCompatActivity {
     private void loadMenu() {
         gridViewFruits = (GridView) findViewById(R.id.gridviewFruits);
 
-        gridViewFruits.setAdapter(new ImageAdapter(this, idDrawables));
+        gridViewFruits.setAdapter(new ImageAdapter(this, idDrawables, "normal"));
 
         gridViewFruits.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

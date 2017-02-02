@@ -26,12 +26,12 @@ import android.widget.AdapterView;
 import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Calendar;
 import java.util.List;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -61,6 +61,7 @@ public class MemoryGame extends AppCompatActivity {
     Fragment fragmentResult;
 
     ImageView buttonBack;
+    RelativeLayout relativeLayout;
 
     Boolean isTimerStarted = false;
     Chronometer timer;
@@ -107,6 +108,10 @@ public class MemoryGame extends AppCompatActivity {
         gridviewBack = (GridView) findViewById(R.id.gridviewBack);
 
         buttonBack = (ImageView) findViewById(R.id.buttonBack);
+
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+
+
 
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
@@ -164,7 +169,8 @@ public class MemoryGame extends AppCompatActivity {
 
         association = new Memory(this);
 
-        // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
+        // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview,
+        // et en position 1 le nombre de cartes dans le jeu
         int levelParams[] = association.setLevelParams(level);
         gridviewBack.setNumColumns(levelParams[0]);
         gridviewFront.setNumColumns(levelParams[0]);
@@ -174,8 +180,8 @@ public class MemoryGame extends AppCompatActivity {
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
-        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
-        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
+        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), relativeLayout.getTag().toString()));
 
 
     }

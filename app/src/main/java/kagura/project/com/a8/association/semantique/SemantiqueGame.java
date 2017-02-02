@@ -26,6 +26,7 @@ import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.plattysoft.leonids.ParticleSystem;
 
@@ -57,6 +58,7 @@ public class SemantiqueGame extends AppCompatActivity {
     private static final Object lock = new Object();
 
     GridView gridview, gridviewBackground;
+    RelativeLayout relativeLayout;
     Fragment fragmentResult;
 
     Boolean isTimerStarted = false;
@@ -85,6 +87,8 @@ public class SemantiqueGame extends AppCompatActivity {
 
         gridview = (GridView) findViewById(R.id.gridview);
         gridviewBackground = (GridView) findViewById(R.id.gridviewBackground);
+
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         buttonBack = (ImageView) findViewById(R.id.buttonBack);
 
@@ -139,8 +143,8 @@ public class SemantiqueGame extends AppCompatActivity {
 
         List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
 
-        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
-        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), relativeLayout.getTag().toString()));
+        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
     }
 
     private void selectCard(View v, int position) {

@@ -1,9 +1,15 @@
 package kagura.project.com.a8.objects;
 
 
-public class Aliment {
+abstract  class Aliment {
 
     private String nom;
+
+     Aliment(){}
+
+     Aliment(String nom) {
+        this.nom = nom;
+    }
 
     public String getNom() {
         return nom;

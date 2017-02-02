@@ -50,6 +50,10 @@ public abstract class Association {
         return new int[]{columns, size};
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract List<Integer[]> loadCards();
 
     public abstract void loadImages();

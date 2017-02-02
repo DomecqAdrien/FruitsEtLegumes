@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_legumes"
-    android:id="@+id/frameLayout">
+    android:tag="normal"
+    android:id="@+id/relativeLayout">
 
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"

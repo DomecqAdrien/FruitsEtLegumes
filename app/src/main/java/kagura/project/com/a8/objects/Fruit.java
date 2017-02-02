@@ -9,6 +9,10 @@ public class Fruit extends Aliment{
 
     public Fruit(){}
 
+    public Fruit(String nom){
+        super(nom);
+    }
+
     public int getFruit_graine_id() {
         return fruit_graine_id;
     }
