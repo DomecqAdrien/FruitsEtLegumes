@@ -13,26 +13,40 @@
     tools:context="kagura.project.com.a8.admin.AdminSession">
 
 
-    <Button
-        android:id="@+id/buttonResultAssociation"
+    <TextView
         android:text="@string/results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="results"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="153dp"
-        android:layout_marginStart="153dp" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="131dp"
+        android:id="@+id/textView11"
+        android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/buttonResultMemory"
+    <TextView
+        android:text="@string/memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonResultAssociation"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:onClick="results"
-        android:layout_marginRight="246dp"
-        android:layout_marginEnd="246dp" />
+        android:layout_marginLeft="151dp"
+        android:layout_marginStart="151dp"
+        android:id="@+id/tv_result_memory"
+        android:textSize="36sp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_toEndOf="@+id/textView11" />
+
+    <TextView
+        android:text="@string/association"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="results"
+        android:id="@+id/tv_result_association"
+        android:textSize="36sp"
+        android:layout_alignBaseline="@+id/tv_result_memory"
+        android:layout_alignBottom="@+id/tv_result_memory"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="118dp"
+        android:layout_marginStart="118dp" />
 </RelativeLayout>

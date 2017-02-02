@@ -1,4 +1,4 @@
-package kagura.project.com.a8;
+package kagura.project.com.a8.association.memorielle;
 
 
 import android.content.Context;
@@ -13,15 +13,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Legume;
 
-public class AssociationPicturale extends Association {
+class Memory extends Association {
 
     private List<Legume> legumes;
     private Random r = new Random();
 
-    public AssociationPicturale(Context context) {
+    Memory(Context context) {
         super(context);
     }
 
@@ -59,7 +60,7 @@ public class AssociationPicturale extends Association {
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
 
-        int backImage = context.getResources().getIdentifier("test", "drawable", context.getPackageName());
+        int backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
 
         return returnCards(backImage);
     }

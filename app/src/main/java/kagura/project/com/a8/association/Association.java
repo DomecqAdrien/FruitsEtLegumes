@@ -1,4 +1,4 @@
-package kagura.project.com.a8;
+package kagura.project.com.a8.association;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,16 +13,16 @@ import kagura.project.com.a8.objects.Card;
 
 public abstract class Association {
 
-    int level;
-    int size;
-    int position;
-    Context context;
-    List<Integer> imagePositions;
-    List<String> imageNames;
-    List<Integer> listIntegers;
-    boolean isImagesLoaded;
+    protected int level;
+    protected int size;
+    protected int position;
+    protected Context context;
+    protected List<Integer> imagePositions;
+    protected List<String> imageNames;
+    protected List<Integer> listIntegers;
+    protected boolean isImagesLoaded;
 
-    Association(Context context){
+    protected Association(Context context){
         this.context = context;
 
     }
@@ -50,11 +50,15 @@ public abstract class Association {
         return new int[]{columns, size};
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract List<Integer[]> loadCards();
 
     public abstract void loadImages();
 
-    String loadJSONFromAsset(String jsonPath) {
+    protected String loadJSONFromAsset(String jsonPath) {
         String json;
         try {
             InputStream is = context.getAssets().open(jsonPath);
@@ -84,7 +88,7 @@ public abstract class Association {
 
     public abstract void addCardInPosition(int randomImage);
 
-    List<Integer[]> returnCards(int backImage){
+    protected List<Integer[]> returnCards(int backImage){
         List<Integer[]> idDrawables = new ArrayList<>();
 
         Integer[] mThumbIds = new Integer[size];

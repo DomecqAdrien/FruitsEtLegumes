@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_legumes"
-    android:id="@+id/frameLayout">
+    android:tag="normal"
+    android:id="@+id/relativeLayout">
 
     <GridView
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
@@ -49,7 +50,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         app:srcCompat="@drawable/back3"
-        android:id="@+id/imageView5"
+        android:id="@+id/buttonBack"
         android:onClick="back"
         android:layout_marginTop="270sp"
         android:layout_alignParentTop="true"

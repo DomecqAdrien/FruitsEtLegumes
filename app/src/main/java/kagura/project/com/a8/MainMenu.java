@@ -12,8 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import kagura.project.com.a8.association.AssociationMenu;
-import kagura.project.com.a8.memory.MemoryMenu;
+import kagura.project.com.a8.association.semantique.SemantiqueMenu;
+import kagura.project.com.a8.association.memorielle.MemoryMenu;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -59,7 +59,7 @@ public class MainMenu extends AppCompatActivity {
                 overridePendingTransition(R.anim.right_start, R.anim.right_end);
                 break;
             case R.id.spaceAssociation:
-                intentGame = new Intent (this, AssociationMenu.class);
+                intentGame = new Intent (this, SemantiqueMenu.class);
                 this.startActivityForResult(intentGame, 0);
                 overridePendingTransition(R.anim.left_start, R.anim.left_end);
                 break;

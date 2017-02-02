@@ -1,4 +1,4 @@
-package kagura.project.com.a8;
+package kagura.project.com.a8.association.semantique;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,16 +12,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Fruit;
 
-public class AssociationSemantique extends Association {
+class Semantique extends Association {
 
     private List<Fruit> fruits;
     private Random r = new Random();
     private int randomMax;
 
-    public AssociationSemantique(Context context) {
+    Semantique(Context context) {
         super(context);
     }
 

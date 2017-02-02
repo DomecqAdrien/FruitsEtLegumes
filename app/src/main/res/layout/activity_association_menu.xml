@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_fruit"
-    tools:context="kagura.project.com.a8.memory.MemoryMenu">
+    tools:context=".association.semantique.SemantiqueMenu">
 
 
     <ImageView
@@ -98,7 +98,7 @@
         android:layout_height="160dp"
         app:srcCompat="@drawable/back4"
         android:onClick="back"
-        android:id="@+id/imageView9"
+        android:id="@+id/buttonBack"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -113,8 +113,8 @@
         android:layout_marginRight="74dp"
         android:layout_marginEnd="74dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/imageView9"
-        android:layout_toStartOf="@+id/imageView9" />
+        android:layout_toLeftOf="@+id/buttonBack"
+        android:layout_toStartOf="@+id/buttonBack" />
 
     <ImageView
         android:layout_width="400dp"
@@ -137,8 +137,8 @@
         android:fontFamily="casual"
         android:textSize="34sp"
         android:layout_alignBottom="@+id/solution"
-        android:layout_toLeftOf="@+id/imageView9"
-        android:layout_toStartOf="@+id/imageView9"
+        android:layout_toLeftOf="@+id/buttonBack"
+        android:layout_toStartOf="@+id/buttonBack"
         android:layout_marginRight="63dp"
         android:layout_marginEnd="63dp"
         android:layout_marginBottom="58dp" />
