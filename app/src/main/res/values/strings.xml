@@ -16,7 +16,7 @@
     <string name="admin">Admin ?</string>
     <string name="passAdminInfo">Entrez votre mot de passe admin</string>
     <string name="valider">Valider</string>
-    <string name="passAdminVerif"/>
+    <string name="passAdminVerif" />
     <string name="nombre_de_coups">Nombre de coups</string>
     <string name="temps">Temps</string>
     <string name="niveau">Niveau</string>

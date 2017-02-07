@@ -3,7 +3,10 @@ package kagura.project.com.a8.association.semantique;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,14 +14,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import kagura.project.com.a8.AssociationChoiceFragment;
 import kagura.project.com.a8.Encyclopedie;
 import kagura.project.com.a8.R;
+import kagura.project.com.a8.association.ResultFragment;
+
+import static kagura.project.com.a8.R.id.buttonBack;
 
 public class SemantiqueMenu extends AppCompatActivity {
 
     ImageView avatar;
     String avatarName;
     boolean isClickable = true;
+    Fragment fragmentResult;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +106,22 @@ public class SemantiqueMenu extends AppCompatActivity {
         }
     }
 
+
     public void back(View v) {
         onBackPressed();
+    }
+
+    public void startChoice(View view) {
+        fragmentResult = new AssociationChoiceFragment();
+        fragmentManager = getSupportFragmentManager();
+        final Handler handlerResult = new Handler();
+        handlerResult.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.up_start, R.anim.up_end)
+                        .replace(R.id.fragment_container, fragmentResult).commit();
+            }
+        }, 1000);
     }
 }

@@ -43,7 +43,7 @@ public class ImageAdapter extends BaseAdapter {
                     imageView.setLayoutParams(new GridView.LayoutParams(180, 180));
                     break;
                 case "xlarge":
-                    imageView.setLayoutParams(new GridView.LayoutParams(300, 300));
+                    imageView.setLayoutParams(new GridView.LayoutParams(180, 180));
                     break;
             }
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

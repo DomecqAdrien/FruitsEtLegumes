@@ -13,17 +13,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import kagura.project.com.a8.admin.AdminLogin;
+import kagura.project.com.a8.admin.AdminSession;
 
 public class CharacterSelection extends AppCompatActivity {
 
     EditText name;
     String nameValid;
     String avatar;
-    ImageButton verMince;
-    ImageButton verGros;
+    ImageView verMince;
+    ImageView verGros;
     Intent intent;
 
     @Override
@@ -45,9 +47,13 @@ public class CharacterSelection extends AppCompatActivity {
 
         setContentView(R.layout.activity_character_selection);
 
+
         name = (EditText) findViewById(R.id.name);
-        verMince = (ImageButton) findViewById(R.id.buttonVerMince);
-        verGros = (ImageButton) findViewById(R.id.buttonVerGros);
+        verMince = (ImageView) findViewById(R.id.buttonVerMince);
+        verGros = (ImageView) findViewById(R.id.buttonVerGros);
+
+        verGros.setImageDrawable(getResources().getDrawable(R.drawable.ver_gros));
+        verMince.setImageDrawable(getResources().getDrawable(R.drawable.ver_mince));
 
         /*if(nameValid != null){
             name.append(nameValid);
@@ -85,14 +91,14 @@ public class CharacterSelection extends AppCompatActivity {
             case R.id.buttonVerMince:
                 avatar = "verMince";
 
-                verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros));
-                verMince.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince_aura));
+                verGros.setImageDrawable(getResources().getDrawable(R.drawable.ver_gros));
+                verMince.setImageDrawable(getResources().getDrawable(R.drawable.ver_mince_aura));
                 break;
             case R.id.buttonVerGros:
                 avatar  = "verGros";
 
-                verMince.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_mince));
-                verGros.setBackgroundDrawable(getResources().getDrawable(R.drawable.ver_gros_aura));
+                verMince.setImageDrawable(getResources().getDrawable(R.drawable.ver_mince));
+                verGros.setImageDrawable(getResources().getDrawable(R.drawable.ver_gros_aura));
                 break;
         }
     }
@@ -120,7 +126,7 @@ public class CharacterSelection extends AppCompatActivity {
     }
 
     public void adminSession(View view) {
-        intent = new Intent(this, AdminLogin.class);
+        intent = new Intent(this, AdminSession.class);
         this.startActivityForResult(intent, 0);
         overridePendingTransition(R.anim.up_start, R.anim.up_end);
     }
