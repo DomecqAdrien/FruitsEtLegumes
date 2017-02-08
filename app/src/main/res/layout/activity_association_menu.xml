@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:onClick="startChoice"
+        android:onClick="startGame"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:id="@+id/level_2"
@@ -41,7 +41,7 @@
 
     <TextView
         android:text="@string/level1"
-        android:onClick="startChoice"
+        android:onClick="startGame"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:id="@+id/level_1tv"
@@ -59,7 +59,7 @@
 
     <TextView
         android:text="@string/level3"
-        android:onClick="startChoice"
+        android:onClick="startGame"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:id="@+id/level_3tv"
@@ -77,7 +77,7 @@
 
     <TextView
         android:text="@string/level2"
-        android:onClick="startChoice"
+        android:onClick="startGame"
         android:layout_width="400dp"
         android:layout_height="172dp"
         android:id="@+id/level_2tv"

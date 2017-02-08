@@ -29,7 +29,7 @@ class Memory extends Association {
     @Override
     public List<Integer[]> loadCards() {
         if (!isImagesLoaded) {
-            loadImages();
+            buildListFruits();
         }
 
         Log.i("loadCards()", "size=" + size);
@@ -66,7 +66,7 @@ class Memory extends Association {
     }
 
     @Override
-    public void loadImages() {
+    public void buildListFruits() {
         isImagesLoaded = true;
 
         legumes = new ArrayList<>();

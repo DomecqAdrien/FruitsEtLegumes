@@ -56,7 +56,7 @@ public abstract class Association {
      */
     public abstract List<Integer[]> loadCards();
 
-    public abstract void loadImages();
+    public abstract void buildListFruits();
 
     protected String loadJSONFromAsset(String jsonPath) {
         String json;
