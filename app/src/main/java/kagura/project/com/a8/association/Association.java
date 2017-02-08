@@ -19,8 +19,9 @@ public abstract class Association {
     protected Context context;
     protected List<Integer> imagePositions;
     protected List<String> imageNames;
-    protected List<Integer> listIntegers;
-    protected boolean isImagesLoaded;
+    protected List<Integer> listPositionsAvailables;
+    protected boolean isListFruitsCreated;
+    protected int backImage;
 
     protected Association(Context context){
         this.context = context;
@@ -54,9 +55,22 @@ public abstract class Association {
      *
      * @return
      */
-    public abstract List<Integer[]> loadCards();
+    public abstract List<Integer[]> getListDrawablesFrontAndBack();
 
     public abstract void buildListFruits();
+
+    protected void buildListPositionsAvailables() {
+        listPositionsAvailables = new ArrayList<>();
+
+        for(int i = 0; i < size; i++) {
+            listPositionsAvailables.add(i);
+        }
+        Log.i("listPositionsAvailables", listPositionsAvailables.toString());
+    }
+
+    protected void removePositionAvailable(int position){
+        listPositionsAvailables.remove(position);
+    }
 
     protected String loadJSONFromAsset(String jsonPath) {
         String json;
@@ -79,17 +93,11 @@ public abstract class Association {
     public abstract boolean checkCards(Card firstCard, Card secondCard);
 
     public String getNom(){
-
-        String normalized = Normalizer.normalize(imageNames.get(position), Normalizer.Form.NFD)
-                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-        Log.i("nom", normalized);
-        return normalized;
+        return imageNames.get(position);
     }
 
-    public abstract void addCardInPosition(int randomImage);
-
-    protected List<Integer[]> returnCards(int backImage){
-        List<Integer[]> idDrawables = new ArrayList<>();
+    protected List<Integer[]> buildListDrawablesFrontAndBack(){
+        List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
 
         Integer[] mThumbIds = new Integer[size];
         Integer[] mThumbIdsBackground = new Integer[size];
@@ -98,10 +106,10 @@ public abstract class Association {
             mThumbIds[i] = imagePositions.get(i);
             mThumbIdsBackground[i] = backImage;
         }
-        idDrawables.add(0, mThumbIds);
-        idDrawables.add(1, mThumbIdsBackground);
+        idDrawablesFrontAndBack.add(0, mThumbIds);
+        idDrawablesFrontAndBack.add(1, mThumbIdsBackground);
 
-        return idDrawables;
+        return idDrawablesFrontAndBack;
 
     }
 }

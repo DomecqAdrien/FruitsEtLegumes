@@ -24,25 +24,29 @@ class Memory extends Association {
 
     Memory(Context context) {
         super(context);
+        backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
+    }
+
+    public void initGame() {
     }
 
     @Override
-    public List<Integer[]> loadCards() {
-        if (!isImagesLoaded) {
+    public List<Integer[]> getListDrawablesFrontAndBack() {
+        if (!isListFruitsCreated) {
             buildListFruits();
         }
 
-        Log.i("loadCards()", "size=" + size);
+        Log.i("getListDrawablesFAndB()", "size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
         imageNames = new ArrayList<>(Collections.nCopies(size, ""));
 
         Log.i("imagePositionInit", imagePositions.toString());
 
-        listIntegers = new ArrayList<>();
+        listPositionsAvailables = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            listIntegers.add(i);
+            listPositionsAvailables.add(i);
         }
 
         for (int i = 0; i < (size / 2); i++) {
@@ -60,14 +64,12 @@ class Memory extends Association {
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
 
-        int backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
-
-        return returnCards(backImage);
+        return buildListDrawablesFrontAndBack();
     }
 
     @Override
     public void buildListFruits() {
-        isImagesLoaded = true;
+        isListFruitsCreated = true;
 
         legumes = new ArrayList<>();
 
@@ -102,15 +104,14 @@ class Memory extends Association {
     }
 
 
-    @Override
-    public void addCardInPosition(int randomImage) {
+    private void addCardInPosition(int randomImage) {
         int randomPositionCard;
-        randomPositionCard = r.nextInt(listIntegers.size());
-        imagePositions.set(listIntegers.get(randomPositionCard), legumes.get(randomImage).getLegume_id());
-        imageNames.set(listIntegers.get(randomPositionCard), legumes.get(randomImage).getNom());
+        randomPositionCard = r.nextInt(listPositionsAvailables.size());
+        imagePositions.set(listPositionsAvailables.get(randomPositionCard), legumes.get(randomImage).getLegume_id());
+        imageNames.set(listPositionsAvailables.get(randomPositionCard), legumes.get(randomImage).getNom());
 
-        Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard));
-        listIntegers.remove(randomPositionCard);
+        Log.i("carte 1 :", "Position " + listPositionsAvailables.get(randomPositionCard));
+        listPositionsAvailables.remove(randomPositionCard);
     }
 
 
