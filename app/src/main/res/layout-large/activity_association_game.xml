@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:tag="large"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_fruit"
+    tools:context="kagura.project.com.a8.association.semantique.SemantiqueGame">
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridviewBackground"
+        android:layout_width="700dp"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="110dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+    </GridView>
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridview"
+        android:layout_width="700dp"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="110dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+    </GridView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container">
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/back4"
+        android:onClick="back"
+        android:id="@+id/buttonBack"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:contentDescription="@string/avatar" />
+
+</RelativeLayout>
