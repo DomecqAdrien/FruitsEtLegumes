@@ -3,7 +3,6 @@ package kagura.project.com.a8.association.semantique;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,12 +13,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import kagura.project.com.a8.AssociationChoiceFragment;
 import kagura.project.com.a8.Encyclopedie;
 import kagura.project.com.a8.R;
-import kagura.project.com.a8.association.ResultFragment;
-
-import static kagura.project.com.a8.R.id.buttonBack;
 
 public class SemantiqueMenu extends AppCompatActivity {
 
@@ -74,7 +69,22 @@ public class SemantiqueMenu extends AppCompatActivity {
         overridePendingTransition(R.anim.right_start, R.anim.right_end);
     }
 
+    public void startEncyclopedie(View view) {
+        if(isClickable){
+            isClickable = false;
+            Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
+            this.startActivityForResult(intentEncyclopedie, 0);
+            overridePendingTransition(R.anim.up_start, R.anim.up_end);
+        }
+    }
+
+
+    public void back(View v) {
+        onBackPressed();
+    }
+
     public void startGame(View v) {
+
         if(isClickable){
             isClickable = false;
             int button = 1;
@@ -94,34 +104,5 @@ public class SemantiqueMenu extends AppCompatActivity {
             this.startActivityForResult(intentGame, 0);
             overridePendingTransition(R.anim.left_start, R.anim.left_end);
         }
-    }
-
-
-    public void startEncyclopedie(View view) {
-        if(isClickable){
-            isClickable = false;
-            Intent intentEncyclopedie = new Intent(this, Encyclopedie.class);
-            this.startActivityForResult(intentEncyclopedie, 0);
-            overridePendingTransition(R.anim.up_start, R.anim.up_end);
-        }
-    }
-
-
-    public void back(View v) {
-        onBackPressed();
-    }
-
-    public void startChoice(View view) {
-        fragmentResult = new AssociationChoiceFragment();
-        fragmentManager = getSupportFragmentManager();
-        final Handler handlerResult = new Handler();
-        handlerResult.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.up_start, R.anim.up_end)
-                        .replace(R.id.fragment_container, fragmentResult).commit();
-            }
-        }, 1000);
     }
 }

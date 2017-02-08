@@ -2,7 +2,6 @@ package kagura.project.com.a8.association.semantique;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
@@ -21,10 +20,8 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -59,7 +56,7 @@ public class SemantiqueGame extends AppCompatActivity {
 
     GridView gridview, gridviewBackground;
     RelativeLayout relativeLayout;
-    Fragment fragmentResult;
+    Fragment fragmentResult, fragmentChoice;
 
     Boolean isTimerStarted = false;
     Chronometer timer;
@@ -95,7 +92,12 @@ public class SemantiqueGame extends AppCompatActivity {
         level = getIntent().getIntExtra("level", 0);
         Log.i("level", Integer.toString(level));
 
-        newGame();
+        fragmentChoice = new SemantiqueChoiceFragment();
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragmentChoice).commit();
+
+        //newGame();
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -127,13 +129,33 @@ public class SemantiqueGame extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
+    public void newGame(View view) {
+        fragmentManager.beginTransaction().remove(fragmentChoice).commit();
+        String type;
+
+        switch (view.getId()){
+            case R.id.coupes:
+                type = "coupes";
+                break;
+            case R.id.arbres:
+                type = "arbres";
+                break;
+            case R.id.graines:
+                type = "graines";
+                break;
+            default:
+                type = "coupes";
+                break;
+        }
+        newGame(type);
     }
 
-    private void newGame() {
+    @Override
+    public void onBackPressed() {}
 
-        association = new Semantique(this);
+    private void newGame(String type) {
+
+        association = new Semantique(this, type);
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
         int levelParams[] = association.setLevelParams(level);
@@ -273,7 +295,6 @@ public class SemantiqueGame extends AppCompatActivity {
         bundle.putInt("level", level);
         fragmentResult = new ResultFragment();
         fragmentResult.setArguments(bundle);
-        fragmentManager = getSupportFragmentManager();
         buttonBack.setVisibility(View.INVISIBLE);
         final Handler handlerResult = new Handler();
         handlerResult.postDelayed(new Runnable() {
@@ -290,17 +311,17 @@ public class SemantiqueGame extends AppCompatActivity {
     public void replayLevel(View view) {
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
         buttonBack.setVisibility(View.VISIBLE);
-        newGame();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragmentChoice).commit();
 
     }
 
     public void nextLevel(View view) {
         fragmentManager.beginTransaction().remove(fragmentResult).commit();
         buttonBack.setVisibility(View.VISIBLE);
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragmentChoice).commit();
         isTimerStarted = false;
         tries = 0;
         level++;
-        newGame();
 
     }
 
