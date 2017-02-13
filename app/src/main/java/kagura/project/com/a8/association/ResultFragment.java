@@ -21,7 +21,7 @@ import static kagura.project.com.a8.R.id.tries;
 public class ResultFragment extends Fragment {
 
     int level;
-    ImageButton buttonNextLevel, buttonLevelSelection, buttonHome;
+    ImageView buttonNextLevel, buttonLevelSelection, buttonHome;
 
     public ResultFragment() {
 
@@ -40,11 +40,12 @@ public class ResultFragment extends Fragment {
         // Inflate the layout for this fragment
 
         RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.fragment_result_game, container, false);
-        buttonNextLevel = (ImageButton) rl.findViewById(R.id.buttonNextLevel);
+        buttonNextLevel = (ImageView) rl.findViewById(R.id.buttonNextLevel);
         if(level == 3){
             buttonNextLevel.setEnabled(false);
+            buttonNextLevel.setImageDrawable(getResources().getDrawable(R.drawable.nextgrey));
         }
-        buttonLevelSelection = (ImageButton) rl.findViewById(R.id.buttonLevelSelection);
+        buttonLevelSelection = (ImageView) rl.findViewById(R.id.buttonLevelSelection);
         buttonLevelSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +63,7 @@ public class ResultFragment extends Fragment {
             }
         });
 
-        buttonHome = (ImageButton) rl.findViewById(R.id.buttonHome);
+        buttonHome = (ImageView) rl.findViewById(R.id.buttonHome);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

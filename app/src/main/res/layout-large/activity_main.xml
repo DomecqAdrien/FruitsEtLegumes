@@ -26,10 +26,11 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:text="@string/bonjour"
         android:fontFamily="casual"
+        android:textAlignment="center"
         android:id="@+id/textHello"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

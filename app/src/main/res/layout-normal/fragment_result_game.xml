@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    tools:context=".association.ResultFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="660dp"
+        app:srcCompat="@drawable/tableau_resultat"
+        android:id="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/results" />
+
+
+    <TextView
+        android:text="@string/bravo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:textSize="50sp"
+        android:fontFamily="casual"
+        tools:layout_editor_absoluteY="70dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ver_mince"
+        android:id="@+id/imageView4"
+        android:contentDescription="@string/avatar"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/buttonReplay"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:text="@string/home"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/buttonHome"
+        app:srcCompat="@drawable/home1"
+        android:background="@android:color/transparent"
+
+        android:contentDescription="@string/home"
+        android:layout_above="@+id/imageView4"
+        android:layout_alignLeft="@+id/buttonLevelSelection"
+        android:layout_alignStart="@+id/buttonLevelSelection" />
+
+    <ImageView
+        android:text="@string/levels"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/level"
+        android:id="@+id/buttonLevelSelection"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/levels"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="11dp"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:text="@string/next"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/next1"
+        android:background="@android:color/transparent"
+        android:onClick="nextLevel"
+        android:id="@+id/buttonNextLevel"
+        android:contentDescription="@string/next"
+        android:layout_alignTop="@+id/buttonLevelSelection"
+        android:layout_alignLeft="@+id/buttonReplay"
+        android:layout_alignStart="@+id/buttonReplay" />
+
+    <ImageView
+        android:text="@string/replay"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:onClick="replayLevel"
+        android:id="@+id/buttonReplay"
+        app:layout_constraintRight_toRightOf="@+id/imageView"
+        app:srcCompat="@drawable/replay1"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="51dp"
+        android:contentDescription="@string/replay"
+        android:layout_marginRight="57dp"
+        android:layout_marginEnd="57dp"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

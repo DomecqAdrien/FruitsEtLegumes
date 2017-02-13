@@ -43,7 +43,6 @@
         android:layout_alignStart="@+id/level_2" />
 
     <ImageView
-        android:onClick="startChoice"
         android:layout_width="170dp"
         android:layout_height="90dp"
         android:id="@+id/level_2"
@@ -53,6 +52,37 @@
         android:layout_alignLeft="@+id/level_1"
         android:layout_alignStart="@+id/level_1" />
 
+    <TextView
+        android:text="@string/level3"
+        android:onClick="startGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_3tv"
+        android:fontFamily="casual"
+        android:gravity="center"
+
+        android:layout_marginBottom="27dp"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/level_3"
+        android:layout_alignLeft="@+id/level_3"
+        android:layout_alignStart="@+id/level_3"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
+
+    <TextView
+        android:text="@string/level2"
+        android:onClick="startGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_2tv"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:textSize="21sp"
+
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/level_3tv"
+        android:layout_alignEnd="@+id/level_3tv" />
+
     <ImageView
         android:id="@+id/level_1"
         app:srcCompat="@drawable/feuille_verte_reverse"
@@ -61,7 +91,7 @@
         android:layout_marginStart="35dp"
         android:layout_width="170dp"
         android:layout_height="90dp"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/buttonBack"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -72,60 +102,26 @@
         android:onClick="startEncyclopedie"
         app:srcCompat="@drawable/feuille_bleue"
         android:contentDescription="@string/level3"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/imageAvatar"
-        android:layout_alignStart="@+id/imageAvatar"
         android:layout_marginLeft="64dp"
-        android:layout_marginStart="64dp" />
+        android:layout_marginStart="64dp"
+        android:layout_above="@+id/buttonBack"
+        android:layout_alignLeft="@+id/imageAvatar"
+        android:layout_alignStart="@+id/imageAvatar" />
 
     <TextView
         android:text="@string/level1"
-        android:onClick="startChoice"
+        android:onClick="startGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/level_1tv"
         android:fontFamily="casual"
         android:gravity="center"
+
         android:textSize="22sp"
-
-        android:layout_marginBottom="25dp"
-        android:layout_alignBottom="@+id/level_1"
-        android:layout_alignRight="@+id/level_2tv"
-        android:layout_alignEnd="@+id/level_2tv" />
-
-    <TextView
-        android:text="@string/level2"
-        android:onClick="startChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/level_2tv"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:textSize="21sp"
-
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:layout_alignTop="@+id/buttonBack"
-        android:layout_alignLeft="@+id/level_2"
-        android:layout_alignStart="@+id/level_2" />
-
-    <TextView
-        android:text="@string/level3"
-        android:onClick="startChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/level_3tv"
-        android:fontFamily="casual"
-        android:gravity="center"
-
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="29dp"
-        android:layout_alignBottom="@+id/level_3"
-        android:layout_alignLeft="@+id/level_1tv"
-        android:layout_alignStart="@+id/level_1tv"
-        android:textSize="20sp" />
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/level_2"
+        android:layout_alignLeft="@+id/level_3tv"
+        android:layout_alignStart="@+id/level_3tv" />
 
     <TextView
         android:text="@string/encyclopedie"
