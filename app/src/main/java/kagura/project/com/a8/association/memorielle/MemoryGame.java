@@ -149,10 +149,6 @@ public class MemoryGame extends AppCompatActivity {
                             setRightOutSecond.start();
                             setRightInSecond.start();
                         }
-
-
-
-
                         Log.i("position", Integer.toString(position));
                         turnCard(v,position);
                     }
@@ -176,8 +172,7 @@ public class MemoryGame extends AppCompatActivity {
         gridviewFront.setNumColumns(levelParams[0]);
         finish = levelParams[1] / 2;
 
-
-        List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
+        List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
         gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));

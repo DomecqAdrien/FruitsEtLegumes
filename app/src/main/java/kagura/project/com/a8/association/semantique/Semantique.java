@@ -26,43 +26,49 @@ class Semantique extends Association {
     Semantique(Context context, String type) {
         super(context);
         this.type = type;
+        backImage = context.getResources().getColor(android.R.color.transparent);
 
     }
-
+    
     @Override
-    public List<Integer[]> loadCards(){
-
-        if (!isImagesLoaded) {
+    public List<Integer[]> getListDrawablesFrontAndBack(){
+        if (!isListFruitsCreated) {
             buildListFruits();
         }
+        
+        defineFruitsPositions();
+        return buildListDrawablesFrontAndBack();
+    }
 
-        Log.i("loadCards()","size=" + size);
+    private void defineFruitsPositions() {
+
+        Log.i("gridSize", Integer.toString(size));
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
         imageNames = new ArrayList<>(Collections.nCopies(size, ""));
 
         Log.i("imagePositionInit", imagePositions.toString());
-        listIntegers = new ArrayList<>();
 
-        for(int i = 0; i < size; i++) {
-            listIntegers.add(i);
-        }
-        Log.i("listIntegers", listIntegers.toString());
+        buildListPositionsAvailables();
 
         Log.i("size", Integer.toString(size));
         for(int i =0; i < size / 2; i++){
             Log.i("i", Integer.toString(i));
             int randomImage = r.nextInt(fruitsName.size());
+            int randomPosition;
             if(!imageNames.contains(fruitsName.get(randomImage))){
-                addCardInPosition(randomImage);
+                randomPosition = r.nextInt(listPositionsAvailables.size());
+                addCardInPosition(randomImage, randomPosition, true);
+                removePositionAvailable(randomPosition);
+
+                randomPosition = r.nextInt(listPositionsAvailables.size());
+                addCardInPosition(randomImage, randomPosition, false);
+                removePositionAvailable(randomPosition);
+
             }else{
                 i--;
             }
         }
-        int backImage = context.getResources().getColor(android.R.color.transparent);
-
-        return returnCards(backImage);
-
     }
 
     @Override
@@ -84,40 +90,29 @@ class Semantique extends Association {
         }
     }
 
-    @Override
-    public void addCardInPosition(int randomImage) {
-        int randomPositionCard1;
-        int randomPositionCard2;
+    private void addCardInPosition(int randomImage, int randomPosition, boolean isFirstCard) {
         Log.i("fruits.size()", Integer.toString(fruitsName.size()));
         Log.i("fruit_plein_id", Integer.toString(getFruitImageId(fruitsName.get(randomImage))));
-        randomPositionCard1 = r.nextInt(listIntegers.size());
-        Log.i("fruit", fruitsName.get(randomImage));
-        imagePositions.set(listIntegers.get(randomPositionCard1), getFruitImageId(fruitsName.get(randomImage)));
-        imageNames.set(listIntegers.get(randomPositionCard1), fruitsName.get(randomImage));
-        Log.i("idDrawable 1", Integer.toString(imagePositions.get(listIntegers.get(randomPositionCard1))));
 
-        Log.i("carte 1 :", "Position " + listIntegers.get(randomPositionCard1));
-        listIntegers.remove(randomPositionCard1);
-
-        randomPositionCard2 = r.nextInt(listIntegers.size());
-
-        imageNames.set(listIntegers.get(randomPositionCard2), fruitsName.get(randomImage));
-
-        switch (type){
-            case "coupes":
-                imagePositions.set(listIntegers.get(randomPositionCard2), getFruitImageId(R.string.fruit_coupe_path, fruitsName.get(randomImage)));
-                break;
-            case "arbres":
-                imagePositions.set(listIntegers.get(randomPositionCard2), getFruitImageId(R.string.fruit_arbre_path, fruitsName.get(randomImage)));
-                break;
-            case "graines":
-                imagePositions.set(listIntegers.get(randomPositionCard2), getFruitImageId(R.string.fruit_graine_path, fruitsName.get(randomImage)));
-                break;
+        imageNames.set(listPositionsAvailables.get(randomPosition), fruitsName.get(randomImage));
+        if(isFirstCard){
+            imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(fruitsName.get(randomImage)));
+        }else {
+            switch (type){
+                case "coupes":
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_coupe_path, fruitsName.get(randomImage)));
+                    break;
+                case "arbres":
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_arbre_path, fruitsName.get(randomImage)));
+                    break;
+                case "graines":
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_graine_path, fruitsName.get(randomImage)));
+                    break;
+            }
         }
-        Log.i("idDrawable 2", Integer.toString(imagePositions.get(listIntegers.get(randomPositionCard2))));
 
-        Log.i("carte 2 :", "Position " + listIntegers.get(randomPositionCard2));
-        listIntegers.remove(randomPositionCard2);
+        Log.i("idDrawable", Integer.toString(imagePositions.get(listPositionsAvailables.get(randomPosition))));
+        Log.i("carte :", "Position " + listPositionsAvailables.get(randomPosition));
     }
 
 

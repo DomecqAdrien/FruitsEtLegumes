@@ -97,8 +97,6 @@ public class SemantiqueGame extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragmentChoice).commit();
 
-        //newGame();
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
@@ -163,7 +161,7 @@ public class SemantiqueGame extends AppCompatActivity {
         gridview.setNumColumns(levelParams[0]);
         finish = levelParams[1] / 2;
 
-        List<Integer[]> idDrawablesFrontAndBack = association.loadCards();
+        List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
 
         gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), relativeLayout.getTag().toString()));
         gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
