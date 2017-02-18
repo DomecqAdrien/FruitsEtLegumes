@@ -175,8 +175,8 @@ public class MemoryGame extends AppCompatActivity {
         List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
-        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
-        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), relativeLayout.getTag().toString()));
+        gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
+        gridviewBack.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
 
 
     }

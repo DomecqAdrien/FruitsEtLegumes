@@ -20,7 +20,7 @@ import kagura.project.com.a8.objects.Card;
 class Semantique extends Association {
 
     private List<String> fruitsName;
-    private Random r = new Random();
+    private Random rand = new Random();
     private String type;
 
     Semantique(Context context, String type) {
@@ -54,14 +54,14 @@ class Semantique extends Association {
         Log.i("size", Integer.toString(size));
         for(int i =0; i < size / 2; i++){
             Log.i("i", Integer.toString(i));
-            int randomImage = r.nextInt(fruitsName.size());
+            int randomImage = rand.nextInt(fruitsName.size());
             int randomPosition;
             if(!imageNames.contains(fruitsName.get(randomImage))){
-                randomPosition = r.nextInt(listPositionsAvailables.size());
+                randomPosition = rand.nextInt(listPositionsAvailables.size());
                 addCardInPosition(randomImage, randomPosition, true);
                 removePositionAvailable(randomPosition);
 
-                randomPosition = r.nextInt(listPositionsAvailables.size());
+                randomPosition = rand.nextInt(listPositionsAvailables.size());
                 addCardInPosition(randomImage, randomPosition, false);
                 removePositionAvailable(randomPosition);
 

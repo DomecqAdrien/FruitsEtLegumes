@@ -163,8 +163,8 @@ public class SemantiqueGame extends AppCompatActivity {
 
         List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
 
-        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), relativeLayout.getTag().toString()));
-        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
+        gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0)));
+        gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1)));
     }
 
     private void selectCard(View v, int position) {

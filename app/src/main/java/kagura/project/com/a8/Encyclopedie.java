@@ -1,6 +1,7 @@
 package kagura.project.com.a8;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,18 +18,17 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-import kagura.project.com.a8.R;
 import kagura.project.com.a8.adapters.ImageAdapter;
-import kagura.project.com.a8.objects.Fruit;
 
 
 public class Encyclopedie extends AppCompatActivity {
 
     GridView gridViewFruits;
-    List<Fruit> fruits;
+    private List<String> fruitsName;
     private boolean isImagesLoaded;
     private Integer[] idDrawables;
     private boolean isMenuView = true;
@@ -56,7 +56,7 @@ public class Encyclopedie extends AppCompatActivity {
     private void loadMenu() {
         gridViewFruits = (GridView) findViewById(R.id.gridviewFruits);
 
-        gridViewFruits.setAdapter(new ImageAdapter(this, idDrawables, "normal"));
+        gridViewFruits.setAdapter(new ImageAdapter(this, idDrawables));
 
         gridViewFruits.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,35 +76,52 @@ public class Encyclopedie extends AppCompatActivity {
         fruitArbre = (ImageView) findViewById(R.id.fruitArbre);
         fruitGraine = (ImageView) findViewById(R.id.fruitGraine);
 
-        fruitPlein.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_plein_id()));
+        /*fruitPlein.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_plein_id()));
         fruitCoupe.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_coupe_id()));
         fruitArbre.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_arbre_id()));
-        fruitGraine.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_graine_id()));
+        fruitGraine.setImageDrawable(getResources().getDrawable(fruits.get(position).getFruit_graine_id()));*/
+
+        fruitPlein.setImageDrawable(getFruitResource(position, "plein"));
+        fruitCoupe.setImageDrawable(getFruitResource(position, "coupe"));
+        fruitArbre.setImageDrawable(getFruitResource(position, "arbre"));
+        fruitGraine.setImageDrawable(getFruitResource(position, "graine"));
+    }
+
+    private Drawable getFruitResource(int position, String type) {
+        return getResources().getDrawable(
+                getResources().getIdentifier(
+                        getString(getResources().getIdentifier("fruit_" + type + "_path", "string", getPackageName()))
+                                + fruitsName.get(position), "drawable", getPackageName()));
     }
 
     private void loadCards() {
         if (!isImagesLoaded) {
-            loadImages();
+            buildListFruits();
         }
 
-        idDrawables = new Integer[fruits.size()];
+        idDrawables = new Integer[fruitsName.size()];
 
-        for(int i = 0; i < fruits.size(); i++){
-            idDrawables[i] = fruits.get(i).getFruit_plein_id();
+        for(int i = 0; i < fruitsName.size(); i++){
+            //idDrawables[i] = fruits.get(i).getFruit_plein_id();
+            idDrawables[i] = getResources().getIdentifier(getString(R.string.fruit_plein_path) + fruitsName.get(i), "drawable", getPackageName());
+            Log.i("k", Integer.toString(getResources().getIdentifier(getString(R.string.fruit_plein_path) + fruitsName.get(i), "drawable", getPackageName())));
         }
     }
 
-    private void loadImages() {
+    private void buildListFruits() {
         isImagesLoaded = true;
-        fruits = new ArrayList<>();
+        fruitsName = new ArrayList<>();
 
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
             JSONArray arr = obj.getJSONArray("fruits");
-            Fruit fruit;
             for (int i = 0; i < arr.length(); i++) {
 
-                fruit = new Fruit();
+                fruitsName.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
+                        .replaceAll("\\p{InCombiningDiacriticalMarks}+", ""));
+                Log.i("fruit", fruitsName.get(i));
+
+                /*fruit = new Fruit();
                 JSONObject jsonObject = arr.getJSONObject(i);
 
                 fruit.setNom(jsonObject.getString("nom"));
@@ -113,8 +130,9 @@ public class Encyclopedie extends AppCompatActivity {
                 fruit.setFruit_arbre_id(getResources().getIdentifier(jsonObject.getString("arbre"), "drawable", getPackageName()));
                 fruit.setFruit_graine_id(getResources().getIdentifier(jsonObject.getString("graine"), "drawable", getPackageName()));
 
-                fruits.add(fruit);
+                fruits.add(fruit);*/
             }
+            Log.i("kkk", fruitsName.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
