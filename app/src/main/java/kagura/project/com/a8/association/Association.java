@@ -3,12 +3,10 @@ package kagura.project.com.a8.association;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
+import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.objects.Card;
 
 public abstract class Association {
@@ -20,6 +18,7 @@ public abstract class Association {
     protected List<Integer> imagePositions;
     protected List<String> imageNames;
     protected List<Integer> listPositionsAvailables;
+    protected LoadJson lj = new LoadJson();
     protected boolean isListFruitsCreated;
     protected int backImage;
 
@@ -71,25 +70,6 @@ public abstract class Association {
     protected void removePositionAvailable(int position){
         listPositionsAvailables.remove(position);
     }
-
-    protected String loadJSONFromAsset(String jsonPath) {
-        String json;
-        try {
-            InputStream is = context.getAssets().open(jsonPath);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
     public abstract boolean checkCards(Card firstCard, Card secondCard);
 
     public String getNom(){

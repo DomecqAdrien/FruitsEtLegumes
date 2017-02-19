@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Legume;
@@ -74,7 +75,7 @@ class Memory extends Association {
         legumes = new ArrayList<>();
 
         try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset("legumes.json"));
+            JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "legumes"));
             JSONArray arr = obj.getJSONArray("legumes");
             Legume legume;
 

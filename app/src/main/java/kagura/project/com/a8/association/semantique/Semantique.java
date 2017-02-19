@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
@@ -76,7 +77,7 @@ class Semantique extends Association {
         fruitsName = new ArrayList<>();
 
         try{
-            JSONObject obj = new JSONObject(loadJSONFromAsset("fruits.json"));
+            JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "fruits"));
             JSONArray arr = obj.getJSONArray("fruits");
 
             for(int i = 0; i < arr.length(); i++){

@@ -2,25 +2,20 @@ package kagura.project.com.a8.adapters;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import static kagura.project.com.a8.R.id.imageView;
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private Integer[] mThumbIds;
-    String layoutType;
 
-    public ImageAdapter(Context c, Integer[] mThumbIds, String layoutType) {
+    public ImageAdapter(Context c, Integer[] mThumbIds) {
             mContext = c;
             this.mThumbIds = mThumbIds;
-            this.layoutType = layoutType;
     }
 
     public int getCount() {
@@ -41,7 +36,6 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            Log.i("type", layoutType);
             imageView.setLayoutParams(new GridView.LayoutParams(180, 180));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
