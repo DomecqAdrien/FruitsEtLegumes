@@ -1,6 +1,7 @@
 package kagura.project.com.a8;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,10 +20,12 @@ public class LoadJson {
             is.close();
 
             json = new String(buffer, "UTF-8");
+            Log.i("json", json);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
         }
+
         return json;
     }
 }

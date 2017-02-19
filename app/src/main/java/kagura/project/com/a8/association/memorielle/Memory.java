@@ -8,11 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
@@ -38,6 +40,12 @@ class Memory extends Association {
             buildListFruits();
         }
 
+        defineLegumesPositions();
+
+        return buildListDrawablesFrontAndBack();
+    }
+
+    private void defineLegumesPositions(){
         Log.i("getListDrawablesFAndB()", "size=" + size);
 
         imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
@@ -45,7 +53,7 @@ class Memory extends Association {
 
         Log.i("imagePositionInit", imagePositions.toString());
 
-       buildListPositionsAvailables();
+        buildListPositionsAvailables();
 
         for (int i = 0; i < (size / 2); i++) {
             int randomImage = r.nextInt(legumeNames.size());
@@ -61,8 +69,6 @@ class Memory extends Association {
             }
         }
         Log.i("imagePositionsAfter", imagePositions.toString());
-
-        return buildListDrawablesFrontAndBack();
     }
 
     @Override
@@ -70,27 +76,21 @@ class Memory extends Association {
         isListFruitsCreated = true;
 
         legumes = new ArrayList<>();
+        Log.i("a", "a");
         legumeNames = new ArrayList<>();
+        Log.i("a", "a");
 
         try {
+            LoadJson lj = new LoadJson();
             JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "legumes"));
+            Log.i("onj", obj.toString());
             JSONArray arr = obj.getJSONArray("legumes");
             Legume legume;
 
             for (int i = 0; i < arr.length(); i++) {
-
-                /*legume = new Legume();
-                JSONObject jsonObject = arr.getJSONObject(i);
-
-                legume.setNom(jsonObject.getString("nom"));
-                Log.i("legumenom", jsonObject.getString("nom"));
-                legume.setLegume_id(context.getResources().getIdentifier(jsonObject.getString("path"), "drawable", context.getPackageName()));
-                Log.i("legumeid", jsonObject.getString("path"));
-
-                legumes.add(legume);*/
-
-                legumeNames.add(arr.get(i).toString().toLowerCase());
-
+                legumeNames.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
+                        .replaceAll("\\p{InCombiningDiacriticalMarks}+", ""));
+                Log.i("fruit", legumeNames.get(i));
             }
         } catch (JSONException e) {
             e.printStackTrace();

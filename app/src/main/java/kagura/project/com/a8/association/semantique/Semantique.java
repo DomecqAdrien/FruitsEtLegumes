@@ -77,6 +77,7 @@ class Semantique extends Association {
         fruitsName = new ArrayList<>();
 
         try{
+            LoadJson lj = new LoadJson();
             JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "fruits"));
             JSONArray arr = obj.getJSONArray("fruits");
 
