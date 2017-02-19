@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import kagura.project.com.a8.LoadJson;
+import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.objects.Card;
 import kagura.project.com.a8.objects.Legume;
@@ -21,6 +21,7 @@ import kagura.project.com.a8.objects.Legume;
 class Memory extends Association {
 
     private List<Legume> legumes;
+    private List<String> legumeNames;
     private Random r = new Random();
 
     Memory(Context context) {
@@ -44,17 +45,13 @@ class Memory extends Association {
 
         Log.i("imagePositionInit", imagePositions.toString());
 
-        listPositionsAvailables = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            listPositionsAvailables.add(i);
-        }
+       buildListPositionsAvailables();
 
         for (int i = 0; i < (size / 2); i++) {
-            int randomImage = r.nextInt(legumes.size());
-            Log.i("legume size", Integer.toString(legumes.size()));
+            int randomImage = r.nextInt(legumeNames.size());
+            Log.i("legume size", Integer.toString(legumeNames.size()));
 
-            if (!imagePositions.contains(legumes.get(randomImage).getLegume_id())) {
+            if (!imageNames.contains(legumeNames.get(randomImage))) {
                 // Ajout de la carte 1
                 addCardInPosition(randomImage);
                 // Ajout de la carte 2
@@ -73,6 +70,7 @@ class Memory extends Association {
         isListFruitsCreated = true;
 
         legumes = new ArrayList<>();
+        legumeNames = new ArrayList<>();
 
         try {
             JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "legumes"));
@@ -81,7 +79,7 @@ class Memory extends Association {
 
             for (int i = 0; i < arr.length(); i++) {
 
-                legume = new Legume();
+                /*legume = new Legume();
                 JSONObject jsonObject = arr.getJSONObject(i);
 
                 legume.setNom(jsonObject.getString("nom"));
@@ -89,7 +87,9 @@ class Memory extends Association {
                 legume.setLegume_id(context.getResources().getIdentifier(jsonObject.getString("path"), "drawable", context.getPackageName()));
                 Log.i("legumeid", jsonObject.getString("path"));
 
-                legumes.add(legume);
+                legumes.add(legume);*/
+
+                legumeNames.add(arr.get(i).toString().toLowerCase());
 
             }
         } catch (JSONException e) {
@@ -108,11 +108,15 @@ class Memory extends Association {
     private void addCardInPosition(int randomImage) {
         int randomPositionCard;
         randomPositionCard = r.nextInt(listPositionsAvailables.size());
-        imagePositions.set(listPositionsAvailables.get(randomPositionCard), legumes.get(randomImage).getLegume_id());
-        imageNames.set(listPositionsAvailables.get(randomPositionCard), legumes.get(randomImage).getNom());
+        imagePositions.set(listPositionsAvailables.get(randomPositionCard), getLegumeImageId(legumeNames.get(randomImage)));
+        imageNames.set(listPositionsAvailables.get(randomPositionCard), legumeNames.get(randomImage));
 
-        Log.i("carte 1 :", "Position " + listPositionsAvailables.get(randomPositionCard));
+        Log.i("carte :", "Position " + listPositionsAvailables.get(randomPositionCard));
         listPositionsAvailables.remove(randomPositionCard);
+    }
+
+    private int getLegumeImageId(String legume){
+        return context.getResources().getIdentifier(context.getString(R.string.legume_path) + legume, "drawable", context.getPackageName());
     }
 
 
