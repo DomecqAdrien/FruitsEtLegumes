@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="660dp"
-        app:srcCompat="@drawable/tableau_resultat"
+        app:srcCompat="@drawable/tableau_resultat2"
         android:id="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"

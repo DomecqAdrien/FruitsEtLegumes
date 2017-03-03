@@ -9,8 +9,8 @@
 
     <ImageView
         android:text="@string/start"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/buttonStart"
         app:srcCompat="@drawable/ico"
         tools:layout_constraintRight_creator="1"
@@ -152,7 +152,7 @@
         android:id="@+id/textGo"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="14sp"
+        android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.71000004"
         android:layout_marginBottom="16dp"

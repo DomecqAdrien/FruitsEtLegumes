@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="660dp"
-        app:srcCompat="@drawable/tableau_resultat"
+        app:srcCompat="@drawable/tableau_resultat2"
         android:id="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -33,49 +33,6 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ver_mince"
-        android:id="@+id/imageView4"
-        android:layout_marginRight="37dp"
-        android:layout_marginEnd="37dp"
-        android:layout_below="@+id/buttonReplay"
-        android:layout_alignRight="@+id/textView9"
-        android:layout_alignEnd="@+id/textView9"
-        android:layout_marginTop="21dp"
-        android:contentDescription="@string/avatar" />
-
-    <ImageView
-        android:text="@string/levels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/level"
-        android:id="@+id/buttonLevelSelection"
-        android:background="@android:color/transparent"
-        android:layout_marginBottom="57dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginStart="120dp"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/levels" />
-
-    <ImageView
-        android:text="@string/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonHome"
-        app:srcCompat="@drawable/home1"
-        android:background="@android:color/transparent"
-
-        android:layout_above="@+id/imageView4"
-        android:layout_alignRight="@+id/buttonLevelSelection"
-        android:layout_alignEnd="@+id/buttonLevelSelection"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/home" />
-
-    <ImageView
         android:text="@string/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,29 +40,67 @@
         android:background="@android:color/transparent"
         android:onClick="nextLevel"
         android:id="@+id/buttonNextLevel"
-        android:layout_marginRight="132dp"
-        android:layout_marginEnd="132dp"
-        android:layout_alignBottom="@+id/imageView4"
+        android:layout_marginRight="63dp"
+        android:layout_marginEnd="63dp"
+        android:contentDescription="@string/next"
+        android:layout_marginBottom="160dp"
+        android:layout_alignBottom="@+id/imageView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="33dp"
-        android:contentDescription="@string/next" />
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ver_mince"
+        android:id="@+id/imageView4"
+        android:layout_marginRight="87dp"
+        android:layout_marginEnd="87dp"
+        android:contentDescription="@string/avatar"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignRight="@+id/textView9"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_marginBottom="95dp" />
+
+    <ImageView
+        android:text="@string/levels"
+        android:layout_width="200dp"
+        android:id="@+id/buttonLevelSelection"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="97dp"
+        android:layout_marginStart="97dp"
+        android:contentDescription="@string/levels"
+        android:layout_height="200dp"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:text="@string/replay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:onClick="replayLevel"
         android:id="@+id/buttonReplay"
         app:layout_constraintRight_toRightOf="@+id/imageView"
-        app:srcCompat="@drawable/replay1"
+
         android:background="@android:color/transparent"
-        android:layout_marginTop="90dp"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignLeft="@+id/buttonNextLevel"
-        android:layout_alignStart="@+id/buttonNextLevel"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:contentDescription="@string/replay" />
+        android:contentDescription="@string/replay"
+        android:layout_above="@+id/buttonLevelSelection"
+        android:layout_alignRight="@+id/buttonNextLevel"
+        android:layout_alignEnd="@+id/buttonNextLevel"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="44dp" />
+
+    <ImageView
+        android:text="@string/home"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/buttonHome"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/home"
+        android:layout_alignTop="@+id/buttonReplay"
+        android:layout_alignLeft="@+id/buttonLevelSelection"
+        android:layout_alignStart="@+id/buttonLevelSelection" />
 
 </RelativeLayout>

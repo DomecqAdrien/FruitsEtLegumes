@@ -7,46 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/fruit_coupe_ananas"
-        android:id="@+id/coupes"
-        android:onClick="newGame"
-        android:layout_marginLeft="187dp"
-        android:layout_marginStart="187dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="200dp"
-        android:contentDescription="@string/coupes" />
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:onClick="newGame"
-        app:srcCompat="@drawable/fruit_arbre_ananas"
-        android:id="@+id/arbres"
-        android:layout_alignTop="@+id/coupes"
-        android:layout_toRightOf="@+id/coupes"
-        android:layout_toEndOf="@+id/coupes"
-        android:layout_marginLeft="103dp"
-        android:layout_marginStart="103dp"
-        android:contentDescription="@string/plantes" />
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:onClick="newGame"
-        app:srcCompat="@drawable/fruit_graine_ananas"
-        android:layout_marginLeft="114dp"
-        android:layout_marginStart="114dp"
-        android:id="@+id/graines"
-        android:layout_alignTop="@+id/arbres"
-        android:layout_toRightOf="@+id/arbres"
-        android:layout_toEndOf="@+id/arbres"
-        android:contentDescription="@string/graines" />
-
     <TextView
         android:text="@string/graines"
         android:fontFamily="cursive"
@@ -88,5 +48,45 @@
         android:layout_alignBottom="@+id/plantes_tv"
         android:layout_toLeftOf="@+id/arbres"
         android:layout_toStartOf="@+id/arbres" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:onClick="newGame"
+        app:srcCompat="@drawable/fruit_graine_ananas"
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp"
+        android:id="@+id/graines"
+        android:contentDescription="@string/graines"
+        android:layout_alignTop="@+id/arbres"
+        android:layout_toRightOf="@+id/arbres"
+        android:layout_toEndOf="@+id/arbres" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:onClick="newGame"
+        app:srcCompat="@drawable/fruit_arbre_ananas"
+        android:id="@+id/arbres"
+        android:layout_marginLeft="71dp"
+        android:layout_marginStart="71dp"
+        android:contentDescription="@string/plantes"
+        android:layout_alignTop="@+id/coupes"
+        android:layout_toRightOf="@+id/coupes"
+        android:layout_toEndOf="@+id/coupes" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/fruit_coupe_ananas"
+        android:id="@+id/coupes"
+        android:onClick="newGame"
+        android:layout_marginLeft="129dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="258dp"
+        android:contentDescription="@string/coupes"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
