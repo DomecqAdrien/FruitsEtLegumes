@@ -42,6 +42,7 @@
     <string name="fruit_coupe_path">fruit_coupe_</string>
     <string name="fruit_arbre_path">fruit_arbre_</string>
     <string name="fruit_graine_path">fruit_graine_</string>
+    <string name="legume_path">legume_</string>
     <string name="graines">Graines</string>
     <string name="plantes">Plantes</string>
     <string name="coupes">Fruits coupés</string>
