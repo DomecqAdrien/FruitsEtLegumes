@@ -2,11 +2,9 @@ package kagura.project.com.a8.association;
 
 import android.content.Context;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.collections.Card;
 
 public abstract class Association {
