@@ -1,4 +1,4 @@
-package kagura.project.com.a8.objects;
+package kagura.project.com.a8.collections;
 
 
 public class Legume extends Aliment {

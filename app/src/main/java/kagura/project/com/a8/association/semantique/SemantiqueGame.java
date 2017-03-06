@@ -38,8 +38,8 @@ import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.association.ResultFragment;
-import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Card;
+import kagura.project.com.a8.collections.Result;
 
 public class SemantiqueGame extends AppCompatActivity {
 

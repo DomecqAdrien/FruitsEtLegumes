@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kagura.project.com.a8.LoadJson;
-import kagura.project.com.a8.objects.Card;
+import kagura.project.com.a8.collections.Card;
 
 public abstract class Association {
 
@@ -18,7 +18,6 @@ public abstract class Association {
     protected List<Integer> imagePositions;
     protected List<String> imageNames;
     protected List<Integer> listPositionsAvailables;
-    protected LoadJson lj = new LoadJson();
     protected boolean isListFruitsCreated;
     protected int backImage;
 

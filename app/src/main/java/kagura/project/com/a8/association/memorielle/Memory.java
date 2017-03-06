@@ -17,8 +17,8 @@ import java.util.Random;
 import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
-import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Legume;
+import kagura.project.com.a8.collections.Card;
+import kagura.project.com.a8.collections.Legume;
 
 class Memory extends Association {
 

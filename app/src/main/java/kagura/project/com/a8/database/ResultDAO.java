@@ -8,7 +8,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Result;
 
 
 public class ResultDAO extends DAOBase {
