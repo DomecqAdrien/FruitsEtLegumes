@@ -85,6 +85,7 @@ public class MemoryGame extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //noinspection ConstantConditions
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -219,7 +220,7 @@ public class MemoryGame extends AppCompatActivity {
     }
 
     @SuppressLint("HandlerLeak")
-    class UpdateCardsHandler extends Handler {
+    private class UpdateCardsHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
