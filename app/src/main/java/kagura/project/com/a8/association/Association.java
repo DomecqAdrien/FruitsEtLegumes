@@ -12,7 +12,8 @@ import kagura.project.com.a8.collections.Card;
 public abstract class Association {
 
     protected int level;
-    protected int size;
+    public int size;
+    public int columns;
     protected int position;
     protected Context context;
     protected List<Integer> imagePositions;
@@ -27,26 +28,24 @@ public abstract class Association {
     }
 
 
-    public int[] setLevelParams(int level){
+    public void setLevelParams(int level){
         this.level = level;
-        int columns = 3;
         switch(level){
             case 1:
-                columns = 3;
-                size = 6;
+                this.columns = 3;
+                this.size = 6;
                 break;
             case 2:
-                columns = 4;
-                size = 8;
+                this.columns = 4;
+                this.size = 8;
                 break;
             case 3:
-                columns = 4;
-                size = 12;
+                this.columns = 4;
+                this.size = 12;
                 break;
         }
         Log.i("size", Integer.toString(size));
         Log.i("column", Integer.toString(columns));
-        return new int[]{columns, size};
     }
 
     /**

@@ -31,9 +31,6 @@ class Memory extends Association {
         backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
     }
 
-    public void initGame() {
-    }
-
     @Override
     public List<Integer[]> getListDrawablesFrontAndBack() {
         if (!isListFruitsCreated) {
