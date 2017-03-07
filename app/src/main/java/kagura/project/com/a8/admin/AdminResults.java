@@ -1,7 +1,6 @@
 package kagura.project.com.a8.admin;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +19,7 @@ import java.util.List;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.adapters.ResultAdapter;
 import kagura.project.com.a8.database.ResultDAO;
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Result;
 
 public class AdminResults extends AppCompatActivity {
 

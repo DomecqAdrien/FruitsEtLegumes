@@ -17,21 +17,18 @@ import java.util.Random;
 import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
-import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Legume;
+import kagura.project.com.a8.collections.Card;
+import kagura.project.com.a8.collections.Legume;
 
 class Memory extends Association {
 
     private List<Legume> legumes;
-    private List<String> legumeNames;
+    private List<String> legumesName;
     private Random r = new Random();
 
     Memory(Context context) {
         super(context);
         backImage = context.getResources().getIdentifier("backcard", "drawable", context.getPackageName());
-    }
-
-    public void initGame() {
     }
 
     @Override
@@ -56,10 +53,10 @@ class Memory extends Association {
         buildListPositionsAvailables();
 
         for (int i = 0; i < (size / 2); i++) {
-            int randomImage = r.nextInt(legumeNames.size());
-            Log.i("legume size", Integer.toString(legumeNames.size()));
+            int randomImage = r.nextInt(legumesName.size());
+            Log.i("legume size", Integer.toString(legumesName.size()));
 
-            if (!imageNames.contains(legumeNames.get(randomImage))) {
+            if (!imageNames.contains(legumesName.get(randomImage))) {
                 // Ajout de la carte 1
                 addCardInPosition(randomImage);
                 // Ajout de la carte 2
@@ -77,7 +74,7 @@ class Memory extends Association {
 
         legumes = new ArrayList<>();
         Log.i("a", "a");
-        legumeNames = new ArrayList<>();
+        legumesName = new ArrayList<>();
         Log.i("a", "a");
 
         try {
@@ -88,9 +85,9 @@ class Memory extends Association {
             Legume legume;
 
             for (int i = 0; i < arr.length(); i++) {
-                legumeNames.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
+                legumesName.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
                         .replaceAll("\\p{InCombiningDiacriticalMarks}+", ""));
-                Log.i("fruit", legumeNames.get(i));
+                Log.i("fruit", legumesName.get(i));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,8 +105,8 @@ class Memory extends Association {
     private void addCardInPosition(int randomImage) {
         int randomPositionCard;
         randomPositionCard = r.nextInt(listPositionsAvailables.size());
-        imagePositions.set(listPositionsAvailables.get(randomPositionCard), getLegumeImageId(legumeNames.get(randomImage)));
-        imageNames.set(listPositionsAvailables.get(randomPositionCard), legumeNames.get(randomImage));
+        imagePositions.set(listPositionsAvailables.get(randomPositionCard), getLegumeImageId(legumesName.get(randomImage)));
+        imageNames.set(listPositionsAvailables.get(randomPositionCard), legumesName.get(randomImage));
 
         Log.i("carte :", "Position " + listPositionsAvailables.get(randomPositionCard));
         listPositionsAvailables.remove(randomPositionCard);

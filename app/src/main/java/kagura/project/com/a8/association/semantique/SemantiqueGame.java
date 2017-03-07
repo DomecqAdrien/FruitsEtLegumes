@@ -38,8 +38,8 @@ import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.association.Association;
 import kagura.project.com.a8.database.ResultDAO;
 import kagura.project.com.a8.association.ResultFragment;
-import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Card;
+import kagura.project.com.a8.collections.Result;
 
 public class SemantiqueGame extends AppCompatActivity {
 
@@ -63,7 +63,7 @@ public class SemantiqueGame extends AppCompatActivity {
     Calendar calendar;
 
     FragmentManager fragmentManager;
-    Association association;
+    Association semantique;
     ImageView buttonBack;
 
     @Override
@@ -75,6 +75,7 @@ public class SemantiqueGame extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //noinspection ConstantConditions
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -153,15 +154,15 @@ public class SemantiqueGame extends AppCompatActivity {
 
     private void newGame(String type) {
 
-        association = new Semantique(this, type);
+        semantique = new Semantique(this, type);
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
-        int levelParams[] = association.setLevelParams(level);
-        gridviewBackground.setNumColumns(levelParams[0]);
-        gridview.setNumColumns(levelParams[0]);
-        finish = levelParams[1] / 2;
+        semantique.setLevelParams(level);
+        gridviewBackground.setNumColumns(semantique.columns);
+        gridview.setNumColumns(semantique.columns);
+        finish = semantique.size / 2;
 
-        List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
+        List<Integer[]> idDrawablesFrontAndBack = semantique.getListDrawablesFrontAndBack();
 
         gridview.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(0), "test"));
         gridviewBackground.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), "test"));
@@ -206,7 +207,7 @@ public class SemantiqueGame extends AppCompatActivity {
     }
 
     @SuppressLint("HandlerLeak")
-    class UpdateCardsHandler extends Handler {
+    private class UpdateCardsHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
@@ -219,19 +220,19 @@ public class SemantiqueGame extends AppCompatActivity {
         void checkCards() {
             tries++;
 
-            boolean isSameFruit = association.checkCards(firstCard, secondCard);
+            boolean isSameFruit = semantique.checkCards(firstCard, secondCard);
             Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
 
             if (isSameFruit) {
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
-                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.view, 100);
                 firstCard.view.startAnimation(animFadeOut);
                 gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
                 firstCard.view.setVisibility(View.INVISIBLE);
-                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(association.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.view, 100);
                 secondCard.view.startAnimation(animFadeOut);

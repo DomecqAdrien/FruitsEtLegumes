@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import kagura.project.com.a8.R;
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Result;
 
 
 public class ResultAdapter extends ArrayAdapter<Result> {

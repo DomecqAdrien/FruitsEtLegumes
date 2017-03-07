@@ -40,8 +40,8 @@ import kagura.project.com.a8.adapters.ImageAdapter;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.ResultFragment;
 import kagura.project.com.a8.database.ResultDAO;
-import kagura.project.com.a8.objects.Card;
-import kagura.project.com.a8.objects.Result;
+import kagura.project.com.a8.collections.Card;
+import kagura.project.com.a8.collections.Result;
 
 import static android.R.attr.tag;
 
@@ -70,7 +70,7 @@ public class MemoryGame extends AppCompatActivity {
     Calendar calendar;
 
     FragmentManager fragmentManager;
-    Association association;
+    Association memory;
 
 
     public MemoryGame() {
@@ -87,6 +87,7 @@ public class MemoryGame extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //noinspection ConstantConditions
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -165,16 +166,16 @@ public class MemoryGame extends AppCompatActivity {
 
     private void newGame() {
 
-        association = new Memory(this);
+        memory = new Memory(this);
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview,
         // et en position 1 le nombre de cartes dans le jeu
-        int levelParams[] = association.setLevelParams(level);
-        gridviewBack.setNumColumns(levelParams[0]);
-        gridviewFront.setNumColumns(levelParams[0]);
-        finish = levelParams[1] / 2;
+        memory.setLevelParams(level);
+        gridviewBack.setNumColumns(memory.columns);
+        gridviewFront.setNumColumns(memory.columns);
+        finish = memory.size / 2;
 
-        List<Integer[]> idDrawablesFrontAndBack = association.getListDrawablesFrontAndBack();
+        List<Integer[]> idDrawablesFrontAndBack = memory.getListDrawablesFrontAndBack();
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
         gridviewFront.setAdapter(new ImageAdapter(this, idDrawablesFrontAndBack.get(1), relativeLayout.getTag().toString()));
@@ -221,7 +222,7 @@ public class MemoryGame extends AppCompatActivity {
     }
 
     @SuppressLint("HandlerLeak")
-    class UpdateCardsHandler extends Handler {
+    private class UpdateCardsHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
@@ -232,17 +233,17 @@ public class MemoryGame extends AppCompatActivity {
         void checkCards(){
             tries++;
 
-            boolean isSameFruit = association.checkCards(firstCard, secondCard);
+            boolean isSameFruit = memory.checkCards(firstCard, secondCard);
 
             if(isSameFruit){
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.viewBack, 100);
                 firstCard.viewBack.startAnimation(animFadeOut);
                 firstCard.viewFront.setVisibility(View.INVISIBLE);
                 firstCard.viewBack.setVisibility(View.INVISIBLE);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(association.getNom() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.viewBack, 100);
                 secondCard.viewBack.startAnimation(animFadeOut);
