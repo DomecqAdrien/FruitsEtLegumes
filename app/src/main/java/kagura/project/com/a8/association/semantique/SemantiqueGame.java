@@ -158,9 +158,9 @@ public class SemantiqueGame extends AppCompatActivity {
 
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview, et en position 1 le nombre de cartes dans le jeu
         semantique.setLevelParams(level);
-        gridviewBackground.setNumColumns(semantique.columns);
-        gridview.setNumColumns(semantique.columns);
-        finish = semantique.size / 2;
+        gridviewBackground.setNumColumns(semantique.getColumns());
+        gridview.setNumColumns(semantique.getColumns());
+        finish = semantique.getSize() / 2;
 
         List<Integer[]> idDrawablesFrontAndBack = semantique.getListDrawablesFrontAndBack();
 
@@ -226,13 +226,13 @@ public class SemantiqueGame extends AppCompatActivity {
             if (isSameFruit) {
                 firstCard.view.setBackgroundColor(getResources().getColor(R.color.green));
                 secondCard.view.setBackgroundColor(getResources().getColor(R.color.green));
-                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom(firstCard.position).toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.view, 100);
                 firstCard.view.startAnimation(animFadeOut);
                 gridviewBackground.getChildAt(firstCard.position).startAnimation(animFadeOut);
                 firstCard.view.setVisibility(View.INVISIBLE);
-                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom().toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(SemantiqueGame.this, 1000, getResources().getIdentifier(semantique.getNom(secondCard.position).toLowerCase() + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.view, 100);
                 secondCard.view.startAnimation(animFadeOut);

@@ -10,9 +10,18 @@ import kagura.project.com.a8.collections.Card;
 public abstract class Association {
 
     protected int level;
-    public int size;
-    public int columns;
-    protected int position;
+    protected int size;
+    private int columns;
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+
     protected Context context;
     protected List<Integer> imagePositions;
     protected List<String> imageNames;
@@ -21,11 +30,14 @@ public abstract class Association {
     protected int backImage;
 
     protected Association(Context context){
+        super();
         this.context = context;
-
     }
 
 
+    // Crée les paramètres de la gridview en fonction d'un niveau donné
+    // size : taille de la gridview
+    // columns : nombre de colonnes dans la gridview (optimisation de l'affichage)
     public void setLevelParams(int level){
         this.level = level;
         switch(level){
@@ -48,12 +60,21 @@ public abstract class Association {
 
     /**
      *
-     * @return
+     * @return retourne une liste contenant deux tableaux d'identifiants de drawable
      */
     public abstract List<Integer[]> getListDrawablesFrontAndBack();
 
-    public abstract void buildListFruits();
+    // Construit une liste de nom de fruit/légumes à partir d'un JSON, cette liste sera exploitée pour récupérer les noms des différents drawable employés
+    public abstract void buildListNames();
 
+    /**
+     * Construit une liste de "positions" disponibles dans la gridview
+     * exemple : pour une gridview de 6 places :
+     * [0,1,2,3,4,5]
+     * 8 places :
+     * [0,1,2,3,4,5,6,7]
+     *
+     */
     protected void buildListPositionsAvailables() {
         listPositionsAvailables = new ArrayList<>();
 
@@ -63,15 +84,31 @@ public abstract class Association {
         Log.i("listPositionsAvailables", listPositionsAvailables.toString());
     }
 
+    /**
+     *
+     * @param position
+     * enlève une "position" de la liste de positions disponibles construite auparavant, une fois qu'un élément est défini à cette position
+     * exemple : pour un gridview de 6 places :
+     * avant suppression : [0,1,2,3,4,5]
+     * un élément est défini à la position 3 :
+     * après suppression : [0,1,3,4,5]
+     */
     protected void removePositionAvailable(int position){
         listPositionsAvailables.remove(position);
     }
-    public abstract boolean checkCards(Card firstCard, Card secondCard);
 
-    public String getNom(){
-        return imageNames.get(position);
+    /* vérifie si les deux cartes selectionnées sont :
+     * memory : identiques
+     * semantique : de la même famille
+     */
+    public boolean checkCards(Card firstCard, Card secondCard){
+        return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
     }
 
+    /*
+     * construit les tableaux d'integers et les intègre à une liste
+     * @return une liste de deux tableaux d'entiers contenant les IDs des drawables utilisés
+     */
     protected List<Integer[]> buildListDrawablesFrontAndBack(){
         List<Integer[]> idDrawablesFrontAndBack = new ArrayList<>();
 
@@ -86,7 +123,10 @@ public abstract class Association {
         idDrawablesFrontAndBack.add(1, mThumbIdsBackground);
 
         return idDrawablesFrontAndBack;
+    }
 
+    public String getNom(int position){
+        return imageNames.get(position);
     }
 }
 

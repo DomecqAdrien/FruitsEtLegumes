@@ -171,9 +171,9 @@ public class MemoryGame extends AppCompatActivity {
         // On initialise un tableau d'entiers contenant en position 0 le nombre de colonnes que fera la gridview,
         // et en position 1 le nombre de cartes dans le jeu
         memory.setLevelParams(level);
-        gridviewBack.setNumColumns(memory.columns);
-        gridviewFront.setNumColumns(memory.columns);
-        finish = memory.size / 2;
+        gridviewBack.setNumColumns(memory.getColumns());
+        gridviewFront.setNumColumns(memory.getColumns());
+        finish = memory.getSize() / 2;
 
         List<Integer[]> idDrawablesFrontAndBack = memory.getListDrawablesFrontAndBack();
 
@@ -237,13 +237,13 @@ public class MemoryGame extends AppCompatActivity {
 
             if(isSameFruit){
                 Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom(firstCard.position) + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(firstCard.viewBack, 100);
                 firstCard.viewBack.startAnimation(animFadeOut);
                 firstCard.viewFront.setVisibility(View.INVISIBLE);
                 firstCard.viewBack.setVisibility(View.INVISIBLE);
-                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom() + "_ico", "drawable", getPackageName()), 1000)
+                new ParticleSystem(MemoryGame.this, 1000, getResources().getIdentifier(memory.getNom(secondCard.position) + "_ico", "drawable", getPackageName()), 1000)
                         .setSpeedRange(0.2f, 0.5f)
                         .oneShot(secondCard.viewBack, 100);
                 secondCard.viewBack.startAnimation(animFadeOut);

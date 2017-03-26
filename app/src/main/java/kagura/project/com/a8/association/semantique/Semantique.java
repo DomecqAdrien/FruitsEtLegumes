@@ -20,7 +20,7 @@ import kagura.project.com.a8.collections.Card;
 
 class Semantique extends Association {
 
-    private List<String> fruitsName;
+    private List<String> fruits;
     private Random rand = new Random();
     private String type;
 
@@ -34,7 +34,7 @@ class Semantique extends Association {
     @Override
     public List<Integer[]> getListDrawablesFrontAndBack(){
         if (!isListFruitsCreated) {
-            buildListFruits();
+            buildListNames();
         }
         
         defineFruitsPositions();
@@ -55,9 +55,9 @@ class Semantique extends Association {
         Log.i("size", Integer.toString(size));
         for(int i =0; i < size / 2; i++){
             Log.i("i", Integer.toString(i));
-            int randomImage = rand.nextInt(fruitsName.size());
+            int randomImage = rand.nextInt(fruits.size());
             int randomPosition;
-            if(!imageNames.contains(fruitsName.get(randomImage))){
+            if(!imageNames.contains(fruits.get(randomImage))){
                 randomPosition = rand.nextInt(listPositionsAvailables.size());
                 addCardInPosition(randomImage, randomPosition, true);
                 removePositionAvailable(randomPosition);
@@ -73,8 +73,8 @@ class Semantique extends Association {
     }
 
     @Override
-    public void buildListFruits(){
-        fruitsName = new ArrayList<>();
+    public void buildListNames(){
+        fruits = new ArrayList<>();
 
         try{
             LoadJson lj = new LoadJson();
@@ -86,9 +86,9 @@ class Semantique extends Association {
 
             for(int i = 0; i < arr.length(); i++){
 
-                fruitsName.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
+                fruits.add(Normalizer.normalize(arr.get(i).toString().toLowerCase(), Normalizer.Form.NFD)
                         .replaceAll("\\p{InCombiningDiacriticalMarks}+", ""));
-                Log.i("fruit", fruitsName.get(i));
+                Log.i("fruit", fruits.get(i));
             }
         }catch (JSONException e){
             e.printStackTrace();
@@ -96,22 +96,22 @@ class Semantique extends Association {
     }
 
     private void addCardInPosition(int randomImage, int randomPosition, boolean isFirstCard) {
-        Log.i("fruits.size()", Integer.toString(fruitsName.size()));
-        Log.i("fruit_plein_id", Integer.toString(getFruitImageId(fruitsName.get(randomImage))));
+        Log.i("fruits.size()", Integer.toString(fruits.size()));
+        Log.i("fruit_plein_id", Integer.toString(getFruitImageId(fruits.get(randomImage))));
 
-        imageNames.set(listPositionsAvailables.get(randomPosition), fruitsName.get(randomImage));
+        imageNames.set(listPositionsAvailables.get(randomPosition), fruits.get(randomImage));
         if(isFirstCard){
-            imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(fruitsName.get(randomImage)));
+            imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(fruits.get(randomImage)));
         }else {
             switch (type){
                 case "coupes":
-                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_coupe_path, fruitsName.get(randomImage)));
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_coupe_path, fruits.get(randomImage)));
                     break;
                 case "arbres":
-                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_arbre_path, fruitsName.get(randomImage)));
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_arbre_path, fruits.get(randomImage)));
                     break;
                 case "graines":
-                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_graine_path, fruitsName.get(randomImage)));
+                    imagePositions.set(listPositionsAvailables.get(randomPosition), getFruitImageId(R.string.fruit_graine_path, fruits.get(randomImage)));
                     break;
             }
         }
@@ -129,12 +129,6 @@ class Semantique extends Association {
     // permet de récupérer au choix l'identifiant d'un arbre, graine ou fruit coupé selon un fruit donné, paire complémentaire au fruit plein
     private int getFruitImageId(int type, String fruit){
         return context.getResources().getIdentifier(context.getString(type) + fruit, "drawable", context.getPackageName());
-    }
-
-    @Override
-    public boolean checkCards(Card firstCard, Card secondCard){
-        this.position = firstCard.position;
-        return imageNames.get(firstCard.position).equals(imageNames.get(secondCard.position));
     }
 }
 
