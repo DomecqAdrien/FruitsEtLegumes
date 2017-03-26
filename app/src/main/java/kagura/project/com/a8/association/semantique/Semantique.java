@@ -80,6 +80,9 @@ class Semantique extends Association {
             LoadJson lj = new LoadJson();
             JSONObject obj = new JSONObject(lj.loadJSONFromAsset(context, "fruits"));
             JSONArray arr = obj.getJSONArray("fruits");
+            Log.i("Object", obj.toString());
+            Log.i("Array", arr.toString());
+
 
             for(int i = 0; i < arr.length(); i++){
 

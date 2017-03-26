@@ -43,10 +43,10 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             Log.i("type", layoutType);
             if (layoutType == "xxhdpi"){
-                imageView.setLayoutParams(new GridView.LayoutParams(320, 320));
+                imageView.setLayoutParams(new GridView.LayoutParams(280, 280));
             }
             else {
-                imageView.setLayoutParams(new GridView.LayoutParams(320, 320));
+                imageView.setLayoutParams(new GridView.LayoutParams(280, 280));
             }
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);

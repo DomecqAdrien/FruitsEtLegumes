@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_solution"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_fruit"
+
+    tools:context="kagura.project.com.a8.Encyclopedie">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:id="@+id/fruitArbre"
+        android:contentDescription="@string/fruit_arbre"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/fruitPlein"
+        android:layout_toEndOf="@+id/fruitPlein"
+        android:layout_marginLeft="82dp"
+        android:layout_marginStart="82dp" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:id="@+id/fruitPlein"
+        android:contentDescription="@string/fruit_plein"
+        android:layout_marginLeft="65dp"
+        android:layout_marginStart="65dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView6"
+        android:layout_toEndOf="@+id/imageView6" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:id="@+id/fruitCoupe"
+        android:contentDescription="@string/fruit_coupe"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/fruitPlein"
+        android:layout_alignStart="@+id/fruitPlein" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:id="@+id/fruitGraine"
+        android:contentDescription="@string/fruit_graine"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/fruitArbre"
+        android:layout_alignStart="@+id/fruitArbre" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/back3"
+        android:id="@+id/imageView6"
+        android:onClick="backToMenu"
+        android:contentDescription="@string/avatar"
+        android:layout_above="@+id/fruitCoupe"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp" />
+
+</RelativeLayout>

@@ -9,7 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start">C\'est parti !</string>
     <string name="whoru">Qui es-tu ?</string>
-    <string name="prenom">Prénom :</string>
+    <string name="prenom">Prénom</string>
     <string name="name">name</string>
     <string name="avatar">Avatar</string>
     <string name="character_selection">Avec qui veux-tu jouer?</string>

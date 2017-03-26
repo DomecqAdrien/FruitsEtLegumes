@@ -41,6 +41,7 @@ public class ResultFragment extends Fragment {
 
         RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.fragment_result_game, container, false);
         buttonNextLevel = (ImageView) rl.findViewById(R.id.buttonNextLevel);
+        buttonNextLevel.setImageDrawable(getResources().getDrawable(R.drawable.next1));
         if(level == 3){
             buttonNextLevel.setEnabled(false);
             buttonNextLevel.setImageDrawable(getResources().getDrawable(R.drawable.nextgrey));

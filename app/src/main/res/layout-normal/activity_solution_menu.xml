@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_solution_menu"
+    android:background="@drawable/background_fruit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridView
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+        android:id="@+id/gridviewFruits"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:columnWidth="200dp"
+        android:numColumns="3"
+        android:verticalSpacing="110dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+    </GridView>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/back3"
+        android:id="@+id/imageView7"
+        android:onClick="backToMenu"
+        android:contentDescription="@string/avatar"
+        android:layout_marginTop="93dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

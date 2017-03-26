@@ -41,10 +41,10 @@
         android:id="@+id/graines"
         android:contentDescription="@string/graines"
         android:layout_alignTop="@+id/arbres"
-        android:layout_toRightOf="@+id/plantes_tv"
-        android:layout_toEndOf="@+id/plantes_tv"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
+        android:layout_toRightOf="@+id/arbres"
+        android:layout_toEndOf="@+id/arbres"
+        android:layout_marginLeft="61dp"
+        android:layout_marginStart="61dp" />
 
     <TextView
         android:text="@string/coupes"
