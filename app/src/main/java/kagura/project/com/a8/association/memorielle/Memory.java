@@ -17,7 +17,6 @@ import java.util.Random;
 import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
-import kagura.project.com.a8.collections.Card;
 
 class Memory extends Association {
 
@@ -63,6 +62,8 @@ class Memory extends Association {
         }
     }
 
+
+    // définit aléatoirement la positions des éléments dans la gridview
     private void defineLegumesPositions(){
         Log.i("getListDrawablesFAndB()", "size=" + size);
 
@@ -79,9 +80,9 @@ class Memory extends Association {
 
             if (!imageNames.contains(legumes.get(randomImage))) {
                 // Ajout de la carte 1
-                addCardInPosition(randomImage);
+                addDrawableIdInPosition(randomImage);
                 // Ajout de la carte 2
-                addCardInPosition(randomImage);
+                addDrawableIdInPosition(randomImage);
             } else {
                 i--;
             }
@@ -89,7 +90,8 @@ class Memory extends Association {
         Log.i("imagePositionsAfter", imagePositions.toString());
     }
 
-    private void addCardInPosition(int randomImage) {
+    // ajoute un identifiant à une position aléatoire parmis les positions disponibles dans la liste de positions disponibles
+    private void addDrawableIdInPosition(int randomImage) {
         int randomPositionCard;
         randomPositionCard = r.nextInt(listPositionsAvailables.size());
         imagePositions.set(listPositionsAvailables.get(randomPositionCard), getLegumeImageId(legumes.get(randomImage)));
@@ -99,6 +101,7 @@ class Memory extends Association {
         listPositionsAvailables.remove(randomPositionCard);
     }
 
+    // récupère l'ID d'un drawable en fonction d'un path précis + un nom de légume donné
     private int getLegumeImageId(String legume){
         return context.getResources().getIdentifier(context.getString(R.string.legume_path) + legume, "drawable", context.getPackageName());
     }

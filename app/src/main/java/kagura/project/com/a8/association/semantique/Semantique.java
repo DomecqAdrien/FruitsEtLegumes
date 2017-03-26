@@ -16,7 +16,6 @@ import java.util.Random;
 import kagura.project.com.a8.LoadJson;
 import kagura.project.com.a8.R;
 import kagura.project.com.a8.association.Association;
-import kagura.project.com.a8.collections.Card;
 
 class Semantique extends Association {
 
@@ -39,37 +38,6 @@ class Semantique extends Association {
         
         defineFruitsPositions();
         return buildListDrawablesFrontAndBack();
-    }
-
-    private void defineFruitsPositions() {
-
-        Log.i("gridSize", Integer.toString(size));
-
-        imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
-        imageNames = new ArrayList<>(Collections.nCopies(size, ""));
-
-        Log.i("imagePositionInit", imagePositions.toString());
-
-        buildListPositionsAvailables();
-
-        Log.i("size", Integer.toString(size));
-        for(int i =0; i < size / 2; i++){
-            Log.i("i", Integer.toString(i));
-            int randomImage = rand.nextInt(fruits.size());
-            int randomPosition;
-            if(!imageNames.contains(fruits.get(randomImage))){
-                randomPosition = rand.nextInt(listPositionsAvailables.size());
-                addCardInPosition(randomImage, randomPosition, true);
-                removePositionAvailable(randomPosition);
-
-                randomPosition = rand.nextInt(listPositionsAvailables.size());
-                addCardInPosition(randomImage, randomPosition, false);
-                removePositionAvailable(randomPosition);
-
-            }else{
-                i--;
-            }
-        }
     }
 
     @Override
@@ -95,7 +63,40 @@ class Semantique extends Association {
         }
     }
 
-    private void addCardInPosition(int randomImage, int randomPosition, boolean isFirstCard) {
+    // définit aléatoirement la positions des éléments dans la gridview
+    private void defineFruitsPositions() {
+
+        Log.i("gridSize", Integer.toString(size));
+
+        imagePositions = new ArrayList<>(Collections.nCopies(size, 0));
+        imageNames = new ArrayList<>(Collections.nCopies(size, ""));
+
+        Log.i("imagePositionInit", imagePositions.toString());
+
+        buildListPositionsAvailables();
+
+        Log.i("size", Integer.toString(size));
+        for(int i =0; i < size / 2; i++){
+            Log.i("i", Integer.toString(i));
+            int randomImage = rand.nextInt(fruits.size());
+            int randomPosition;
+            if(!imageNames.contains(fruits.get(randomImage))){
+                randomPosition = rand.nextInt(listPositionsAvailables.size());
+                addDrawableIdInPosition(randomImage, randomPosition, true);
+                removePositionAvailable(randomPosition);
+
+                randomPosition = rand.nextInt(listPositionsAvailables.size());
+                addDrawableIdInPosition(randomImage, randomPosition, false);
+                removePositionAvailable(randomPosition);
+
+            }else{
+                i--;
+            }
+        }
+    }
+
+    // ajoute un identifiant à une position aléatoire parmis les positions disponibles dans la liste de positions disponibles
+    private void addDrawableIdInPosition(int randomImage, int randomPosition, boolean isFirstCard) {
         Log.i("fruits.size()", Integer.toString(fruits.size()));
         Log.i("fruit_plein_id", Integer.toString(getFruitImageId(fruits.get(randomImage))));
 
