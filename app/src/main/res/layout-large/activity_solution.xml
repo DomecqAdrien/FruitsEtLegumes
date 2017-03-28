@@ -13,41 +13,41 @@
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:id="@+id/fruitArbre"
+        android:contentDescription="@string/fruit_arbre"
+        android:layout_marginLeft="63dp"
+        android:layout_marginStart="63dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/fruitGraine"
-        android:layout_alignStart="@+id/fruitGraine"
-        android:contentDescription="@string/fruit_arbre" />
+        android:layout_toRightOf="@+id/fruitPlein"
+        android:layout_toEndOf="@+id/fruitPlein" />
 
     <ImageView
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:id="@+id/fruitPlein"
+        android:contentDescription="@string/fruit_plein"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/fruitArbre"
-        android:layout_toStartOf="@+id/fruitArbre"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp"
-        android:contentDescription="@string/fruit_plein" />
+        android:layout_alignLeft="@+id/fruitCoupe"
+        android:layout_alignStart="@+id/fruitCoupe" />
 
     <ImageView
         android:layout_width="330dp"
         android:layout_height="350dp"
         android:id="@+id/fruitCoupe"
-        android:layout_alignTop="@+id/fruitGraine"
-        android:layout_alignLeft="@+id/fruitPlein"
-        android:layout_alignStart="@+id/fruitPlein"
-        android:contentDescription="@string/fruit_coupe" />
+        android:contentDescription="@string/fruit_coupe"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/imageView6"
+        android:layout_toEndOf="@+id/imageView6" />
 
     <ImageView
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:id="@+id/fruitGraine"
-        android:layout_marginRight="272dp"
-        android:layout_marginEnd="272dp"
         android:contentDescription="@string/fruit_graine"
-        android:layout_below="@+id/imageView6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/fruitArbre"
+        android:layout_alignStart="@+id/fruitArbre" />
 
     <ImageView
         android:layout_width="160dp"
