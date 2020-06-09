@@ -1,0 +1,146 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_foret">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageView
+        android:id="@+id/buttonStart"
+        android:layout_width="84dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/start"
+        android:onClick="start"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ico"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+
+    <TextView
+        android:id="@+id/character_selection"
+        android:layout_width="259dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="44dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/character_selection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/whoru"
+        android:layout_width="94dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/whoru"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="casual"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whoru" />
+
+    <ImageView
+        android:id="@+id/buttonVerGros"
+        android:layout_width="178dp"
+        android:layout_height="168dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginBottom="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/avatar"
+        android:onClick="characterOnClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ver_gros_hd" />
+
+    <ImageView
+        android:id="@+id/buttonVerMince"
+        android:layout_width="160dp"
+        android:layout_height="158dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="56dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/avatar"
+        android:onClick="characterOnClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ver_mince_hd" />
+
+    <TextView
+        android:id="@+id/nameIndicator"
+        android:layout_width="79dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/prenom"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/name" />
+
+    <ImageView
+        android:id="@+id/buttonAdmin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="TODO"
+        android:onClick="adminSession"
+        android:text="@string/admin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:srcCompat="@drawable/resultats" />
+
+    <ImageView
+        android:id="@+id/imageAssociation"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+
+        android:contentDescription="@string/avatar"
+        android:rotation="-40"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:srcCompat="@drawable/main" />
+
+    <TextView
+        android:id="@+id/textGo"
+        android:layout_width="44dp"
+        android:layout_height="33dp"
+        android:text="@string/commencer"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonStart"
+        app:layout_constraintEnd_toEndOf="@+id/buttonStart"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="@+id/buttonStart"
+        app:layout_constraintTop_toTopOf="@+id/buttonStart"
+        app:layout_constraintVertical_bias="0.692" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

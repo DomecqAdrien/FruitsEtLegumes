@@ -27,9 +27,10 @@ class DatabaseHandler extends SQLiteOpenHelper {
                     COLUMN_NAME_TIME + " REAL," +
                     COLUMN_NAME_DATE + " TEXT);";
 
+
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + TABLE_NAME + ";" + SQL_CREATE_ENTRIES ;
-    
+            "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
     DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
