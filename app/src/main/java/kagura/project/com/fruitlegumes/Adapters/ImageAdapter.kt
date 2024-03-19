@@ -23,7 +23,7 @@ class ImageAdapter(private val mContext: Context, private val mThumbIds: Array<I
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    override fun getView(position: Int, convertView: View, parent: ViewGroup): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val imageView: ImageView
         if (convertView == null) {
             // if it's not recycled, initialize some attributes

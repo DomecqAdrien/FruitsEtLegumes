@@ -12,12 +12,12 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.GridView
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import kagura.project.com.fruitlegumes.adapters.ImageAdapterJ
+import kagura.project.com.fruitlegumes.adapters.ImageAdapter
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.Normalizer
-import java.util.*
+import java.util.Locale
 
 class Encyclopedie : AppCompatActivity() {
     private var gridViewFruits: GridView? = null
@@ -47,7 +47,7 @@ class Encyclopedie : AppCompatActivity() {
 
     private fun loadMenu() {
         gridViewFruits = findViewById<View>(R.id.gridviewFruits) as GridView
-        gridViewFruits!!.adapter = ImageAdapterJ(this, idDrawables.toTypedArray(), "test")
+        gridViewFruits!!.adapter = ImageAdapter(this, idDrawables.toTypedArray(), "test")
         gridViewFruits!!.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             setContentView(R.layout.activity_solution)
             isMenuView = false

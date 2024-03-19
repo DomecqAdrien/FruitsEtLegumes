@@ -24,13 +24,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.preference.PreferenceManager
 import com.plattysoft.leonids.ParticleSystem
 import kagura.project.com.fruitlegumes.R
-import kagura.project.com.fruitlegumes.adapters.ImageAdapterJ
+import kagura.project.com.fruitlegumes.adapters.ImageAdapter
 import kagura.project.com.fruitlegumes.association.Association
 import kagura.project.com.fruitlegumes.association.ResultFragment
 import kagura.project.com.fruitlegumes.collections.Card
 import kagura.project.com.fruitlegumes.collections.Result
 import kagura.project.com.fruitlegumes.database.ResultDAO
-import java.util.*
+import java.util.Calendar
+import java.util.Timer
+import java.util.TimerTask
 
 class MemoryGame : AppCompatActivity() {
     private var isClickable = true
@@ -124,8 +126,8 @@ class MemoryGame : AppCompatActivity() {
         val idDrawablesFrontAndBack = memory.listDrawablesFrontAndBack
 
         // à la position 0 sont placés tous les dos de cartes, à la 1, les différents légumes chargés
-        gridviewFront.adapter = ImageAdapterJ(this, idDrawablesFrontAndBack[1].toTypedArray(), relativeLayout!!.tag.toString())
-        gridviewBack.adapter = ImageAdapterJ(this, idDrawablesFrontAndBack[0].toTypedArray(), relativeLayout!!.tag.toString())
+        gridviewFront.adapter = ImageAdapter(this, idDrawablesFrontAndBack[1].toTypedArray(), relativeLayout!!.tag.toString())
+        gridviewBack.adapter = ImageAdapter(this, idDrawablesFrontAndBack[0].toTypedArray(), relativeLayout!!.tag.toString())
     }
 
     private fun turnCard(v: View, position: Int) {

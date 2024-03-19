@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kagura.project.com.fruitlegumes.admin.AdminSession
-import java.util.*
+import java.util.Locale
 
 class CharacterSelection : AppCompatActivity() {
     var name: EditText? = null
