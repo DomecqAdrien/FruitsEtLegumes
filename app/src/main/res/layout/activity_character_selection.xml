@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_foret_portrait"
 
-    tools:context="kagura.project.com.a8.CharacterSelection">
+    tools:context="kagura.project.com.fruitlegumes.CharacterSelection">
 
     <!-- TODO: Update blank fragment layout -->
 

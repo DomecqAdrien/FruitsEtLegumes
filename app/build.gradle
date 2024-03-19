@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace 'kagura.project.com.a8'
+    namespace 'kagura.project.com.fruitlegumes'
     compileSdk 34
     defaultConfig {
-        applicationId "kagura.project.com.a8"
+        applicationId "kagura.project.com.fruitlegumes"
         minSdkVersion 34
         targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

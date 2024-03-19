@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kagura.project.com.a8.association.semantique.SemantiqueChoiceFragment">
+    tools:context="kagura.project.com.fruitlegumes.association.semantique.SemantiqueChoiceFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
